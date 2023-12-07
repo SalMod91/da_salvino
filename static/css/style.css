@@ -4,3 +4,34 @@ body {
     /* background-position: center center; */
 
 }
+
+/* Navigation CSS */
+.navbar-container {
+    width: 60%;
+    margin: auto;
+}
+
+.logo {
+    font-family: sans-serif;
+    color: white;
+}
+
+.nav-link {
+    transition: color 0.3s, font-size 0.3s;
+}
+
+.nav-link:hover {
+    color: orange !important;
+    font-size: 1.1em;
+    transition: 0.3s;
+}
+
+.active {
+    font-size: 1.1em;
+}
+
+.nav-icon {
+    width: 20px;
+    height: auto;
+    color: white;
+}
