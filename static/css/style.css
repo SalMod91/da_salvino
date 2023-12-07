@@ -5,10 +5,26 @@ body {
 
 }
 
+main {
+    width: 10%;
+    margin: auto;
+}
+
 /* Navigation CSS */
 .navbar-container {
     width: 60%;
     margin: auto;
+}
+
+header {
+    background-color: rgba(0,0,0,0);
+    transition: 0.3s ease;
+}
+
+/* ID assigned from JS when the header moves from top position */
+#header-not-at-top {
+    background-color: rgba(0,0,0,1);
+    transition: 0.3s;
 }
 
 .logo {
