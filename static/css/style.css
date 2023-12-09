@@ -1,7 +1,6 @@
 body {
-    background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1701942335/image/yc6ruki2sgaiiqrxpjfq.jpg') no-repeat;
+    background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1702088767/image/pu4tnlxnrjgp85nxcpue.jpg') no-repeat fixed;
     background-size: cover;
-    /* background-position: center center; */
 
 }
 
@@ -27,6 +26,10 @@ header {
     transition: 0.3s;
 }
 
+#navbar {
+    text-align: right;
+}
+
 .logo {
     font-family: sans-serif;
     color: white;
@@ -37,17 +40,25 @@ header {
 }
 
 .nav-link:hover {
-    color: orange !important;
+    color: #ffab18 !important;
     font-size: 1.1em;
     transition: 0.3s;
 }
 
 .active {
     font-size: 1.1em;
+    text-decoration: underline;
 }
 
 .nav-icon {
     width: 20px;
     height: auto;
     color: white;
+}
+
+/* Media Queries */
+@media screen and (max-width:992px){
+    .navbar-container {
+        width: 90%;
+    }
 }
