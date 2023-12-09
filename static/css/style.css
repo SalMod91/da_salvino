@@ -1,7 +1,9 @@
 body {
     background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1702088767/image/pu4tnlxnrjgp85nxcpue.jpg') no-repeat fixed;
     background-size: cover;
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
@@ -41,12 +43,12 @@ header {
 
 .nav-link:hover {
     color: #ffab18 !important;
-    font-size: 1.1em;
+    font-size: 1.2em;
     transition: 0.3s;
 }
 
 .active {
-    font-size: 1.1em;
+    font-size: 1.2em;
     text-decoration: underline;
 }
 
@@ -54,6 +56,25 @@ header {
     width: 20px;
     height: auto;
     color: white;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.icon {
+    color:#ffab18;
+}
+
+.social {
+    transition: 0.3s ease;
+}
+
+.social:hover {
+    color:#ffab18;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size: 1.2em;
 }
 
 /* Media Queries */
