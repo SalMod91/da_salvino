@@ -84,11 +84,20 @@ footer {
     background-position: center center;
 }
 
+#hero-width {
+    width: 90%;
+}
+
+.button-container {
+    margin-top: auto;
+}
+
 .custom-button {
     border: 2px solid #ffab18;
     text-transform: uppercase;
     color: white;
     padding: 8px 18px;
+    background-color: transparent;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
@@ -96,13 +105,27 @@ footer {
     background-color: #ffab18;
     color: black;
     transition: 0.3s;
-    padding: 8px 20px;
-    border: transparent;
 }
 
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {
+        width: 90%;
+    }
+
+    #hero-width {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #hero-width {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width:576px) {
+    #hero-width {
         width: 90%;
     }
 }
