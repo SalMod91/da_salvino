@@ -18,10 +18,18 @@ header {
     transition: 0.3s ease;
 }
 
-/* ID assigned from JS when the header moves from top position */
-#header-not-at-top {
-    background-color: rgba(0,0,0,1);
-    transition: 0.3s;
+/* Class assigned from JS when the user scrolls down from top position */
+.sticky-top {
+    animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        top: -100%;
+    }
+    to {
+        top: 0;
+    }
 }
 
 #navbar {
