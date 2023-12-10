@@ -6,11 +6,7 @@ body {
     min-height: 100vh;
 }
 
-main {
-    width: 10%;
-    margin: auto;
-}
-
+/* This CSS section applies to base.html */
 /* Navigation CSS */
 .navbar-container {
     width: 60%;
@@ -18,7 +14,7 @@ main {
 }
 
 header {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,1);
     transition: 0.3s ease;
 }
 
@@ -58,6 +54,7 @@ header {
     color: white;
 }
 
+/* Footer Section */
 footer {
     margin-top: auto;
 }
@@ -75,6 +72,32 @@ footer {
     transition: 0.3s;
     cursor: pointer;
     font-size: 1.2em;
+}
+
+/* This section applies to index.html */
+
+#home-hero-container {
+    width: 100%;
+    height: 94vh;
+    background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1702190808/image/cnzfxtllyooo4nyfdcmy.webp') no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.custom-button {
+    border: 2px solid #ffab18;
+    text-transform: uppercase;
+    color: white;
+    padding: 8px 18px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #ffab18;
+    color: black;
+    transition: 0.3s;
+    padding: 8px 20px;
+    border: transparent;
 }
 
 /* Media Queries */

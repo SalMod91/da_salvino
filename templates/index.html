@@ -1,1 +1,24 @@
 {% extends "base.html" %}
+{% load static %} 
+{% block content %}
+<section id="home-hero-container" class="d-flex justify-content-center align-items-center">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-8 col-md-6 text-white text-center">
+                <h1>WELCOME TO THIS PLACE</h1>
+                <h3>BLABLABLA</h3>
+                <h3>BLABLA</h3>
+            </div>
+
+            <div class="col-4 col-md-4 text-end">
+                <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702191098/image/pizza_hero.png" alt="Pizza" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <button type="button" class="btn custom-button">Discover the Menu</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

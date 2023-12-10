@@ -16,11 +16,12 @@
     </head>
     <body>
         <header class="sticky-top">
-            <!-- Navigation Container reducing it's size to 60% of the screen width -->
+            <!-- Navigation Container reducing it's size to 60% of the large screen width -->
             <div class="navbar-container">
                 <!-- Navigation Bar -->
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <a class="logo navbar-brand" href="{% url 'home' %}">Logo</a>
+
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -28,7 +29,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbar">
                         <ul class="navbar-nav">
                             <li class="nav-item pe-3">
-                                <a class="nav-link text-white active" href="#"><i class="fa-solid fa-house pe-2"></i>Home</a>
+                                <a class="nav-link text-white active" href="{% url 'home' %}"><i class="fa-solid fa-house pe-2"></i>Home</a>
                             </li>
                             <li class="nav-item pe-3">
                                 <a class="nav-link text-white" href="#"><i class="fa-solid fa-utensils pe-2"></i>Menu</a>
@@ -43,9 +44,9 @@
         </header>
         
         <main>
-            <div>
-                <h1>hi</h1>
-            </div>
+            {% block content %}
+            <!-- Inherits content from other templates -->
+            {% endblock%}
         </main>
 
         <footer class=" bg-black text-white">
@@ -94,7 +95,18 @@
                     </div>
                 </div>
             </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col text-center">
+                        <p>This product is for educational purposes only.</p>
+                    </div>
+                    <div class="col text-center">
+                        <p>&copy; 2023 Salvino Modica, Switzerland</p>
+                    </div>
+                </div>
+            </div>
         </footer>
+
         <!-- Font Awesome Script -->
         <script src="https://kit.fontawesome.com/aeb00995c9.js" crossorigin="anonymous"></script>
         <!-- Bootstrap JS script -->
