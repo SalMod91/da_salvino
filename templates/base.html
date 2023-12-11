@@ -35,7 +35,7 @@
                                 <a class="nav-link text-white {% if request.path == '/menu/' %}active{% endif %}" href="{% url 'menu' %}"><i class="fa-solid fa-utensils pe-2"></i>Menu</a>
                             </li>
                             <li class="nav-item pe-3">
-                                <a class="nav-link text-white {% if request.path == '/ingredients/' %}active{% endif %}" href="#"><i class="fa-solid fa-pizza-slice pe-2"></i>Ingredients</a>
+                                <a class="nav-link text-white {% if request.path == '/ingredients/' %}active{% endif %}" href="{% url 'ingredients' %}"><i class="fa-solid fa-pizza-slice pe-2"></i>Ingredients</a>
                             </li>
                         </ul>
                     </div>
