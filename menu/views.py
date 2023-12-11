@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-class HomePage(TemplateView):
+class MenuPage(TemplateView):
     """
-    View for home page
+    View for menu page
     """
-    template_name = "index.html"
+    template_name = "menu.html"
