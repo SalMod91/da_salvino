@@ -21,24 +21,24 @@ document.addEventListener('DOMContentLoaded', function() {
         var allContent = ''; // Assigned a variable to the content of the "All" tab
 
         // Clear the existing content in the 'All' tab
-        document.getElementById('all').innerHTML = '';
+        var allTab = document.getElementById('all');
+        allTab.innerHTML = '';
         
         // Loop through each tab-pane and add its content to the "All" tab
         var tabPanes = document.querySelectorAll('.tab-pane');
         tabPanes.forEach(function(tabPane) {
-            if (!tabPane.classList.contains('active')) { // Avoid duplicating the "All" tab content
-                allContent += tabPane.innerHTML;
-            }
+            allContent += tabPane.innerHTML;
         });
-        document.getElementById('all').innerHTML = allContent; // Set the content of the "All" tab
+        
+        allTab.innerHTML = allContent; // Set the content of the "All" tab
     }
 
     // Call the function when the page loads
     populateAllTab();
 
     // Call the function when the "All" tab is clicked
-    var allTab = document.querySelector('a[href="#all"]');
-    if (allTab) {
-        allTab.addEventListener('click', populateAllTab);
+    var allNavTab = document.querySelector('a[href="#all"]');
+    if (allNavTab) {
+        allNavTab.addEventListener('click', populateAllTab);
     }
 });
