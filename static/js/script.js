@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to "populate" the "All" tab
     function populateAllTab() {
         var allContent = ''; // Assigned a variable to the content of the "All" tab
+
+        // Clear the existing content in the 'All' tab
+        document.getElementById('all').innerHTML = '';
+        
         // Loop through each tab-pane and add its content to the "All" tab
         var tabPanes = document.querySelectorAll('.tab-pane');
         tabPanes.forEach(function(tabPane) {
