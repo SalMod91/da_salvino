@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateAllTab() {
         var allContent = ''; // Assigned a variable to the content of the "All" tab
 
-        // Clear the existing content in the 'All' tab
+        // Clear the existing content in the "All" tab
         var allTab = document.getElementById('all');
         allTab.innerHTML = '';
         

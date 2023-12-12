@@ -116,6 +116,10 @@ footer {
     transition: 0.3s;
 }
 
+#menu-link {
+    color:#fff
+}
+
 /* This section applies to menu.html */
 .nav-tabs .nav-link {
     border-radius: 50px;
