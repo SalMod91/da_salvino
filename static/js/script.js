@@ -13,3 +13,28 @@ window.addEventListener('scroll', function() {
         header.removeAttribute('class');
     }
 });
+
+// Waits for the DOM to be fully loaded before executing
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to "populate" the "All" tab
+    function populateAllTab() {
+        var allContent = ''; // Assigned a variable to the content of the "All" tab
+        // Loop through each tab-pane and add its content to the "All" tab
+        var tabPanes = document.querySelectorAll('.tab-pane');
+        tabPanes.forEach(function(tabPane) {
+            if (!tabPane.classList.contains('active')) { // Avoid duplicating the "All" tab content
+                allContent += tabPane.innerHTML;
+            }
+        });
+        document.getElementById('all').innerHTML = allContent; // Set the content of the "All" tab
+    }
+
+    // Call the function when the page loads
+    populateAllTab();
+
+    // Call the function when the "All" tab is clicked
+    var allTab = document.querySelector('a[href="#all"]');
+    if (allTab) {
+        allTab.addEventListener('click', populateAllTab);
+    }
+});
