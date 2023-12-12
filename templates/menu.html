@@ -1,5 +1,41 @@
 {% extends "base.html" %}
 {% load static %} 
 {% block content %}
-<h1>hi!</h1>
+    <section class="container mt-5 text-white">
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Our Menu</h1>
+        
+            <!-- Menu Categories -->
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#pizza" data-toggle="tab">Pizza</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#pasta" data-toggle="tab">Pasta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#dessert" data-toggle="tab">Dessert</a>
+                </li>
+            </ul>
+        
+            <!-- Tab panels -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="pizza">
+                    <h3>Pizza 1</h3>
+                    <h3>Pizza 2</h3>
+                    <h3>Pizza 3</h3>
+                </div>
+                <div class="tab-pane container fade" id="pasta">
+                    <h3> Pasta 1</h3>
+                    <h3>Pasta 2</h3>
+                    <h3>Pasta 3</h3>
+                </div>
+                <div class="tab-pane container fade" id="dessert">
+                    <h3>Dessert 1</h3>
+                    <h3>Dessert 2</h3>
+                    <h3>Dessert 3</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
