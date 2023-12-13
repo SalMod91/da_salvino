@@ -143,6 +143,11 @@ footer {
     color: #fff!important;
 }
 
+/* This section applies to ingredients.html */
+.ingredients-content:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {
