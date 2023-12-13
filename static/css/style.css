@@ -148,6 +148,10 @@ footer {
     flex-direction: row-reverse;
 }
 
+.tab-content .tab-pane .row:last-child {
+    margin-bottom: 3rem;
+}
+
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {
