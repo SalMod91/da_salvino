@@ -1,5 +1,5 @@
 """
-URL to render the menu page
+URL to render the ingredients page
 """
 from django.urls import path
 from . import views
