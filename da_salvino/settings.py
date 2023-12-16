@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'home',
     'menu',
     'ingredients',
-    'staff_login',
+    'staff_portal',
 ]
 
 MIDDLEWARE = [
