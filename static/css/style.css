@@ -1,8 +1,10 @@
 body {
     background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1702088767/image/pu4tnlxnrjgp85nxcpue.jpg') no-repeat fixed;
     background-size: cover;
+    /* Will be removed in the end */
     display: flex;
     flex-direction: column;
+    /* end remove */
     min-height: 100vh;
 }
 
@@ -47,12 +49,12 @@ header {
 
 .nav-link:hover {
     color: #ffab18 !important;
-    font-size: 1.2em;
+    transform: scale(1.2);
     transition: 0.3s;
 }
 
-.active {
-    font-size: 1.2em;
+.active-page {
+    transform: scale(1.2);
     text-decoration: underline;
     color: #ffab18!important;
 }
@@ -140,7 +142,7 @@ footer {
 .nav-tabs .nav-link,
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link:focus {
-    color: #fff!important;
+    color: #fff;
 }
 
 /* This section applies to ingredients.html */
@@ -150,6 +152,19 @@ footer {
 
 .tab-content .tab-pane .row:last-child {
     margin-bottom: 3rem;
+}
+
+/* This section applies to the staff portal */
+
+#authModal .nav-tabs, #authModal .nav-link {
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+#authModal .nav-link:hover {
+    color: black!important;
+    transform: scale(1.1);
+    transition: 0.3s;
 }
 
 /* Media Queries */

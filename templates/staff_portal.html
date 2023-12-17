@@ -1,5 +1,82 @@
 {% extends "base.html" %}
-{% load static %} 
+{% load static %}
 {% block content %}
-    <h1>Here Goes The Content</h1>
+{% if not user.is_authenticated %}
+    <!-- When the user is not logged in it prompts to do so -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
+        Login/Register
+    </button>
+{% endif %}
+    <!-- Initially hidden Modal for login/registering, not focusable through tab buttons and hidden from assistive technologies -->
+    <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Login/Register</h5>
+                    <!-- Button that closes the Modal -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Tab Navigation -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active text-black" data-toggle="tab" href="#login" role="tab"
+                                aria-controls="login" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" data-toggle="tab" href="#register" role="tab"
+                                aria-controls="register" aria-selected="false">Register</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Panes -->
+                    <div class="tab-content" id="authTabContent">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                            <!-- Login Form -->
+                            <form method="post" action="#">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username">Username:</label>
+                                    <input type="text" class="form-control" id="username" name="username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">Password:</label>
+                                    <input type="password" class="form-control" id="login-password" name="password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Login</button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <!-- Registration Form -->
+                            <form method="post" action="#">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username">Username:</label>
+                                    <input type="text" class="form-control" id="username" name="username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-password1">Password:</label>
+                                    <input type="password" class="form-control" id="register-password1" name="password1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-password2">Confirm Password:</label>
+                                    <input type="password" class="form-control" id="register-password2" name="password2" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
