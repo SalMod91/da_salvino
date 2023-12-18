@@ -15,6 +15,31 @@ body {
     margin: auto;
 }
 
+/* Defines the 'wiggle' animation */
+@-webkit-keyframes wiggle {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+/* Applies the wiggle animation */
+#phone-icon-container:hover .fa-phone {
+    -webkit-animation: wiggle 0.05s alternate ease infinite;
+    animation: wiggle 0.05s alternate ease infinite;
+}
+
+#map-icon-container:hover .fa-map-location-dot {
+    transform: scale(1.4);
+}
+
+.fa-map-location-dot:hover {
+    cursor: pointer;
+}
+
 header {
     background-color: rgba(0,0,0,1);
     transition: 0.3s ease;
@@ -164,6 +189,15 @@ footer {
 #authModal .nav-link:hover {
     color: black!important;
     transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.login-register-button {
+    transition: 0.3s;
+}
+
+.login-register-button:hover {
+    background-color: #074297;
     transition: 0.3s;
 }
 
