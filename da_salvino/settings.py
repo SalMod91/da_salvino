@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'menu',
     'ingredients',
     'staff_portal',
+    'users',
 ]
 
 SITE_ID = 1
