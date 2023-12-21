@@ -1,12 +1,67 @@
 {% extends "base.html" %}
+{% load static %} 
 {% load static %}
 {% block content %}
-{% if user.is_authenticated %}
-    <!-- Display a logout option for logged-in users -->
-    <h1>Hello, {{ user.username }}!</h1>
-    <a href="{% url 'account_logout' %}">Logout</a>
-{% else %}
-    <!-- Prompt to login or register when the user is not logged in -->
-    <h1><a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">Register</a></h1>
-{% endif %}
+    {% if not user.is_authenticated %}
+        <!-- When the user is not logged in it prompts to do so -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
+            Login/Register
+        </button>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'staff_portal' %}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="logout">
+            <button type="submit" class="btn btn-warning">Logout</button>
+        </form>
+    {% endif %}
+        <!-- Initially hidden Modal for login/registering, not focusable through tab buttons and hidden from assistive technologies -->
+        <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="authModalLabel">Login/Register</h5>
+                        <!-- Button that closes the Modal -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- Tab Navigation -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" data-toggle="tab" href="#login" role="tab"
+                                    aria-controls="login" aria-selected="true">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" data-toggle="tab" href="#register" role="tab"
+                                    aria-controls="register" aria-selected="false">Register</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab Panes -->
+                        <div class="tab-content" id="authTabContent">
+                            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <!-- Login Form -->
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    {{ login_form.as_p }}
+                                    <button type="submit" name="submit_login" class="btn btn-primary mt-2">Login</button>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                <!-- Registration Form -->
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    {{ signup_form.as_p }}
+                                    <button type="submit" name="submit_signup" class="btn btn-primary mt-2">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}
