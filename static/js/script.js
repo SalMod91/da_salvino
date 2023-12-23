@@ -42,3 +42,33 @@ document.addEventListener('DOMContentLoaded', function() {
         allNavTab.addEventListener('click', populateAllTab);
     }
 });
+
+// Informs the user about their actions during authentication
+document.addEventListener('DOMContentLoaded', function() {
+    const messageContainer = document.getElementById('message-container');
+    const messagesData = document.getElementById('messages-data');
+    if (messageContainer && messagesData) {
+        let messageText = '';
+        messagesData.querySelectorAll('.message-item').forEach(function(messageSpan) {
+            messageText += messageSpan.getAttribute('data-message');
+        });
+
+        if (messageText) {
+            messageContainer.innerHTML = messageText;
+            messageContainer.classList.add('alert-success');
+            messageContainer.style.display = 'block';
+            messageContainer.style.opacity = 1;
+
+            // Start fading out after a delay
+            setTimeout(function() {
+                messageContainer.style.opacity = 0;
+            }, 2000);
+
+            // When the fade out timer runs out, the container will be hidden
+            setTimeout(function() {
+                messageContainer.style.display = 'none';
+                messageContainer.classList.remove('alert-success');
+            }, 2600);
+        }
+    }
+});
