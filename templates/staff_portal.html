@@ -66,7 +66,37 @@
                                 <!-- Registration Form -->
                                 <form method="post" action="">
                                     {% csrf_token %}
-                                    {{ signup_form.as_p }}
+                                
+                                    <div class="form-group mt-2">
+                                        {{ signup_form.username.label_tag }}
+                                        {{ signup_form.username }}
+                                        {% if signup_form.username.errors %}
+                                            {% for error in signup_form.username.errors %}
+                                                <div class="alert alert-danger mt-3">{{ error }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                
+                                    <div class="form-group mt-4">
+                                        {{ signup_form.password1.label_tag }}
+                                        {{ signup_form.password1 }}
+                                        {% if signup_form.password1.errors %}
+                                            {% for error in signup_form.password1.errors %}
+                                                <div class="alert alert-danger mt-3">{{ error }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                
+                                    <div class="form-group mt-2">
+                                        {{ signup_form.password2.label_tag }}
+                                        {{ signup_form.password2 }}
+                                        {% if signup_form.password2.errors %}
+                                            {% for error in signup_form.password2.errors %}
+                                                <div class="alert alert-danger mt-3">{{ error }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                
                                     <button type="submit" name="submit_signup" class="btn btn-primary mt-2">Register</button>
                                 </form>
                             </div>
