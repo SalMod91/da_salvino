@@ -75,13 +75,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Opens the Modal to the Registration Tab if there are form errors
 document.addEventListener('DOMContentLoaded', function() {
-    function openRegisterTab() {
-        var formErrors = document.querySelectorAll('#register .alert-danger');
-        if (formErrors.length > 0) {
+    function openLoginRegisterTab() {
+        var loginFormErrors = document.querySelectorAll('#login .errorlist').length > 0;
+        var registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
+        if (registrationFormErrors) {
             $('#authModal').modal('show');
 
             $('#authModal .nav-tabs a[href="#register"]').tab('show');
         }
+
+        if (loginFormErrors) {
+            $('#authModal').modal('show');
+            $('#authModal .nav-tabs a[href="#login"]').tab('show');
+        }
     }
-    openRegisterTab();
+    openLoginRegisterTab();
 });
