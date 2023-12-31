@@ -8,6 +8,10 @@ class StaffUserCreationForm(UserCreationForm):
         model = CustomStaffUser
         fields = ('username',)
 
+    def __init__(self, *args, **kwargs):
+        super(StaffUserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'id': 'register_username_id'})
+
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if CustomStaffUser.objects.filter(username=username).exists():
