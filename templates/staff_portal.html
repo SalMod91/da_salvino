@@ -19,13 +19,48 @@
             Login/Register
         </button>
     {% endif %}
+    
     {% if user.is_authenticated %}
-        <form method="post" action="{% url 'staff_portal' %}">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="logout">
-            <button type="submit" class="btn btn-warning">Logout</button>
-        </form>
+        <div class="d-flex justify-content-end margin-right">
+            <div>
+                <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
+                <p>
+                    <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+ 
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Are you sure you want to logout?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                        <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="logout">
+                            <button type="submit" class="btn btn-warning"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Yes</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     {% endif %}
+
         <!-- Initially hidden Modal for login/registering, not focusable through tab buttons and hidden from assistive technologies -->
         <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -52,7 +87,7 @@
                         </ul>
 
                         <!-- Tab Panes -->
-                        <div class="tab-content" id="authTabContent">
+                        <div class="tab-content mt-4" id="authTabContent">
                             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                                 <!-- Login Form -->
                                 <form method="post" action="">
