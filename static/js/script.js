@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function openLoginRegisterTab() {
         var loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
         var registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
+        var passwordChangeFormErrors = document.querySelectorAll('#passwordChangeModal .alert-danger').length > 0;
         if (registrationFormErrors) {
             $('#authModal').modal('show');
 
@@ -87,6 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loginFormErrors) {
             $('#authModal').modal('show');
             $('#authModal .nav-tabs a[href="#login"]').tab('show');
+        }
+
+        if (passwordChangeFormErrors) {
+            $('#passwordChangeModal').modal('show');
         }
     }
     openLoginRegisterTab();
