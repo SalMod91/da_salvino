@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from users.models import CustomStaffUser
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import PasswordChangeForm as AuthPasswordChangeForm
 
 class StaffUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -25,3 +26,9 @@ class StaffUserCreationForm(UserCreationForm):
 
         if password1 and password2 and password1 != password2:
             self.add_error('password2', "Passwords don't match.")
+
+class CustomPasswordChangeForm(AuthPasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        for fieldname in ['old_password', 'new_password1', 'new_password2']:
+            self.fields[fieldname].error_messages = {'required': ''}

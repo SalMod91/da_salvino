@@ -1,15 +1,19 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import StaffUserCreationForm
+from .forms import CustomPasswordChangeForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from users.models import CustomStaffUser
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 def staff_portal(request):
 
     login_form = AuthenticationForm()
     signup_form = StaffUserCreationForm()
+    password_change_form = CustomPasswordChangeForm(user=request.user, data=request.POST)
 
     if request.method == 'POST':
         if 'submit_login' in request.POST:
@@ -39,12 +43,18 @@ def staff_portal(request):
             logout(request)
             messages.success(request, "You have been successfully logged out.")
             return redirect('staff_portal')
-
-    else:
-        login_form = AuthenticationForm()
-        signup_form = StaffUserCreationForm()
+        
+        elif 'change_password' in request.POST:
+            if password_change_form.is_valid():
+                user = password_change_form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, f"Password for {user.username} changed successfully.")
+                return redirect('staff_portal')
+            else:
+                messages.error(request, "Error changing password.")
 
     return render(request, 'staff_portal.html', {
         'login_form': login_form,
         'signup_form': signup_form,
+        'password_change_form': password_change_form,
 })

@@ -25,6 +25,9 @@
             <div>
                 <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
                 <p>
+                    <a href="#passwordChangeModal" data-toggle="modal">Modify Password</a>
+                </p>
+                <p>
                     <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
                 </p>
             </div>
@@ -137,6 +140,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Password Change Modal, not focusable through tab buttons and hidden from assistive technologies -->
+        <div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="passwordChangeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passwordChangeModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            {{ password_change_form.as_p }}
+                            <button type="submit" name="change_password" class="btn btn-primary">Change Password</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
