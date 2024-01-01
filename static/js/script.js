@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Opens the Modal to the Registration Tab if there are form errors
 document.addEventListener('DOMContentLoaded', function() {
     function openLoginRegisterTab() {
-        var loginFormErrors = document.querySelectorAll('#login .errorlist').length > 0;
+        var loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
         var registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
         if (registrationFormErrors) {
             $('#authModal').modal('show');
