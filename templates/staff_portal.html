@@ -216,59 +216,5 @@
         
                 </div>
             </div>
-        <div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="passwordChangeModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-        
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="passwordChangeModalLabel">Change Password</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">X</span>
-                        </button>
-                    </div>
-        
-                    <div class="modal-body">
-                        <form method="post" action="">
-                            {% csrf_token %}
-        
-                            <!-- Old Password -->
-                            <div class="form-group mt-2">
-                                {{ password_change_form.old_password.label_tag }}
-                                {{ password_change_form.old_password }}
-                                {% if password_change_form.old_password.errors %}
-                                    {% for error in password_change_form.old_password.errors %}
-                                        <div class="alert alert-danger mt-3">{{ error }}</div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-        
-                            <!-- New Password -->
-                            <div class="form-group mt-4">
-                                {{ password_change_form.new_password1.label_tag }}
-                                {{ password_change_form.new_password1 }}
-                                {% if password_change_form.new_password1.errors %}
-                                    {% for error in password_change_form.new_password1.errors %}
-                                        <div class="alert alert-danger mt-3">{{ error }}</div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-        
-                            <!-- Confirm New Password -->
-                            <div class="form-group mt-2">
-                                {{ password_change_form.new_password2.label_tag }}
-                                {{ password_change_form.new_password2 }}
-                                {% if password_change_form.new_password2.errors %}
-                                    {% for error in password_change_form.new_password2.errors %}
-                                        <div class="alert alert-danger mt-3">{{ error }}</div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-        
-                            <button type="submit" name="change_password" class="btn btn-primary">Change Password</button>
-                        </form>
-                    </div>
-        
-                </div>
-            </div>
         </div>
 {% endblock %}

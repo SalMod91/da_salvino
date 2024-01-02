@@ -14,7 +14,7 @@ def staff_portal(request):
 
     login_form = AuthenticationForm()
     signup_form = StaffUserCreationForm()
-    password_change_form = CustomPasswordChangeForm(user=request.user, data=request.POST)
+    password_change_form = CustomPasswordChangeForm(user=request.user)
 
     if request.method == 'POST':
         if 'submit_login' in request.POST:
@@ -46,6 +46,7 @@ def staff_portal(request):
             return redirect('staff_portal')
         
         elif 'change_password' in request.POST:
+            password_change_form = CustomPasswordChangeForm(user=request.user, data=request.POST)
 
             if password_change_form.is_valid():
                 user = password_change_form.save()
