@@ -7,6 +7,7 @@ from django.contrib import messages
 from users.models import CustomStaffUser
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 
 
 def staff_portal(request):
@@ -45,6 +46,7 @@ def staff_portal(request):
             return redirect('staff_portal')
         
         elif 'change_password' in request.POST:
+
             if password_change_form.is_valid():
                 user = password_change_form.save()
                 update_session_auth_hash(request, user)
@@ -58,3 +60,17 @@ def staff_portal(request):
         'signup_form': signup_form,
         'password_change_form': password_change_form,
 })
+
+
+@login_required
+def create_ingredient(request):
+    if request.method == 'POST':
+        form = IngredientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Ingredient created successfully.")
+            return redirect('staff_portal')
+    else:
+        form = IngredientForm()
+
+    return render(request, 'staff_portal', {'form': form})
