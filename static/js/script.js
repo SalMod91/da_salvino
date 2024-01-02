@@ -33,9 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         allTab.innerHTML = allContent; // Set the content of the "All" tab
     }
 
-    // Call the function when the page loads
-    populateAllTab();
-
     // Call the function when the "All" tab is clicked
     var allNavTab = document.querySelector('a[href="#all"]');
     if (allNavTab) {
