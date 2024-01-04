@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import StaffUserCreationForm
 from .forms import CustomPasswordChangeForm
+from .forms import IngredientForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from users.models import CustomStaffUser
@@ -65,6 +66,10 @@ def staff_portal(request):
 
 @login_required
 def create_ingredient(request):
+    if not request.user.is_staff:
+        messages.error(request, "You are not authorized to add ingredients.")
+        return redirect('staff_portal')
+
     if request.method == 'POST':
         form = IngredientForm(request.POST, request.FILES)
         if form.is_valid():
@@ -74,4 +79,4 @@ def create_ingredient(request):
     else:
         form = IngredientForm()
 
-    return render(request, 'staff_portal', {'form': form})
+    return render(request, 'add_ingredient.html', {'form': form})

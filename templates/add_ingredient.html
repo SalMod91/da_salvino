@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+    <div class="container mt-4 text-white">
+        <h2>Add New Ingredient</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Add Ingredient</button>
+        </form>
+    </div>
+{% endblock %}

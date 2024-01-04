@@ -8,6 +8,10 @@ class IngredientCategory(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = "Ingredient Category"
+        verbose_name_plural = "Ingredient Categories"
 
 
 class Ingredient(models.Model):
