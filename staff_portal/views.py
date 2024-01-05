@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import StaffUserCreationForm
 from .forms import CustomPasswordChangeForm
 from .forms import IngredientForm
+from .models import Ingredient
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from users.models import CustomStaffUser
@@ -77,3 +78,19 @@ def create_ingredient(request):
         form = IngredientForm()
 
     return render(request, 'add_ingredient.html', {'form': form})
+
+def manage_ingredients(request):
+    ingredients = Ingredient.objects.all()
+
+    if 'delete' in request.POST:
+        ingredient_id = request.POST.get('delete')
+        ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+        ingredient.delete()
+        messages.success(request, "Ingredient deleted successfully.")
+        return redirect('manage_ingredients')
+    
+    elif 'edit' in request.POST:
+            ingredient_id = request.POST.get('edit')
+            return redirect('edit_ingredient', id=ingredient_id)
+
+    return render(request, 'manage_ingredients.html', {'ingredients': ingredients})

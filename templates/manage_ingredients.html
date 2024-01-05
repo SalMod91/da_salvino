@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container mt-4 text-white text-center">
+        {% if not user.is_authenticated %}
+            <p>Only authenticated users can manage ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
+        {% else %}
+            <h2>Manage Ingredients</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ingredient in ingredients %}
+                    <tr>
+                        <td>{{ ingredient.name }}</td>
+                        <td>
+
+                            <!-- Edit Button -->
+                            <form method="post" action="{% url 'manage_ingredients' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="edit" value="{{ ingredient.id }}">
+                                <button type="submit">Edit</button>
+                            </form>
+
+                            <!-- Delete Button -->
+                            <form method="post" action="{% url 'manage_ingredients' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete" value="{{ ingredient.id }}">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}
