@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %} 
 {% block content %}
-    <div class="container mt-4 text-white">
-        {% if not_authenticated %}
+    <div class="container mt-4 text-white text-center">
+        {% if not user.is_authenticated %}
             <p>Only authenticated users can add ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
         {% else %}
             <h2>Add New Ingredient</h2>
