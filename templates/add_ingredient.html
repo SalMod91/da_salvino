@@ -2,11 +2,40 @@
 {% load static %} 
 {% block content %}
     <div class="container mt-4 text-white">
-        <h2>Add New Ingredient</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Add Ingredient</button>
-        </form>
+        {% if not_authenticated %}
+            <p>Only authenticated users can add ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
+        {% else %}
+            <h2>Add New Ingredient</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+        
+                <!-- Display form errors -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+        
+                <!-- Display Image File errors -->
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error-message">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+        
+                <button type="submit" class="btn btn-success">Add Ingredient</button>
+            </form>
+            
+        {% endif %}
     </div>
 {% endblock %}

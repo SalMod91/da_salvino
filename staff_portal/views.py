@@ -64,12 +64,9 @@ def staff_portal(request):
 })
 
 
-@login_required
 def create_ingredient(request):
-    if not request.user.is_staff:
-        messages.error(request, "You are not authorized to add ingredients.")
-        return redirect('staff_portal')
-
+    if not request.user.is_authenticated:
+        return render(request, 'add_ingredient.html', {'not_authenticated': True})
     if request.method == 'POST':
         form = IngredientForm(request.POST, request.FILES)
         if form.is_valid():

@@ -4,6 +4,7 @@ from users.models import CustomStaffUser
 from .models import Ingredient
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import PasswordChangeForm as AuthPasswordChangeForm
+from django.utils.translation import gettext_lazy as _
 
 class StaffUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -39,3 +40,11 @@ class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ['name', 'category', 'description', 'image']
+    
+    def clean_image(self):
+        image = self.cleaned_data.get("image")
+        if image:
+            if not image.content_type.startswith('image'):
+                raise ValidationError(_("Only images are allowed."))
+        
+        return image
