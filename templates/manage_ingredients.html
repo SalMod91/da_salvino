@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+
+    <!-- Messages -->
+    {% if messages %}
+        <div id="message-container" class="alert" role="alert" style="display: none;">
+            <div id="messages-data" style="display: none;">
+                {% for message in messages %}
+                    <span class="message-item" data-message="{{ message }}">{{ message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    
     <div class="container mt-4 text-white text-center">
         {% if not user.is_authenticated %}
             <p>Only authenticated users can manage ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
@@ -26,16 +38,45 @@
                             </form>
 
                             <!-- Delete Button -->
-                            <form method="post" action="{% url 'manage_ingredients' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="delete" value="{{ ingredient.id }}">
-                                <button type="submit">Delete</button>
-                            </form>
+                            <button type="button" class="btn btn-danger delete-button" data-ingredient-id="{{ ingredient.id }}" data-toggle="modal" data-target="#deleteIngredientModal">Delete</button>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
+    </div>
+
+    <!-- Modal for editing the ingredients, not focusable through tab buttons and hidden from assistive technologies -->
+    <div id="editIngredientModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for deleting the ingredients, not focusable through tab buttons and hidden from assistive technologies -->
+    <div id="deleteIngredientModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this ingredient?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form method="post" action="{% url 'manage_ingredients' %}" id="deleteIngredientForm">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete" id="deleteIngredientId" value="">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>                    
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

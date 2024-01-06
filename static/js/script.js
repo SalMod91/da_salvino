@@ -93,3 +93,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     openLoginRegisterTab();
 });
+
+// Adds an Event Listener to each delete button
+document.addEventListener('DOMContentLoaded', function () {
+    var deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var ingredientId = button.getAttribute('data-ingredient-id');
+            var ingredientToDeleteId = document.getElementById('deleteIngredientId');
+            ingredientToDeleteId.value = ingredientId;
+        });
+    });
+});
