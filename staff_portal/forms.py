@@ -41,11 +41,21 @@ class IngredientForm(forms.ModelForm):
         model = Ingredient
         fields = ['name', 'category', 'description', 'image']
     
+    
     def clean_image(self):
-        image = self.cleaned_data.get("image")
+        """
+        This method ensures that if no image was uploaded in the form, it returns
+        the existing image.
+        Raises a Validation Error if the uploaded file type is not an Image type.
+        """
+        # If no image is found, it defaults to False
+        image = self.cleaned_data.get('image', False)
         
-        if image:
+        # If the file type is not an image raise a Validation Error
+        if image and hasattr(image, 'content_type'):
             if not image.content_type.startswith('image'):
-                raise ValidationError(_("Only images are allowed."))
-        
-        return image
+                raise forms.ValidationError('File type is not supported')
+            return image
+
+        # If no Image has been uploaded returns None
+        return self.instance.image if self.instance and hasattr(self.instance, 'image') else None
