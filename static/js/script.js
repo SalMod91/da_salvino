@@ -106,3 +106,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Adds an Event Listener to the edit button, populating the fields with data from the database
+document.addEventListener('DOMContentLoaded', function() {
+    var editButtons = document.querySelectorAll('.edit-button');
+    editButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var ingredientId = button.getAttribute('data-ingredient-id');
+            var ingredientName = button.getAttribute('data-ingredient-name');
+            var ingredientDescription = button.getAttribute('data-ingredient-description');
+            var ingredientCategory = button.getAttribute('data-ingredient-category');
+            
+            // Sets the field values
+            document.getElementById('editIngredientId').value = ingredientId;
+            document.getElementById('editName').value = ingredientName;
+            document.getElementById('editDescription').value = ingredientDescription;
+
+            // Set the Category field value
+            var editCategoryField = document.getElementById('editCategory');
+            if (editCategoryField) {
+                // Ensures the correct category is selected
+                for (var i = 0; i < editCategoryField.options.length; i++) {
+                    if (editCategoryField.options[i].value === ingredientCategory) {
+                        editCategoryField.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        });
+    });
+});

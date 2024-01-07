@@ -4,6 +4,7 @@ from .forms import StaffUserCreationForm
 from .forms import CustomPasswordChangeForm
 from .forms import IngredientForm
 from .models import Ingredient
+from .models import IngredientCategory
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from users.models import CustomStaffUser
@@ -80,16 +81,28 @@ def create_ingredient(request):
 
 def manage_ingredients(request):
     ingredients = Ingredient.objects.all()
+    categories = IngredientCategory.objects.all()
 
-    if 'delete' in request.POST:
-        ingredient_id = request.POST.get('delete')
-        ingredient = get_object_or_404(Ingredient, id=ingredient_id)
-        ingredient.delete()
-        messages.success(request, "Ingredient deleted successfully.")
-        return redirect('manage_ingredients')
-    
-    elif 'edit' in request.POST:
-            ingredient_id = request.POST.get('edit')
-            return redirect('edit_ingredient', id=ingredient_id)
+    if request.method == 'POST':
+        if 'delete' in request.POST:
+            ingredient_id = request.POST.get('delete')
+            ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+            ingredient.delete()
+            messages.success(request, "Ingredient deleted successfully.")
+            return redirect('manage_ingredients')
+        
+        elif 'edit_id' in request.POST:
+            ingredient_id = request.POST.get('edit_id')
+            ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+            form = IngredientForm(request.POST, request.FILES, instance=ingredient)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Ingredient updated successfully.")
+            else:
+                messages.error(request, "Error updating ingredient: " + str(form.errors))
+            return redirect('manage_ingredients')
+        
+        else:
+                messages.error(request, "Error updating ingredient.")
 
-    return render(request, 'manage_ingredients.html', {'ingredients': ingredients})
+    return render(request, 'manage_ingredients.html', {'ingredients': ingredients,'categories': categories,})

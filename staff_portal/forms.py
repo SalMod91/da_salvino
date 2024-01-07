@@ -43,6 +43,7 @@ class IngredientForm(forms.ModelForm):
     
     def clean_image(self):
         image = self.cleaned_data.get("image")
+        
         if image:
             if not image.content_type.startswith('image'):
                 raise ValidationError(_("Only images are allowed."))
