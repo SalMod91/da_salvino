@@ -227,6 +227,10 @@ ul.errorlist {
     color: red;
 }
 
+.edit-image-size {
+    width: 100px;
+}
+
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {

@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var ingredientName = button.getAttribute('data-ingredient-name');
             var ingredientDescription = button.getAttribute('data-ingredient-description');
             var ingredientCategory = button.getAttribute('data-ingredient-category');
+            var ingredientImage = button.getAttribute('data-ingredient-image');
             
             // Sets the field values
             document.getElementById('editIngredientId').value = ingredientId;
@@ -133,6 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             }
-        });
+
+            var currentImage = document.getElementById('currentImage');
+                if (currentImage) {
+                    currentImage.src = ingredientImage;
+                }
+                    });
     });
 });
