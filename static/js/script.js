@@ -136,9 +136,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             var currentImage = document.getElementById('currentImage');
-                if (currentImage) {
-                    currentImage.src = ingredientImage;
-                }
+            if (currentImage) {
+                currentImage.src = ingredientImage;
+            }
                     });
     });
 });

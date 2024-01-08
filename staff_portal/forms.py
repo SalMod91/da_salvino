@@ -44,18 +44,21 @@ class IngredientForm(forms.ModelForm):
     
     def clean_image(self):
         """
-        This method ensures that if no image was uploaded in the form, it returns
-        the existing image.
-        Raises a Validation Error if the uploaded file type is not an Image type.
+        This method ensures that if no new image was uploaded in the form, the existing 
+        image is maintained. It raises a Validation Error if the uploaded file type is 
+        not an Image type.
+        
+        - If an image is found and it's not of an image file type, it raises a 
+          Validation Error.
+        - If no new image is uploaded, it retains the existing image (if any). 
+          If there's no existing image, it defaults to None.
         """
-        # If no image is found, it defaults to False
         image = self.cleaned_data.get('image', False)
         
-        # If the file type is not an image raise a Validation Error
         if image and hasattr(image, 'content_type'):
             if not image.content_type.startswith('image'):
                 raise forms.ValidationError('File type is not supported')
             return image
 
-        # If no Image has been uploaded returns None
+        # Retain the existing image if no new image is uploaded
         return self.instance.image if self.instance and hasattr(self.instance, 'image') else None
