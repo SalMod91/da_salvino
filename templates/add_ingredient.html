@@ -1,41 +1,80 @@
 {% extends "base.html" %}
 {% load static %} 
 {% block content %}
-    <div class="container mt-4 text-white text-center">
-        {% if not user.is_authenticated %}
-            <p>Only authenticated users can add ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
-        {% else %}
-            <h2>Add New Ingredient</h2>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-        
-                <!-- Display form errors -->
-                {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {% for error in form.non_field_errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-        
-                <!-- Display Image File errors -->
-                {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {% if field.errors %}
-                            <div class="error-message">
-                                {% for error in field.errors %}
+    {% if not user.is_authenticated %}
+        <p>Only authenticated users can add ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
+    {% else %}
+        <!-- Section for profile modification/log out -->
+        <div class="d-flex justify-content-end margin-right">
+            <div>
+                <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
+                <p>
+                    <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                </p>
+            </div>
+        </div>
+        <div class="container mt-4 text-white text-center">
+                <div class="container mt-4 text-white text-center mb-4">
+                    <h2>Add New Ingredient</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                
+                        <!-- Display form errors -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
                                     {{ error }}
                                 {% endfor %}
                             </div>
                         {% endif %}
+                
+                        <!-- Display Image File errors -->
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="error-message">
+                                        {% for error in field.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                
+                        <button type="submit" class="btn btn-success">Add Ingredient</button>
+                    </form>
+                </div>
+        </div>
+        <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
                     </div>
-                {% endfor %}
-        
-                <button type="submit" class="btn btn-success">Add Ingredient</button>
-            </form>
-            
-        {% endif %}
-    </div>
+
+                    <div class="modal-body">
+                        Are you sure you want to logout, <strong>{{ user.username }}</strong>?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                        <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="logout">
+                            <button type="submit" class="btn btn-warning"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Yes</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -18,9 +18,8 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
             Login/Register
         </button>
-    {% endif %}
     
-    {% if user.is_authenticated %}
+    {% else %}
         <!-- Section for profile modification/log out -->
         <div class="d-flex justify-content-end margin-right">
             <div>
