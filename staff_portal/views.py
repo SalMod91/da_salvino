@@ -106,3 +106,6 @@ def manage_ingredients(request):
                 messages.error(request, "Error updating ingredient.")
 
     return render(request, 'manage_ingredients.html', {'ingredients': ingredients,'categories': categories,})
+
+def create_menu_item(request):
+     return render(request, 'add_menu_item.html',)
