@@ -70,3 +70,17 @@ class Ingredient(models.Model):
             destroy(public_id)
 
         super(Ingredient, self).delete(*args, **kwargs)
+
+class Pizza(models.Model):
+    name = models.CharField(max_length=20)
+    has_tomato = models.BooleanField(default=False)
+    has_mozzarella = models.BooleanField(default=False)
+    ingredients = models.ManyToManyField(Ingredient, blank=True)
+    image = CloudinaryField('image', blank=True, null=True, folder='pizzas')
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Pizza"
+        verbose_name_plural = "Pizzas"
