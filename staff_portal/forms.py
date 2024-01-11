@@ -89,6 +89,28 @@ class MenuItemForm(forms.ModelForm):
         model = Pizza
         # Specify which fields of the Pizza model should appear in this form.
         fields = ['name', 'has_tomato', 'has_mozzarella', 'image']
+    
+    def clean(self):
+        """
+        Ensures each ingredient is unique
+        """
+        # Call the default clean method to get the cleaned data
+        cleaned_data = super().clean()
+
+        # Extracting ingredient IDs from the form data
+        ingredient_ids = []
+        for key, value in self.data.items():
+            if key.startswith('ingredient_') and value:
+                ingredient_ids.append(value)
+        
+        # Check for duplicate ingredient IDs
+        # Comparing lengths: if the set's length (which removes duplicates) is less than the list's,
+        # it indicates duplicates in the original list.
+        if len(ingredient_ids) != len(set(ingredient_ids)):
+            # Prevents the form from being processed and displays an error message to the user
+            raise ValidationError("Each ingredient must be unique.")
+
+        return cleaned_data
 
     def get_ingredient_choices(self):
         """
