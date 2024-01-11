@@ -1,81 +1,133 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container mt-4 text-white ">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
 
-            <div class="form-group">
-                <label for="{{ form.name.id_for_label }}">Name:</label>
-                {{ form.name }}
-            </div>
-            
-            <fieldset class="form-group mt-2">
-                <legend>Has Tomato Sauce?</legend>
-                {% for radio in form.has_tomato %}
-                    <div class="form-check form-check-inline">
-                        {{ radio.tag }}
-                        <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
-                    </div>
-                {% endfor %}
-            </fieldset>
-            
-            <fieldset class="form-group mt-2">
-                <legend>Has Mozzarella?</legend>
-                {% for radio in form.has_mozzarella %}
-                    <div class="form-check form-check-inline">
-                        {{ radio.tag }}
-                        <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
-                    </div>
-                {% endfor %}
-            </fieldset>
-            
-            <div class="form-group mt-3">
-                <label for="{{ form.image.id_for_label }}">Image:</label>
-                {{ form.image }}
-            </div>
+    {% if not user.is_authenticated %}
+        <div class="container mt-4 text-white text-center">
+            <!-- When the user is not logged in it prompts to do so -->
+            <p>Only approved Staff Users are allowed to add Menu Items. Please <a href="{% url 'staff_portal' %}">Sign In</a>.</p>
+        </div>
+    {% else %}
 
-            {% if form.non_field_errors %}
-                <div class="error-message mt-3">
-                    {% for error in form.non_field_errors %}
-                        {{ error }}
+        <!-- Section for log out -->
+        <div class="d-flex justify-content-end margin-right">
+            <div>
+                <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
+                <p>
+                    <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="container mt-4 text-center text-white ">
+            <div class="container text-center mb-4">
+                <h2>Add New Menu Item</h2>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">Name:</label>
+                    {{ form.name }}
+                </div>
+                
+                <fieldset class="form-group mt-2">
+                    <legend>Has Tomato Sauce?</legend>
+                    {% for radio in form.has_tomato %}
+                        <div class="form-check form-check-inline">
+                            {{ radio.tag }}
+                            <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                        </div>
+                    {% endfor %}
+                </fieldset>
+                
+                <fieldset class="form-group mt-2">
+                    <legend>Has Mozzarella?</legend>
+                    {% for radio in form.has_mozzarella %}
+                        <div class="form-check form-check-inline">
+                            {{ radio.tag }}
+                            <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                        </div>
+                    {% endfor %}
+                </fieldset>
+                
+                <div class="form-group mt-3">
+                    <label for="{{ form.image.id_for_label }}">Image:</label>
+                    {{ form.image }}
+                </div>
+
+                {% if form.non_field_errors %}
+                    <div class="error-message mt-3">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            
+                <div class="mt-3" id="ingredient-selectors">
+                    <!-- Using numbers because Django template tags don't allow len() -->
+                    {% for i in "1234567890" %}
+                        <div class="ingredient-selector hidden">
+                            <!-- Uses the loop counter to display dynamically in the paragraph the current iteration of the loop -->
+                            <p class="ingredient-number">Ingredient #{{ forloop.counter }}</p>
+                            <!-- Assigns an attribute name to each ingredient dynamically corresponding to the iteration of the loop -->
+                            <select name="ingredient_{{ i }}">
+                                <!-- The first option as a placeholder, it will not submit any data -->
+                                <option value="">Choose an ingredient...</option>
+                                <!-- Iterates over ingredient_choices -->
+                                {% for category, ingredients in ingredient_choices %}
+                                    <!-- Creates an option group label with the category name -->
+                                    <optgroup label="{{ category }}">
+                                        <!-- Iterates each ingredient in the category -->
+                                        {% for ingredient in ingredients %}
+                                            <!-- Creates a dropdown option for the ingredients. Ingredient.0 is the ingredient's ID and ingredient.1 is the ingredient's name -->
+                                            <option value="{{ ingredient.0 }}">{{ ingredient.1 }}</option>
+                                        {% endfor %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </div>
                     {% endfor %}
                 </div>
-            {% endif %}
-        
-            <div class="mt-3" id="ingredient-selectors">
-                <!-- Using numbers because Django template tags don't allow len() -->
-                {% for i in "1234567890" %}
-                    <div class="ingredient-selector hidden">
-                        <!-- Uses the loop counter to display dynamically in the paragraph the current iteration of the loop -->
-                        <p class="ingredient-number">Ingredient #{{ forloop.counter }}</p>
-                        <!-- Assigns an attribute name to each ingredient dynamically corresponding to the iteration of the loop -->
-                        <select name="ingredient_{{ i }}">
-                            <!-- The first option as a placeholder, it will not submit any data -->
-                            <option value="">Choose an ingredient...</option>
-                            <!-- Iterates over ingredient_choices -->
-                            {% for category, ingredients in ingredient_choices %}
-                                <!-- Creates an option group label with the category name -->
-                                <optgroup label="{{ category }}">
-                                    <!-- Iterates each ingredient in the category -->
-                                    {% for ingredient in ingredients %}
-                                        <!-- Creates a dropdown option for the ingredients. Ingredient.0 is the ingredient's ID and ingredient.1 is the ingredient's name -->
-                                        <option value="{{ ingredient.0 }}">{{ ingredient.1 }}</option>
-                                    {% endfor %}
-                                </optgroup>
-                            {% endfor %}
-                        </select>
-                    </div>
-                {% endfor %}
-            </div>
-            
-            <div>
-                <button type="button" class="mt-3 mb-2" id="add-ingredient">Add Ingredient</button>
-            </div>
+                
+                <div>
+                    <button type="button" class="mt-3 mb-2" id="add-ingredient">Add Ingredient</button>
+                </div>
 
-            <div class="mb-5">
-                <button type="submit">Submit</button>
+                <div class="mb-5">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+    <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    Are you sure you want to logout, <strong>{{ user.username }}</strong>?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                    <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="logout">
+                        <button type="submit" class="btn btn-warning"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Yes</button>
+                    </form>
+                </div>
+
             </div>
-        </form>
+        </div>
     </div>
 {% endblock %}

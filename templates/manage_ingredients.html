@@ -11,13 +11,15 @@
             </div>
         </div>
     {% endif %}
+
     {% if not user.is_authenticated %}
-        <!-- When the user is not logged in it prompts to do so -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
-            Login/Register
-        </button>
+        <div class="container mt-4 text-white text-center">
+            <!-- When the user is not logged in it prompts to do so -->
+            <p>Only approved Staff Users are allowed to modify the Ingredients. Please <a href="{% url 'staff_portal' %}">Sign In</a>.</p>
+        </div>
     {% else %}
-    <!-- Section for profile modification/log out -->
+    
+        <!-- Section for log out -->
         <div class="d-flex justify-content-end margin-right">
             <div>
                 <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
@@ -26,10 +28,8 @@
                 </p>
             </div>
         </div>
+
         <div class="container mt-4 text-white text-center">
-            {% if not user.is_authenticated %}
-                <p>Only authenticated users can manage ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
-            {% else %}
                 <h2>Manage Ingredients</h2>
                 <table>
                     <thead>
@@ -159,5 +159,4 @@
                 </div>
             </div>
         </div>
-    {% endif %}
 {% endblock %}

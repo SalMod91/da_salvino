@@ -2,7 +2,10 @@
 {% load static %} 
 {% block content %}
     {% if not user.is_authenticated %}
-        <p>Only authenticated users can add ingredients. Please <a href="{% url 'staff_portal' %}">log in</a>.</p>
+        <div class="container mt-4 text-white text-center">
+            <!-- When the user is not logged in it prompts to do so -->
+            <p>Only approved Staff Users are allowed to add Ingredients. Please <a href="{% url 'staff_portal' %}">Sign In</a>.</p>
+        </div>
     {% else %}
         <!-- Section for profile modification/log out -->
         <div class="d-flex justify-content-end margin-right">
