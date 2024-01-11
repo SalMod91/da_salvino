@@ -157,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if there is an ingredient selector corresponding to the current count.
             if (selectorDivs[ingredientCount]) {
                 // Set the display style of the next ingredient selector to 'flex' to make it visible.
-                selectorDivs[ingredientCount].style.display = 'flex';
+                selectorDivs[ingredientCount].classList.remove('hidden');
+                selectorDivs[ingredientCount].classList.add('visible');
                 // Increment the ingredient counter
                 ingredientCount++;
             }

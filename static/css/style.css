@@ -241,6 +241,13 @@ ul.errorlist {
     margin-right: 15px;
 }
 
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {
