@@ -67,7 +67,7 @@
                 <div class="mt-3" id="ingredient-selectors">
                     <!-- Using numbers because Django template tags don't allow len() -->
                     {% for i in "1234567890" %}
-                        <div class="ingredient-selector hidden">
+                        <div class="ingredient-selector hidden" data-index="{{ i }}">
                             <!-- Uses the loop counter to display dynamically in the paragraph the current iteration of the loop -->
                             <p class="ingredient-number">Ingredient #{{ forloop.counter }}</p>
                             <!-- Assigns an attribute name to each ingredient dynamically corresponding to the iteration of the loop -->
@@ -86,6 +86,8 @@
                                     </optgroup>
                                 {% endfor %}
                             </select>
+                            <!-- Add a remove button for each ingredient selector -->
+                            <button type="button" class="remove-ingredient margin-left">&times;</button>
                         </div>
                     {% endfor %}
                 </div>

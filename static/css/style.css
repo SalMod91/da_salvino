@@ -249,6 +249,15 @@ ul.errorlist {
 .visible {
     display: flex;
 }
+
+.remove-ingredient {
+    color: red;
+}
+
+.margin-left {
+    margin-left: 1rem;
+}
+
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {

@@ -143,24 +143,90 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Wait for the DOM to be loaded before executing
+// Waits for the document to load before executing
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize a counter to keep track of the number of ingredient selectors added.
-    let ingredientCount = 0;
 
-    // Add a click event listener to the 'add-ingredient' button.
-    document.getElementById('add-ingredient').addEventListener('click', function() {
-        // Check if the number of added ingredient selectors is less than 10.
+    // Variable to keep track of the number of visible ingredient selectors
+    let ingredientCount = 0;
+    // Assigns the Add Ingredient button to a variable
+    let addIngredientButton = document.getElementById('add-ingredient');
+
+    /**
+     * Updates the numbering and names of all visible ingredient selectors.
+     * This function iterates through each selector and, if it is visible,
+     * updates its displayed number and the 'name' attribute of its 'select' element.
+     */
+    function updateSelectors() {
+        // Assigns all ingredient selector divs to a variable
+        let selectors = document.querySelectorAll('#ingredient-selectors .ingredient-selector');
+        // Initialize a counter to assign new numbers to visible selectors
+        let newCount = 1;
+
+        // Iterate through each selector
+        selectors.forEach(function(selector) {
+            // Check if the selector is not hidden
+            if (!selector.classList.contains('hidden')) {
+                // Update the displayed number for the selector
+                selector.querySelector('.ingredient-number').textContent = 'Ingredient #' + newCount;
+                // Update the name attribute of the selector's <select> element to match the new number
+                selector.querySelector('select').name = 'ingredient_' + newCount;
+                // Increment the counter for the next visible selector
+                newCount++;
+            }
+        });
+        ingredientCount = newCount - 1;
+    }
+
+    // Event listeners for remove buttons (one of my first tests with arrow functions)
+    document.querySelectorAll('.remove-ingredient').forEach(button => {
+        // Adds an Event listener to the remove button
+        button.addEventListener('click', function() {
+            // Find the closest parent div with the class 'ingredient-selector'
+            let selectorDiv = this.closest('.ingredient-selector');
+            // Call the function to hide and reset the closest div with the class 'ingredient selector'
+            removeIngredientSelector(selectorDiv);
+        });
+    });
+
+    /**
+     * Hides a specified ingredient selector and resets its selection.
+     * This function performs several actions on the selectorDiv:
+     * 1. Adds the 'hidden' class to make the selector invisible.
+     * 2. Removes the 'visible' class.
+     * 3. Resets the select element to the placeholder.
+     * 4. Calls the updateSelectors function to renumber and update the names of all remaining visible selectors.
+     */
+    function removeIngredientSelector(selectorDiv) {
+        // Add 'hidden' class to the selector div, making it invisible
+        selectorDiv.classList.add('hidden');
+        // Remove 'visible' class from the selector div
+        selectorDiv.classList.remove('visible');
+        // Reset to default placeholder
+        selectorDiv.querySelector('select').selectedIndex = 0;
+        // Call updateSelectors to renumber and rename remaining selectors
+        updateSelectors();
+        addIngredientButton.classList.remove('hidden');
+    }
+
+    // Event listener for adding ingredients
+    addIngredientButton.addEventListener('click', function() {
+        // Check if the total number of selectors is less than 10
         if (ingredientCount < 10) {
-            // Get all elements with the class 'ingredient-selector'.
-            let selectorDivs = document.getElementsByClassName('ingredient-selector');
-            // Check if there is an ingredient selector corresponding to the current count.
-            if (selectorDivs[ingredientCount]) {
-                // Set the display style of the next ingredient selector to 'flex' to make it visible.
-                selectorDivs[ingredientCount].classList.remove('hidden');
-                selectorDivs[ingredientCount].classList.add('visible');
-                // Increment the ingredient counter
-                ingredientCount++;
+            // Assign all selector divs to a variable
+            let selectorDivs = document.querySelectorAll('#ingredient-selectors .ingredient-selector');
+            // Assigns the next hidden selector to a variable
+            let nextSelector = Array.from(selectorDivs).find(function(div) {
+                return div.classList.contains('hidden');
+            });
+            // If there is still a hidden selector available the "Add Ingredient" is still visible
+            if (nextSelector) {
+                nextSelector.classList.remove('hidden');
+                nextSelector.classList.add('visible');
+                updateSelectors();
+            }
+            // If the total number of selectors reaches 10, hide the "Add Ingredient" button
+            if (ingredientCount === 10) {
+                addIngredientButton.classList.add('hidden');
             }
         }
     });
