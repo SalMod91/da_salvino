@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from users.models import CustomStaffUser
-from .models import Ingredient
+from .models import Ingredient, Pizza, IngredientCategory
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import PasswordChangeForm as AuthPasswordChangeForm
 from django.utils.translation import gettext_lazy as _
+
 
 class StaffUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -29,6 +30,7 @@ class StaffUserCreationForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             self.add_error('password2', "Passwords don't match.")
 
+
 class CustomPasswordChangeForm(AuthPasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
@@ -40,8 +42,7 @@ class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ['name', 'category', 'description', 'image']
-    
-    
+
     def clean_image(self):
         """
         This method ensures that if no new image was uploaded in the form, the existing 
@@ -54,7 +55,7 @@ class IngredientForm(forms.ModelForm):
           If there's no existing image, it defaults to None.
         """
         image = self.cleaned_data.get('image', False)
-        
+
         if image and hasattr(image, 'content_type'):
             if not image.content_type.startswith('image'):
                 raise forms.ValidationError('File type is not supported')
@@ -62,3 +63,52 @@ class IngredientForm(forms.ModelForm):
 
         # Retain the existing image if no new image is uploaded
         return self.instance.image if self.instance and hasattr(self.instance, 'image') else None
+
+
+class MenuItemForm(forms.ModelForm):
+    """
+    A ModelForm for creating a Menu Item
+    """
+
+    # Define choices for the radio buttons.
+    YES_NO_CHOICES = [
+        (True, 'Yes'),
+        (False, 'No')
+    ]
+
+    # ChoiceField for tomato sauce and mozzarella, using radio buttons for selection.
+    has_tomato = forms.ChoiceField(choices=YES_NO_CHOICES, label='Has Tomato Sauce?', widget=forms.RadioSelect)
+    has_mozzarella = forms.ChoiceField(choices=YES_NO_CHOICES, label='Has Mozzarella?', widget=forms.RadioSelect)
+
+    class Meta:
+        """
+        Meta class for the MenuItemForm. Specifies the model and fields to be used in the form.
+        """
+
+        # Links the form to the pizza model
+        model = Pizza
+        # Specify which fields of the Pizza model should appear in this form.
+        fields = ['name', 'has_tomato', 'has_mozzarella', 'image']
+
+    def get_ingredient_choices(self):
+        """
+        Retrieves a structured list of ingredient choices categorized by their ingredient categories.
+
+        Returns a list where each item is a tuple containing a category name and a list of ingredient choices.
+        """
+        # Get all ingredient categories.
+        categories = IngredientCategory.objects.all()
+        choices = []
+
+        # Iterate over each category to build the choices structure.
+        for category in categories:
+            # Get ingredients belonging to the current category.
+            category_ingredients = Ingredient.objects.filter(category=category)
+
+            # Create a list of tuples for each ingredient in this category.
+            # Each tuple contains the ingredient's ID and name.
+            category_choices = [(ingredient.id, ingredient.name) for ingredient in category_ingredients]
+
+            # Append the category and its ingredients to the choices list.
+            choices.append((category.name, category_choices))
+        return choices

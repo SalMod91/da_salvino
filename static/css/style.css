@@ -231,6 +231,16 @@ ul.errorlist {
     width: 100px;
 }
 
+.ingredient-selector {
+    display: flex;
+    align-items: center;
+    margin-top: 10px
+}
+
+.ingredient-number {
+    margin-right: 15px;
+}
+
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {

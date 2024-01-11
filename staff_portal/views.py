@@ -1,10 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import StaffUserCreationForm
-from .forms import CustomPasswordChangeForm
-from .forms import IngredientForm
-from .models import Ingredient
-from .models import IngredientCategory
+from .forms import StaffUserCreationForm, CustomPasswordChangeForm, IngredientForm, MenuItemForm
+from .models import Ingredient, IngredientCategory, Pizza
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from users.models import CustomStaffUser
@@ -14,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 
 
 def staff_portal(request):
-
     login_form = AuthenticationForm()
     signup_form = StaffUserCreationForm()
     password_change_form = CustomPasswordChangeForm(user=request.user)
@@ -42,12 +38,12 @@ def staff_portal(request):
                 return redirect('staff_portal')
             else:
                 messages.error(request, "Invalid registration details.")
-        
+
         elif 'action' in request.POST and request.POST['action'] == 'logout':
             logout(request)
             messages.success(request, "You have been successfully logged out.")
             return redirect('staff_portal')
-        
+
         elif 'change_password' in request.POST:
             password_change_form = CustomPasswordChangeForm(user=request.user, data=request.POST)
 
@@ -74,10 +70,12 @@ def create_ingredient(request):
             form.save()
             messages.success(request, "Ingredient created successfully.")
             return redirect('staff_portal')
+
     else:
         form = IngredientForm()
 
     return render(request, 'add_ingredient.html', {'form': form})
+
 
 def manage_ingredients(request):
     ingredients = Ingredient.objects.all()
@@ -90,7 +88,7 @@ def manage_ingredients(request):
             ingredient.delete()
             messages.success(request, "Ingredient deleted successfully.")
             return redirect('manage_ingredients')
-        
+
         elif 'edit_id' in request.POST:
             ingredient_id = request.POST.get('edit_id')
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
@@ -101,11 +99,53 @@ def manage_ingredients(request):
             else:
                 messages.error(request, "Error updating ingredient: " + str(form.errors))
             return redirect('manage_ingredients')
-        
+
         else:
                 messages.error(request, "Error updating ingredient.")
 
     return render(request, 'manage_ingredients.html', {'ingredients': ingredients,'categories': categories,})
 
+
 def create_menu_item(request):
-     return render(request, 'add_menu_item.html',)
+    """
+    View function for creating a new pizza menu item.
+
+    - Initializes and processes the MenuItemForm for pizza creation.
+    - Handles dynamic addition of ingredients.
+    - Saves the new pizza item and its ingredients to the database.
+    - Redirects to the staff portal on successful creation or renders the form again on GET or form validation failure.
+    """
+
+    # Initialize the form with POST data if available, otherwise create an empty form
+    form = MenuItemForm(request.POST or None, request.FILES or None)
+
+    # Retrieve ingredient choices for the form
+    ingredient_choices = form.get_ingredient_choices()
+
+    # Check if the form is submitted and valid
+    if request.method == 'POST' and form.is_valid():
+        # Save the form to create a new Pizza instance, but don't commit to the database yet
+        pizza = form.save(commit=False)
+        # Manually save the Pizza instance to the database
+        pizza.save()
+        # Save the many-to-many fields of the form
+        form.save_m2m()
+
+        # Process and add each selected ingredient to the pizza
+        for key in request.POST:
+            if key.startswith('ingredient_'):
+                ingredient_id = request.POST[key]
+                if ingredient_id:
+                    # Retrieve and add the ingredient to the pizza's ingredients
+                    ingredient = Ingredient.objects.get(id=ingredient_id)
+                    pizza.ingredients.add(ingredient)
+
+        # Display a success message and redirect to the staff portal
+        messages.success(request, "Pizza created successfully.")
+        return redirect('staff_portal')
+
+    # Render the form template on GET request or if form is invalid
+    return render(request, 'add_menu_item.html', {
+        'form': form,
+        'ingredient_choices': ingredient_choices
+    })

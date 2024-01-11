@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear the existing content in the "All" tab
         var allTab = document.getElementById('all');
         allTab.innerHTML = '';
-        
+
         // Loop through each tab-pane and add its content to the "All" tab
         var tabPanes = document.querySelectorAll('.tab-pane');
         tabPanes.forEach(function(tabPane) {
             allContent += tabPane.innerHTML;
         });
-        
+
         allTab.innerHTML = allContent; // Set the content of the "All" tab
     }
 
@@ -140,5 +140,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentImage.src = ingredientImage;
             }
                     });
+    });
+});
+
+// Wait for the DOM to be loaded before executing
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize a counter to keep track of the number of ingredient selectors added.
+    let ingredientCount = 0;
+
+    // Add a click event listener to the 'add-ingredient' button.
+    document.getElementById('add-ingredient').addEventListener('click', function() {
+        // Check if the number of added ingredient selectors is less than 10.
+        if (ingredientCount < 10) {
+            // Get all elements with the class 'ingredient-selector'.
+            let selectorDivs = document.getElementsByClassName('ingredient-selector');
+            // Check if there is an ingredient selector corresponding to the current count.
+            if (selectorDivs[ingredientCount]) {
+                // Set the display style of the next ingredient selector to 'flex' to make it visible.
+                selectorDivs[ingredientCount].style.display = 'flex';
+                // Increment the ingredient counter
+                ingredientCount++;
+            }
+        }
     });
 });

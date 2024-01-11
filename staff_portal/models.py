@@ -9,7 +9,7 @@ class IngredientCategory(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
         verbose_name = "Ingredient Category"
         verbose_name_plural = "Ingredient Categories"
@@ -71,16 +71,43 @@ class Ingredient(models.Model):
 
         super(Ingredient, self).delete(*args, **kwargs)
 
+
 class Pizza(models.Model):
+    """
+    Pizza model representing a pizza menu item.
+
+    Attributes:
+    - name (CharField): The name of the pizza.
+    - has_tomato (BooleanField): Indicates whether the pizza has tomato sauce.
+    - has_mozzarella (BooleanField): Indicates whether the pizza has mozzarella cheese.
+    - ingredients (ManyToManyField): The ingredients included in the pizza. Relates to the Ingredient model.
+    - image (CloudinaryField): An image of the pizza, stored and managed via Cloudinary.
+    """
+
+    # Name of the pizza; max length 20 characters
     name = models.CharField(max_length=20)
+
+    # Boolean fields indicating whether the pizza has tomato sauce and mozzarella
     has_tomato = models.BooleanField(default=False)
     has_mozzarella = models.BooleanField(default=False)
+
+    # Many-to-many relationship with the Ingredient model
+    # 'blank=True' allows the pizza to be saved without any ingredients
     ingredients = models.ManyToManyField(Ingredient, blank=True)
+
+    # Image field using Cloudinary for image hosting
+    # 'blank=True, null=True' means the image is optional
     image = CloudinaryField('image', blank=True, null=True, folder='pizzas')
 
     def __str__(self):
+        """
+        Returns the name of the Pizza.
+        """
         return self.name
-    
+
     class Meta:
+        """
+        Meta options for the Pizza model.
+        """
         verbose_name = "Pizza"
         verbose_name_plural = "Pizzas"
