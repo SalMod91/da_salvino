@@ -152,4 +152,8 @@ def create_menu_item(request):
 
 
 def manage_menu_items(request):
-    return render(request, 'manage_menu_items.html',)
+    # Fetch all pizza items from the database
+    pizzas = Pizza.objects.all()
+    
+    # Pass the list of pizzas to the manage_menu_items template
+    return render(request, 'manage_menu_items.html', {'pizzas': pizzas})
