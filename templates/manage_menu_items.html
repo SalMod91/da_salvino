@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Messages -->
+    {% if messages %}
+    <div id="message-container" class="alert" role="alert" style="display: none;">
+        <div id="messages-data" style="display: none;">
+            {% for message in messages %}
+                <span class="message-item" data-message="{{ message }}">{{ message }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not user.is_authenticated %}
+
+    <div class="container mt-4 text-white text-center">
+        <!-- When the user is not logged in it prompts to do so -->
+        <p>Only approved Staff Users are allowed to modify the Menu. Please <a href="{% url 'staff_portal' %}">Sign In</a>.</p>
+    </div>
+
+    {% else %}
+        <!-- Section for log out -->
+        <div class="d-flex justify-content-end margin-right">
+            <div>
+                <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
+                <p>
+                    <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="container mt-4 text-white text-center">
+            <h2>Manage Menu</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pizza Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pizza in pizzas %}
+                    <tr>
+                        <td>{{ pizza.name }}</td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    Are you sure you want to logout, <strong>{{ user.username }}</strong>?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                    <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="logout">
+                        <button type="submit" class="btn btn-warning"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Yes</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -149,3 +149,7 @@ def create_menu_item(request):
         'form': form,
         'ingredient_choices': ingredient_choices
     })
+
+
+def manage_menu_items(request):
+    return render(request, 'manage_menu_items.html',)
