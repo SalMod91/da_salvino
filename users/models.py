@@ -38,6 +38,10 @@ class CustomStaffUser(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    class Meta:
+        verbose_name = "Staff User"
+        verbose_name_plural = "Staff Users"
+
     def __str__(self):
         return self.username
 
