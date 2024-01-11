@@ -54,6 +54,13 @@
                 <div class="form-group mt-3">
                     <label for="{{ form.image.id_for_label }}">Image:</label>
                     {{ form.image }}
+                    {% if form.image.errors %}
+                        <div class="error-message">
+                            {% for error in form.image.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
 
                 {% if form.non_field_errors %}

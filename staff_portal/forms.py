@@ -51,14 +51,14 @@ class IngredientForm(forms.ModelForm):
         
         - If an image is found and it's not of an image file type, it raises a 
           Validation Error.
-        - If no new image is uploaded, it retains the existing image (if any). 
-          If there's no existing image, it defaults to None.
+        - If no new image is uploaded, it retains the existing image. 
+        - If there's no existing image, it defaults to None.
         """
         image = self.cleaned_data.get('image', False)
 
         if image and hasattr(image, 'content_type'):
             if not image.content_type.startswith('image'):
-                raise forms.ValidationError('File type is not supported')
+                raise forms.ValidationError('Only image files are allowed.')
             return image
 
         # Retain the existing image if no new image is uploaded
@@ -112,6 +112,29 @@ class MenuItemForm(forms.ModelForm):
 
         return cleaned_data
 
+
+    def clean_image(self):
+        """
+        This method ensures that if no new image was uploaded in the form, the existing 
+        image is maintained. It raises a Validation Error if the uploaded file type is 
+        not an Image type.
+        
+        - If an image is found and it's not of an image file type, it raises a 
+          Validation Error.
+        - If no new image is uploaded, it retains the existing image. 
+        - If there's no existing image, it defaults to None.
+        """
+        image = self.cleaned_data.get('image', False)
+
+        # Check if an image was uploaded and if it's of the correct content type
+        if image and hasattr(image, 'content_type'):
+            if not image.content_type.startswith('image'):
+                raise forms.ValidationError('Only image files are allowed.')
+            return image
+
+        # Retain the existing image if no new image is uploaded
+        return self.instance.image if self.instance and hasattr(self.instance, 'image') else None
+
     def get_ingredient_choices(self):
         """
         Retrieves a structured list of ingredient choices categorized by their ingredient categories.
@@ -134,3 +157,4 @@ class MenuItemForm(forms.ModelForm):
             # Append the category and its ingredients to the choices list.
             choices.append((category.name, category_choices))
         return choices
+

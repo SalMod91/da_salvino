@@ -23,23 +23,18 @@
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                 
-                        <!-- Display form errors -->
-                        {% if form.non_field_errors %}
-                            <div class="alert alert-danger">
-                                {% for error in form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                
-                        <!-- Display Image File errors -->
+                        <!-- Loop through each field in the form -->
                         {% for field in form %}
+                            <!-- Create a div for each form field -->
                             <div class="form-group">
                                 {{ field.label_tag }}
                                 {{ field }}
+                                <!-- Check if there are any validation errors for this field -->
                                 {% if field.errors %}
                                     <div class="error-message">
+                                        <!-- Loop through each error fields -->
                                         {% for error in field.errors %}
+                                            <!-- Display the error message -->
                                             {{ error }}
                                         {% endfor %}
                                     </div>
