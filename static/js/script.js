@@ -94,15 +94,38 @@ document.addEventListener('DOMContentLoaded', function() {
     openLoginRegisterTab();
 });
 
-// Adds an Event Listener to each delete button
+// Adds an Event Listener to each ingredient delete button
 document.addEventListener('DOMContentLoaded', function () {
-    var deleteButtons = document.querySelectorAll('.delete-button');
+    // Assigns all buttons with the class 'delete-ingredient-button'to a constant variable
+    const deleteIngredientButtons = document.querySelectorAll('.delete-ingredient-button');
 
-    deleteButtons.forEach(function (button) {
+    // Iterates over each button in the deleteIngredientButtons variable
+    deleteIngredientButtons.forEach(function (button) {
+        // Adds a click event listener to each button
         button.addEventListener('click', function () {
-            var ingredientId = button.getAttribute('data-ingredient-id');
-            var ingredientToDeleteId = document.getElementById('deleteIngredientId');
+            // Retrieves the 'data-ingredient-id' attribute from the clicked button, which contains the ID of the ingredient item to delete
+            let ingredientId = button.getAttribute('data-ingredient-id');
+            // Sets the value of the delete button in the modal to the ingredient's ID.
+            let ingredientToDeleteId = document.getElementById('deleteIngredientId');
             ingredientToDeleteId.value = ingredientId;
+        });
+    });
+});
+
+// Waits for the DOM to be fully loaded before executing the script
+document.addEventListener('DOMContentLoaded', function () {
+    // Assigns all buttons with the class 'delete-menu-item-button'to a constant variable
+    const deleteMenuItemButtons = document.querySelectorAll('.delete-menu-item-button');
+
+    // Iterates over each button in the deleteMenuItemButtons variable
+    deleteMenuItemButtons.forEach(function (button) {
+        // Adds a click event listener to each button
+        button.addEventListener('click', function () {
+            // Retrieves the 'data-menu_item-id' attribute from the clicked button, which contains the ID of the menu item to delete
+            let menuItemId = button.getAttribute('data-menu_item-id');
+            // Sets the value of the delete button in the modal to the menu item's ID.
+            let menuItemToDeleteId = document.getElementById('deleteMenuItemId');
+            menuItemToDeleteId.value = menuItemId;
         });
     });
 });

@@ -78,31 +78,59 @@ def create_ingredient(request):
 
 
 def manage_ingredients(request):
+    """
+    View function for managing the ingredients.
+    Displays all exisiting ingredients and categories in the database.
+    It responds to both GET and POST requests, handling ingredient deletions and updates accordingly.
+    """
+
+    # Retrieves all ingredients and ingredient categories from the database
     ingredients = Ingredient.objects.all()
     categories = IngredientCategory.objects.all()
 
+    # Check if the request method is POST
     if request.method == 'POST':
+
+        # Check if the 'delete' action is specified in the POST data
         if 'delete' in request.POST:
+            # Retrieve the ID of the ingredient to delete from the POST data
             ingredient_id = request.POST.get('delete')
+            # Fetch the corresponding ingredient object from the database or return a 404 if not found
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+            # Delete the fetched ingredient object from the database
             ingredient.delete()
+            # Display a success message to the user
             messages.success(request, "Ingredient deleted successfully.")
+            # Redirect to the manage_ingredients page to display the updated list of menu items
             return redirect('manage_ingredients')
 
+        # Check if the 'edit_id' action is specified in the POST data
         elif 'edit_id' in request.POST:
+             # Retrieve the ID of the ingredient to edit from the POST data
             ingredient_id = request.POST.get('edit_id')
+            # Fetch the corresponding ingredient object from the database or return a 404 if not found
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+            # Initializes the IngredientForm with POST data and the fetched Ingredient instance
+            # This pre-fills the form with the ingredient's existing data for editing
             form = IngredientForm(request.POST, request.FILES, instance=ingredient)
+            # Checks if the submitted form data is valid
             if form.is_valid():
+                # Checks if the submitted form data is valid
                 form.save()
+                # Displays a success message indicating the ingredient has been updated successfully
                 messages.success(request, "Ingredient updated successfully.")
             else:
+                # If the form data is not valid, it displays an error message with form validation errors
                 messages.error(request, "Error updating ingredient: " + str(form.errors))
+            
+            # Redirects the user back to the 'manage_ingredients' page after the form submission
             return redirect('manage_ingredients')
 
+        # Adds a general error message if an unexpected action is encountered
         else:
                 messages.error(request, "Error updating ingredient.")
 
+    # Renders the 'manage_ingredients' template, passing in the ingredients and categories
     return render(request, 'manage_ingredients.html', {'ingredients': ingredients,'categories': categories,})
 
 
@@ -152,8 +180,29 @@ def create_menu_item(request):
 
 
 def manage_menu_items(request):
+    """
+    View function for managing menu items.
+    Displays all menu items and handles the editing/deletion of a selected menu item.
+    If a POST request is made with a 'delete' action, the specified menu item is deleted.
+    """
     # Fetch all pizza items from the database
     pizzas = Pizza.objects.all()
+
+    # Check if the request method is POST
+    if request.method == 'POST':
+
+        # Check if the 'delete' action is specified in the POST data
+        if 'delete' in request.POST:
+            # Retrieve the ID of the menu item to delete from the POST data
+            menu_item_id = request.POST.get('delete')
+            # Fetch the corresponding Pizza object from the database or return a 404 if not found
+            menu_item = get_object_or_404(Pizza, id=menu_item_id)
+            # Delete the fetched Pizza object from the database
+            menu_item.delete()
+            # Display a success message to the user
+            messages.success(request, "Menu Item deleted successfully.")
+            # Redirect to the manage_menu_items page to display the updated list of menu items
+            return redirect('manage_menu_items')
     
     # Pass the list of pizzas to the manage_menu_items template
     return render(request, 'manage_menu_items.html', {'pizzas': pizzas})
