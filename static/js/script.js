@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Adds an Event Listener to the edit button, populating the fields with data from the database
+// Adds an Event Listener to the ingredients edit button, populating the fields with data from the database
 document.addEventListener('DOMContentLoaded', function() {
     var editButtons = document.querySelectorAll('.edit-button');
     editButtons.forEach(function(button) {
@@ -140,11 +140,12 @@ document.addEventListener('DOMContentLoaded', function() {
             var ingredientDescription = button.getAttribute('data-ingredient-description');
             var ingredientCategory = button.getAttribute('data-ingredient-category');
             var ingredientImage = button.getAttribute('data-ingredient-image');
+            var currentIngredientImage = document.getElementById('currentIngredientImage');
             
             // Sets the field values
             document.getElementById('editIngredientId').value = ingredientId;
-            document.getElementById('editName').value = ingredientName;
-            document.getElementById('editDescription').value = ingredientDescription;
+            document.getElementById('editIngredientName').value = ingredientName;
+            document.getElementById('editIngredientDescription').value = ingredientDescription;
 
             // Set the Category field value
             var editCategoryField = document.getElementById('editCategory');
@@ -158,9 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            var currentImage = document.getElementById('currentImage');
-            if (currentImage) {
-                currentImage.src = ingredientImage;
+            if (currentIngredientImage) {
+                currentIngredientImage.src = ingredientImage;
             }
                     });
     });
@@ -231,26 +231,66 @@ document.addEventListener('DOMContentLoaded', function() {
         addIngredientButton.classList.remove('hidden');
     }
 
-    // Event listener for adding ingredients
-    addIngredientButton.addEventListener('click', function() {
-        // Check if the total number of selectors is less than 10
-        if (ingredientCount < 10) {
-            // Assign all selector divs to a variable
-            let selectorDivs = document.querySelectorAll('#ingredient-selectors .ingredient-selector');
-            // Assigns the next hidden selector to a variable
-            let nextSelector = Array.from(selectorDivs).find(function(div) {
-                return div.classList.contains('hidden');
-            });
-            // If there is still a hidden selector available the "Add Ingredient" is still visible
-            if (nextSelector) {
-                nextSelector.classList.remove('hidden');
-                nextSelector.classList.add('visible');
-                updateSelectors();
+    // Check if the button exists on the page
+    if (addIngredientButton) {
+        // Event listener for adding ingredients
+        addIngredientButton.addEventListener('click', function() {
+            // Check if the total number of selectors is less than 10
+            if (ingredientCount < 10) {
+                // Assign all selector divs to a variable
+                let selectorDivs = document.querySelectorAll('#ingredient-selectors .ingredient-selector');
+                // Assigns the next hidden selector to a variable
+                let nextSelector = Array.from(selectorDivs).find(function(div) {
+                    return div.classList.contains('hidden');
+                });
+                // If there is still a hidden selector available the "Add Ingredient" is still visible
+                if (nextSelector) {
+                    nextSelector.classList.remove('hidden');
+                    nextSelector.classList.add('visible');
+                    updateSelectors();
+                }
+                // If the total number of selectors reaches 10, hide the "Add Ingredient" button
+                if (ingredientCount === 10) {
+                    addIngredientButton.classList.add('hidden');
+                }
             }
-            // If the total number of selectors reaches 10, hide the "Add Ingredient" button
-            if (ingredientCount === 10) {
-                addIngredientButton.classList.add('hidden');
+        });
+    }
+});
+
+// Adds an Event Listener to the edit menu item button, populating the fields with data from the database
+document.addEventListener('DOMContentLoaded', function() {
+    // Selects all buttons with the class 'edit-menu-item-button'
+    const editMenuItemButtons = document.querySelectorAll('.edit-menu-item-button');
+    // Iterates over each button in the editMenuItemButtons
+    editMenuItemButtons.forEach(function(button) {
+        // Adds a click event listener to each button
+        button.addEventListener('click', function() {
+            // Retrieves various data attributes from the clicked button
+            // These attributes contain the current values of the menu item to be edited
+            let menuItemId = button.getAttribute('data-menu_item-id');
+            let menuItemName = button.getAttribute('data-menu_item-name');
+            let menuItemTomato = button.getAttribute('data-menu_item-has_tomato');
+            let menuItemMozzarella = button.getAttribute('data-menu_item-has_mozzarella');
+            let menuItemImage = button.getAttribute('data-menu_item-image');
+
+            // Selects the image element inside the edit modal to update its source
+            let currentMenuItemImage = document.getElementById('currentMenuItemImage')
+            
+            // Sets the values of the edit form fields with the data retrieved from the clicked button
+            document.getElementById('editMenuItemId').value = menuItemId;
+            document.getElementById('editMenuItemName').value = menuItemName;
+
+            // Checks the tomato and mozzarella checkboxes based on the retrieved values
+            // Set the checked state of the checkboxes based on the data attributes
+            // The '===' operator compares both the value and the type
+            document.getElementById('editMenuItemHasTomato').checked = menuItemTomato === 'True';
+            document.getElementById('editMenuItemHasMozzarella').checked = menuItemMozzarella === 'True';
+
+            // Checks if there is an image and sets it as a preview
+            if (currentMenuItemImage) {
+                currentMenuItemImage.src = menuItemImage;
             }
-        }
+        });
     });
 });

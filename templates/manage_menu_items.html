@@ -44,7 +44,7 @@
                         <td>{{ pizza.name }}</td>
                         <td>
                             <!-- Edit Button -->
-                            <button type="button" class="btn btn-primary edit-button" data-toggle="modal" data-target="#editMenuItemModal">Edit</button>
+                            <button type="button" class="btn btn-primary edit-menu-item-button" data-menu_item-id="{{ pizza.id }}" data-menu_item-name="{{ pizza.name }}" data-menu_item-has_tomato="{{ pizza.has_tomato }}" data-menu_item-has_mozzarella="{{ pizza.has_mozzarella }}" data-menu_item-ingredients="{% for ingredient in pizza.ingredients.all %}{{ ingredient.id }},{% endfor %}" data-menu_item-image="{{ pizza.image.url }}" data-toggle="modal" data-target="#editMenuItemModal">Edit</button>
 
                             <!-- Delete Button -->
                             <button type="button" class="btn btn-danger delete-menu-item-button" data-menu_item-id="{{ pizza.id }}" data-toggle="modal" data-target="#deleteMenuItemModal">Delete</button>
@@ -117,9 +117,54 @@
             <div class="modal-content">
                 <form method="post" action="{% url 'manage_menu_items' %}" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-menu-title">Edit Menu Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
                     <div class="modal-body">
                         <!-- Stores and transmits the ID of the Menu Item -->
                         <input type="hidden" name="edit_id" id="editMenuItemId">
+
+                        <!-- Fields for editing the menu item, each id will be used by JS in order to populate the fields with data -->
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" class="form-control" id="editMenuItemName" name="name">
+                        </div>
+
+                        <!-- Has Tomato Sauce Checkbox -->
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="editMenuItemHasTomato" name="has_tomato">
+                            <label class="form-check-label" for="editMenuItemHasTomato">Has Tomato Sauce?</label>
+                        </div>
+
+                        <!-- Has Mozzarella Checkbox -->
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="editMenuItemHasMozzarella" name="has_mozzarella">
+                            <label class="form-check-label" for="editMenuItemHasMozzarella">Has Mozzarella?</label>
+                        </div>
+
+                        <!-- Current Image Field -->
+                        <div class="form-group">
+                            <label>Current Image:</label>
+                            <div>
+                                <img src="{{ pizza.image.url }}" id="currentMenuItemImage" class="edit-image-size" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editImage">Change Image:</label>
+                            <input type="file" class="form-control-file" id="editImage" name="image">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
                 </form>
             </div>
         </div>
