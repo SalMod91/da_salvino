@@ -174,7 +174,7 @@ def create_menu_item(request):
 
     # Render the form template on GET request or if form is invalid
     return render(request, 'add_menu_item.html', {
-        'form': form,
+        'form': form, 
         'ingredient_choices': ingredient_choices
     })
 
@@ -187,6 +187,12 @@ def manage_menu_items(request):
     """
     # Fetch all pizza items from the database
     pizzas = Pizza.objects.all()
+
+    # Initialize the form with POST data if available, otherwise create an empty form
+    form = MenuItemForm(request.POST or None, request.FILES or None)
+
+    # Retrieve ingredient choices for the form
+    ingredient_choices = form.get_ingredient_choices()
 
     # Check if the request method is POST
     if request.method == 'POST':
@@ -204,5 +210,8 @@ def manage_menu_items(request):
             # Redirect to the manage_menu_items page to display the updated list of menu items
             return redirect('manage_menu_items')
     
-    # Pass the list of pizzas to the manage_menu_items template
-    return render(request, 'manage_menu_items.html', {'pizzas': pizzas})
+    # Pass the list of pizzas and ingredients to the manage_menu_items template
+    return render(request, 'manage_menu_items.html', {
+        'pizzas': pizzas,
+        'ingredient_choices': ingredient_choices,
+        })

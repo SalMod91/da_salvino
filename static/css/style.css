@@ -246,9 +246,10 @@ ul.errorlist {
     display: none;
 }
 
-.visible {
+/* Obsolete, remember to remove when refactoring later */
+/* .visible {
     display: flex;
-}
+} */
 
 .remove-ingredient {
     color: red;

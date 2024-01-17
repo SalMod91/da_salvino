@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Opens the Modal to the Registration Tab if there are form errors
+// Remember to specify that this is the first usage of jquery
+// Maybe refactor everything using jquery later after gaining more confidence with it
 document.addEventListener('DOMContentLoaded', function() {
     function openLoginRegisterTab() {
         var loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
@@ -275,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let menuItemImage = button.getAttribute('data-menu_item-image');
 
             // Selects the image element inside the edit modal to update its source
-            let currentMenuItemImage = document.getElementById('currentMenuItemImage')
+            let currentMenuItemImage = document.getElementById('currentMenuItemImage');
             
             // Sets the values of the edit form fields with the data retrieved from the clicked button
             document.getElementById('editMenuItemId').value = menuItemId;
@@ -292,5 +294,58 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentMenuItemImage.src = menuItemImage;
             }
         });
+    });
+});
+
+// Function that handles resetting and populating ingredient selectors
+function manageEditIngredientSelectors(ingredientIds) {
+    // Selects all elements wich the class 'ingredient-selector' within the modal with ID 'editMenuItemModal'
+    const selectors = document.querySelectorAll('#editMenuItemModal .ingredient-selector');
+    let visibleCount = 0;
+    // Reset all selectors
+    selectors.forEach(selector => {
+        // Adds the class 'hidden' to each selector and removes the 'visible' class
+        selector.classList.add('hidden');
+        // Resets the selector to the placeholder
+        selector.querySelector('select').selectedIndex = 0;
+    });
+
+    // Populate selectors and count visible ones
+    ingredientIds.forEach((ingredientId, index) => {
+        // Check if the current index is within the range of available selectors
+            // Select the ingredient selector based on its position
+            const selector = selectors[index];
+            // Remove the 'hidden' class to make the selector visible
+            selector.classList.remove('hidden');
+            // Select the 'select' element within the current selector
+            const selectElement = selector.querySelector('select');
+            // Set the value of the 'select' element to the current ingredient ID
+            selectElement.value = ingredientId;
+            // Increment the count of visible selectors
+            visibleCount++;
+    });
+
+    // Select the "Add Ingredient" button within the edit modal
+    const addButton = document.querySelector('#editMenuItemModal #add-ingredient');
+    // Checks if the visible selectors are 10 or more
+    if (visibleCount >= 10) {
+        // If there are 10 or more selectors hides the "Add ingredient" button
+        addButton.classList.add('hidden');
+    } else {
+        // If there are fewer than 10 visible selectors makes the "Add ingredient" button visible
+        addButton.classList.remove('hidden')
+    }
+}
+
+
+
+// Selects all elements with the class 'edit-menu-item-button' and adds a 'click' event listener to each of them
+document.querySelectorAll('.edit-menu-item-button').forEach(button => {
+    button.addEventListener('click', function() {
+        // Get the ingredient IDs from the edit button's data attribute
+        // Split: Separates the string of ID's into an array of single ID's
+        // Filter: Removes empty strings from the list that occur due to the last comma
+        const ingredientIds = this.getAttribute('data-menu_item-ingredients').split(',').filter(id => id);
+        manageEditIngredientSelectors(ingredientIds);
     });
 });

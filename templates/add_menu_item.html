@@ -72,8 +72,8 @@
                 {% endif %}
             
                 <div class="mt-3" id="ingredient-selectors">
-                    <!-- Using numbers because Django template tags don't allow len() -->
-                    {% for i in "1234567890" %}
+                    <!-- Using numbers because Django template tags doesn't allow len() -->
+                    {% for i in "0123456789" %}
                         <div class="ingredient-selector hidden" data-index="{{ i }}">
                             <!-- Uses the loop counter to display dynamically in the paragraph the current iteration of the loop -->
                             <p class="ingredient-number">Ingredient #{{ forloop.counter }}</p>
