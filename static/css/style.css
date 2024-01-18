@@ -227,6 +227,10 @@ ul.errorlist {
     color: red;
 }
 
+.edit-error-message {
+    color: red;
+}
+
 .edit-image-size {
     width: 100px;
 }

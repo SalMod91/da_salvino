@@ -117,6 +117,15 @@
             <div class="modal-content">
                 <form method="post" action="{% url 'manage_menu_items' %}" enctype="multipart/form-data">
                     {% csrf_token %}
+                    
+                    <!-- Hidden input fields to store last edit details for repopulating the form in case of an error -->
+                    <input type="hidden" id="lastEditName" value="{{ last_edit_details.name }}">
+                    <input type="hidden" id="lastEditHasMozzarella" value="{{ last_edit_details.has_mozzarella }}">
+                    <input type="hidden" id="lastEditHasTomato" value="{{ last_edit_details.has_tomato }}">
+                    <input type="hidden" id="lastEditImageURL" value="{{ last_edit_details.image_url }}">
+                    <input type="hidden" id="lastEditedIngredientIds" value="{{ last_edit_details.ingredient_ids }}">
+
+                    
                     <div class="modal-header">
                         <h5 class="modal-title" id="modal-menu-title">Edit Menu Item</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -175,7 +184,7 @@
                         </div>
 
                         {% if form.errors %}
-                            <div class="error-message mt-2">
+                            <div class="edit-error-message mt-2">
                                 {% for field in form %}
                                     {% for error in field.errors %}
                                         <p>{{ error }}</p>

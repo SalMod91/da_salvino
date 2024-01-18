@@ -183,6 +183,16 @@ def manage_menu_items(request):
     Displays all menu items and handles the editing/deletion of a selected menu item.
     If a POST request is made with a 'delete' action, the specified menu item is deleted.
     """
+
+    # Retrieve 'last_edit_details' from the session or initialize with default values
+    last_edit_details = request.session.get('last_edit_details', {
+        'name': '',
+        'has_mozzarella': False,
+        'has_tomato': False,
+        'image_url': '',
+        'ingredient_ids': ''
+    })
+
     # Fetch all pizza items from the database
     pizzas = Pizza.objects.all()
 
@@ -192,7 +202,7 @@ def manage_menu_items(request):
     # Retrieve ingredient choices for the form
     ingredient_choices = form.get_ingredient_choices()
 
-    # Check if the request method is POST
+    # 
     if request.method == 'POST':
 
         # Check if the 'delete' action is specified in the POST data
@@ -211,8 +221,14 @@ def manage_menu_items(request):
         
         # Check if the 'edit_id' action is specified in the POST data
         elif 'edit_id' in request.POST:
+
+            # Retrieve the ID of the menu item to edit from the POST request
             menu_item_id = request.POST.get('edit_id')
+            # Store the editing pizza's ID in the session for tracking across requests
+            request.session['editing_pizza_id'] = str(menu_item_id)
+            # Fetch the Pizza object to edit from the database, or return a 404 error if not found
             menu_item = get_object_or_404(Pizza, id=menu_item_id)
+            # Initialize the form for editing
             form = MenuItemForm(request.POST, request.FILES, instance=menu_item)
 
             if form.is_valid():
@@ -226,10 +242,16 @@ def manage_menu_items(request):
 
                 # Clear existing ingredients and add new ones
                 pizza.ingredients.clear()
+
+                # Iterate over each key in the POST request data
                 for key in request.POST:
+                    # Check if the key starts with 'ingredient_' and has a value
                     if key.startswith('ingredient_') and request.POST[key]:
+                        # Retrieve the ingredient ID from the POST data
                         ingredient_id = request.POST[key]
+                        # Fetch the corresponding Ingredient object from the database
                         ingredient = Ingredient.objects.get(id=ingredient_id)
+                        # Add the Ingredient object to the pizza's ingredients list
                         pizza.ingredients.add(ingredient)
 
                 # Display a success message indicating the menu item has been updated successfully
@@ -237,13 +259,45 @@ def manage_menu_items(request):
                 # Redirects the user back to the 'manage_menu_items' page after the form submission
                 return redirect('manage_menu_items')
 
-            # If the form data is not valid, display an error message with form validation errors
+            # This code block is executed when the form submission is invalid
             else:
-                messages.error(request, "Error updating Menu Item.")
-    
-    # Pass the list of pizzas and ingredients to the manage_menu_items template
+                # Update session data for invalid form submission
+                request.session['last_edit_details'] = {
+                    'name': form.cleaned_data.get('name', ''),
+                    'has_mozzarella': form.cleaned_data.get('has_mozzarella', False),
+                    'has_tomato': form.cleaned_data.get('has_tomato', False),
+                    'image_url': menu_item.image.url if menu_item.image else '',
+                    'ingredient_ids': ','.join([str(ingredient.id) for ingredient in menu_item.ingredients.all()])
+                }
+
+                # Display an error message indicating there was an error editing the item
+                messages.error(request, "Error updating menu item.")
+
+                # Return directly with updated form data for the first error
+                return render(request, 'manage_menu_items.html', {
+                    'pizzas': pizzas,
+                    'ingredient_choices': ingredient_choices,
+                    'form': form,
+                    'last_edit_details': request.session['last_edit_details'],
+                })
+
+                # Display an error message indicating there was an error editing the menu item
+                messages.error(request, "Error updating menu item.")
+
+    # Check if the request is a GET request or a POST request without an 'edit_id'
+    if request.method == 'GET' or (menu_item_id is None and 'edit_id' in request.POST):
+
+        # Remove 'last_edit_details' from the session if it exists
+        # This is to clear any previously stored form data
+        request.session.pop('last_edit_details', None)
+
+        # Remove 'editing_pizza_id' from the session if it exists
+        # This ensures the session doesn't hold onto an old pizza ID
+        request.session.pop('editing_pizza_id', None)
+
     return render(request, 'manage_menu_items.html', {
         'pizzas': pizzas,
         'ingredient_choices': ingredient_choices,
         'form': form,
-        })
+        'last_edit_details': last_edit_details,
+    })

@@ -346,8 +346,6 @@ function manageEditIngredientSelectors(ingredientIds) {
     }
 }
 
-
-
 // Selects all elements with the class 'edit-menu-item-button' and adds a 'click' event listener to each of them
 document.querySelectorAll('.edit-menu-item-button').forEach(button => {
     button.addEventListener('click', function() {
@@ -359,9 +357,30 @@ document.querySelectorAll('.edit-menu-item-button').forEach(button => {
     });
 });
 
+// When an error occurs opens automatically the edit modal on reload
+// When the edit modal is open through an error, repopulates the modal using the data of the past session
 document.addEventListener('DOMContentLoaded', function() {
-    const errors = document.querySelector('.error-message');
+    // Assigns the elements with 'error-message' class to this variable
+    const errors = document.querySelector('.edit-error-message');
+    // Check if there are any error messages on the page
+    // If errors exist, indicating form submission failure, repopulate the form
     if (errors) {
+        // On reload automatically open the edit modal
         $('#editMenuItemModal').modal('show');
+        
+        // Set the values of the form fields based on the values stored in the hidden inputs
+        document.getElementById('editMenuItemName').value = document.getElementById('lastEditName').value;
+        document.querySelector('input[name="has_mozzarella"][value="' + document.getElementById('lastEditHasMozzarella').value + '"]').checked = true;
+        document.querySelector('input[name="has_tomato"][value="' + document.getElementById('lastEditHasTomato').value + '"]').checked = true;
+
+        // If there is an image URL, set it to the image element
+        const imageUrl = document.getElementById('lastEditImageURL').value;
+        if (imageUrl) {
+            document.getElementById('currentMenuItemImage').src = imageUrl;
+        }
+
+        // Retrieve the stored ingredient IDs and repopulate the ingredient selectors
+        const storedIngredientIds = document.getElementById('lastEditedIngredientIds').value.split(',').filter(id => id);
+        manageEditIngredientSelectors(storedIngredientIds);
     }
 });
