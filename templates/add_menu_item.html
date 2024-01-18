@@ -4,7 +4,7 @@
 
     {% if not user.is_authenticated %}
         <div class="container mt-4 text-white text-center">
-            <!-- When the user is not logged in it prompts to do so -->
+            <!-- When the user is not logged in, it prompts to do so -->
             <p>Only approved Staff Users are allowed to add Menu Items. Please <a href="{% url 'staff_portal' %}">Sign In</a>.</p>
         </div>
     {% else %}
@@ -29,6 +29,18 @@
                 <div class="form-group">
                     <label for="{{ form.name.id_for_label }}">Name:</label>
                     {{ form.name }}
+
+                    <!-- Check if there are any errors for the 'name' field in the form -->
+                    {% if form.name.errors %}
+                        <!-- If there are errors, create a div element to display these errors -->
+                        <div class="error-message mt-2">
+                            <!-- Iterate over each error message in the 'name' field errors -->
+                            {% for error in form.name.errors %}
+                                <!-- Display each error message in a span element -->
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
                 
                 <fieldset class="form-group mt-2">
