@@ -42,6 +42,11 @@ class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ['name', 'category', 'description', 'image']
+    
+
+    def clean_name(self):
+            return self.cleaned_data['name'].capitalize()
+
 
     def clean_image(self):
         """
