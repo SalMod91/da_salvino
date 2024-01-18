@@ -239,10 +239,11 @@ def manage_menu_items(request):
 
             # If the form data is not valid, display an error message with form validation errors
             else:
-                messages.error(request, "Error updating menu item: " + str(form.errors))
+                messages.error(request, "Error updating Menu Item.")
     
     # Pass the list of pizzas and ingredients to the manage_menu_items template
     return render(request, 'manage_menu_items.html', {
         'pizzas': pizzas,
         'ingredient_choices': ingredient_choices,
+        'form': form,
         })

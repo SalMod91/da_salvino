@@ -358,3 +358,10 @@ document.querySelectorAll('.edit-menu-item-button').forEach(button => {
         manageEditIngredientSelectors(ingredientIds);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const errors = document.querySelector('.error-message');
+    if (errors) {
+        $('#editMenuItemModal').modal('show');
+    }
+});
