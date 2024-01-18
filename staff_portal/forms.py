@@ -113,6 +113,10 @@ class MenuItemForm(forms.ModelForm):
         return cleaned_data
 
 
+    def clean_name(self):
+            return self.cleaned_data['name'].capitalize()
+
+
     def clean_image(self):
         """
         This method ensures that if no new image was uploaded in the form, the existing 
