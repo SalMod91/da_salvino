@@ -110,7 +110,6 @@ def manage_ingredients(request):
             ingredient_id = request.POST.get('edit_id')
             # Fetch the corresponding ingredient object from the database or return a 404 if not found
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
-            # Initializes the IngredientForm with POST data and the fetched Ingredient instance
             # This pre-fills the form with the ingredient's existing data for editing
             form = IngredientForm(request.POST, request.FILES, instance=ingredient)
             # Checks if the submitted form data is valid
@@ -152,6 +151,7 @@ def create_menu_item(request):
 
     # Check if the form is submitted and valid
     if request.method == 'POST' and form.is_valid():
+        # m2m relationships require the parent object to be saved first
         # Save the form to create a new Pizza instance, but don't commit to the database yet
         pizza = form.save(commit=False)
         # Manually save the Pizza instance to the database
@@ -159,14 +159,12 @@ def create_menu_item(request):
         # Save the many-to-many fields of the form
         form.save_m2m()
 
-        # Process and add each selected ingredient to the pizza
+        # Clear existing ingredients and add new ones
         for key in request.POST:
-            if key.startswith('ingredient_'):
+            if key.startswith('ingredient_') and request.POST[key]:
                 ingredient_id = request.POST[key]
-                if ingredient_id:
-                    # Retrieve and add the ingredient to the pizza's ingredients
-                    ingredient = Ingredient.objects.get(id=ingredient_id)
-                    pizza.ingredients.add(ingredient)
+                ingredient = Ingredient.objects.get(id=ingredient_id)
+                pizza.ingredients.add(ingredient)
 
         # Display a success message and redirect to the staff portal
         messages.success(request, "Pizza created successfully.")
@@ -209,6 +207,39 @@ def manage_menu_items(request):
             messages.success(request, "Menu Item deleted successfully.")
             # Redirect to the manage_menu_items page to display the updated list of menu items
             return redirect('manage_menu_items')
+        
+        
+        # Check if the 'edit_id' action is specified in the POST data
+        elif 'edit_id' in request.POST:
+            menu_item_id = request.POST.get('edit_id')
+            menu_item = get_object_or_404(Pizza, id=menu_item_id)
+            form = MenuItemForm(request.POST, request.FILES, instance=menu_item)
+
+            if form.is_valid():
+                # m2m relationships require the parent object to be saved first
+                # Save the form to create a new Pizza instance, but don't commit to the database yet
+                pizza = form.save(commit=False)
+                # Manually save the Pizza instance to the database
+                pizza.save()
+                # Save the many-to-many fields of the form
+                form.save_m2m()
+
+                # Clear existing ingredients and add new ones
+                pizza.ingredients.clear()
+                for key in request.POST:
+                    if key.startswith('ingredient_') and request.POST[key]:
+                        ingredient_id = request.POST[key]
+                        ingredient = Ingredient.objects.get(id=ingredient_id)
+                        pizza.ingredients.add(ingredient)
+
+                # Display a success message indicating the menu item has been updated successfully
+                messages.success(request, "Menu Item updated successfully.")
+                # Redirects the user back to the 'manage_menu_items' page after the form submission
+                return redirect('manage_menu_items')
+
+            # If the form data is not valid, display an error message with form validation errors
+            else:
+                messages.error(request, "Error updating menu item: " + str(form.errors))
     
     # Pass the list of pizzas and ingredients to the manage_menu_items template
     return render(request, 'manage_menu_items.html', {

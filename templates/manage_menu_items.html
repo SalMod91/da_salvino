@@ -135,17 +135,31 @@
                             <input type="text" class="form-control" id="editMenuItemName" name="name">
                         </div>
 
-                        <!-- Has Tomato Sauce Checkbox -->
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="editMenuItemHasTomato" name="has_tomato">
-                            <label class="form-check-label" for="editMenuItemHasTomato">Has Tomato Sauce?</label>
-                        </div>
+                        <!-- Has Tomato Sauce Radio Buttons -->
+                        <fieldset class="form-group">
+                            <legend>Has Tomato Sauce?</legend>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="editMenuItemHasTomatoYes" name="has_tomato" value="True">
+                                <label class="form-check-label" for="editMenuItemHasTomatoYes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="editMenuItemHasTomatoNo" name="has_tomato" value="False">
+                                <label class="form-check-label" for="editMenuItemHasTomatoNo">No</label>
+                            </div>
+                        </fieldset>
 
-                        <!-- Has Mozzarella Checkbox -->
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="editMenuItemHasMozzarella" name="has_mozzarella">
-                            <label class="form-check-label" for="editMenuItemHasMozzarella">Has Mozzarella?</label>
-                        </div>
+                        <!-- Has Mozzarella Radio Buttons -->
+                        <fieldset class="form-group">
+                            <legend>Has Mozzarella?</legend>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="editMenuItemHasMozzarellaYes" name="has_mozzarella" value="True">
+                                <label class="form-check-label" for="editMenuItemHasMozzarellaYes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="editMenuItemHasMozzarellaNo" name="has_mozzarella" value="False">
+                                <label class="form-check-label" for="editMenuItemHasMozzarellaNo">No</label>
+                            </div>
+                        </fieldset>
 
                         <!-- Current Image Field -->
                         <div class="form-group">

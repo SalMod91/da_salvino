@@ -185,21 +185,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // Assigns all ingredient selector divs to a variable
         let selectors = document.querySelectorAll('#ingredient-selectors .ingredient-selector');
         // Initialize a counter to assign new numbers to visible selectors
-        let newCount = 1;
+        let newCount = 0;
 
         // Iterate through each selector
         selectors.forEach(function(selector) {
             // Check if the selector is not hidden
             if (!selector.classList.contains('hidden')) {
                 // Update the displayed number for the selector
-                selector.querySelector('.ingredient-number').textContent = 'Ingredient #' + newCount;
+                selector.querySelector('.ingredient-number').textContent = 'Ingredient #' + (newCount + 1);
                 // Update the name attribute of the selector's <select> element to match the new number
                 selector.querySelector('select').name = 'ingredient_' + newCount;
                 // Increment the counter for the next visible selector
                 newCount++;
             }
         });
-        ingredientCount = newCount - 1;
+        ingredientCount = newCount;
     }
 
     // Event listeners for remove buttons (one of my first tests with arrow functions)
@@ -286,8 +286,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Checks the tomato and mozzarella checkboxes based on the retrieved values
             // Set the checked state of the checkboxes based on the data attributes
             // The '===' operator compares both the value and the type
-            document.getElementById('editMenuItemHasTomato').checked = menuItemTomato === 'True';
-            document.getElementById('editMenuItemHasMozzarella').checked = menuItemMozzarella === 'True';
+            if (menuItemTomato === 'True') {
+                document.getElementById('editMenuItemHasTomatoYes').checked = true;
+            } else {
+                document.getElementById('editMenuItemHasTomatoNo').checked = true;
+            }
+            
+            if (menuItemMozzarella === 'True') {
+                document.getElementById('editMenuItemHasMozzarellaYes').checked = true;
+            } else {
+                document.getElementById('editMenuItemHasMozzarellaNo').checked = true;
+            }
 
             // Checks if there is an image and sets it as a preview
             if (currentMenuItemImage) {
