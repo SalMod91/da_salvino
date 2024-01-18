@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (errors) {
         // On reload automatically open the edit modal
         $('#editMenuItemModal').modal('show');
-        
+
         // Set the values of the form fields based on the values stored in the hidden inputs
         document.getElementById('editMenuItemName').value = document.getElementById('lastEditName').value;
         document.querySelector('input[name="has_mozzarella"][value="' + document.getElementById('lastEditHasMozzarella').value + '"]').checked = true;
@@ -378,6 +378,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageUrl = document.getElementById('lastEditImageURL').value;
         if (imageUrl) {
             document.getElementById('currentMenuItemImage').src = imageUrl;
+        }
+
+        // Set the edit_id
+        const editId = document.getElementById('lastEditId').value;
+        if (editId) {
+            document.getElementById('editMenuItemId').value = editId;
         }
 
         // Retrieve the stored ingredient IDs and repopulate the ingredient selectors

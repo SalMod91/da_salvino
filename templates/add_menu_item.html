@@ -67,7 +67,7 @@
                     <label for="{{ form.image.id_for_label }}">Image:</label>
                     {{ form.image }}
                     {% if form.image.errors %}
-                        <div class="error-message">
+                        <div class="error-message mt-2">
                             {% for error in form.image.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}

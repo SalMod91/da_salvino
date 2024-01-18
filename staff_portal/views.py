@@ -190,7 +190,8 @@ def manage_menu_items(request):
         'has_mozzarella': False,
         'has_tomato': False,
         'image_url': '',
-        'ingredient_ids': ''
+        'ingredient_ids': '',
+        'edit_id': '',
     })
 
     # Fetch all pizza items from the database
@@ -202,7 +203,7 @@ def manage_menu_items(request):
     # Retrieve ingredient choices for the form
     ingredient_choices = form.get_ingredient_choices()
 
-    # 
+
     if request.method == 'POST':
 
         # Check if the 'delete' action is specified in the POST data
@@ -267,7 +268,8 @@ def manage_menu_items(request):
                     'has_mozzarella': form.cleaned_data.get('has_mozzarella', False),
                     'has_tomato': form.cleaned_data.get('has_tomato', False),
                     'image_url': menu_item.image.url if menu_item.image else '',
-                    'ingredient_ids': ','.join([str(ingredient.id) for ingredient in menu_item.ingredients.all()])
+                    'ingredient_ids': ','.join([str(ingredient.id) for ingredient in menu_item.ingredients.all()]),
+                    'edit_id': menu_item_id
                 }
 
                 # Display an error message indicating there was an error editing the item
