@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Sets the field values
             document.getElementById('editIngredientId').value = ingredientId;
             document.getElementById('editIngredientName').value = ingredientName;
+            document.getElementById('editIngredientCategory').value = ingredientCategory;
             document.getElementById('editIngredientDescription').value = ingredientDescription;
 
             // Set the Category field value
