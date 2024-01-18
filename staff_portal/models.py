@@ -85,7 +85,7 @@ class Pizza(models.Model):
     """
 
     # Name of the pizza; max length 20 characters
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
 
     # Boolean fields indicating whether the pizza has tomato sauce and mozzarella
     has_tomato = models.BooleanField(default=False)
