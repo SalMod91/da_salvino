@@ -275,7 +275,7 @@ def manage_menu_items(request):
                 # Display an error message indicating there was an error editing the item
                 messages.error(request, "Error updating menu item.")
 
-                # Return directly with updated form data for the first error
+                # Return with updated form data for the first error
                 return render(request, 'manage_menu_items.html', {
                     'pizzas': pizzas,
                     'ingredient_choices': ingredient_choices,

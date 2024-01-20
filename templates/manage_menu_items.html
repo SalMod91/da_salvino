@@ -143,7 +143,18 @@
                         <div class="form-group">
                             <label>Name:</label>
                             <input type="text" class="form-control" id="editMenuItemName" name="name">
+
+                            <!-- Displays errors related to the 'name' field -->
+                            {% if form.name.errors %}
+                                <div class="edit-error-message mt-2">
+                                    {% for error in form.name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
+
+                        
 
                         <!-- Has Tomato Sauce Radio Buttons -->
                         <fieldset class="form-group">
@@ -158,6 +169,15 @@
                             </div>
                         </fieldset>
 
+                        <!-- Displays errors related to the 'has_tomato' field -->
+                        {% if form.has_tomato.errors %}
+                            <div class="edit-error-message mt-2">
+                                {% for error in form.has_tomato.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
                         <!-- Has Mozzarella Radio Buttons -->
                         <fieldset class="form-group">
                             <legend>Has Mozzarella?</legend>
@@ -170,6 +190,15 @@
                                 <label class="form-check-label" for="editMenuItemHasMozzarellaNo">No</label>
                             </div>
                         </fieldset>
+
+                        <!-- Displays errors related to the 'has_mozzarella' field -->
+                        {% if form.has_mozzarella.errors %}
+                            <div class="edit-error-message mt-2">
+                                {% for error in form.has_mozzarella.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
                         <!-- Current Image Field -->
                         <div class="form-group">
@@ -184,15 +213,20 @@
                             <input type="file" class="form-control-file" id="editImage" name="image">
                         </div>
 
-                        {% if form.errors %}
+                        <!-- Displays errors related to the 'image' field -->
+                        {% if form.image.errors %}
                             <div class="edit-error-message mt-2">
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
+                                {% for error in form.image.errors %}
+                                    <span>{{ error }}</span>
                                 {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <!-- Displays ingredients specific errors -->
+                        {% if form.non_field_errors %}
+                            <div class="edit-error-message mt-3">
                                 {% for error in form.non_field_errors %}
-                                    <p>{{ error }}</p>
+                                    {{ error }}
                                 {% endfor %}
                             </div>
                         {% endif %}
