@@ -46,8 +46,7 @@ class Ingredient(models.Model):
             upload_options = {'public_id': public_id, 'overwrite': True, 'folder': 'ingredients'}
             uploaded_image = upload(temp_image, **upload_options)
 
-            # Update the image field with the new public_id and save again
-            self.image = uploaded_image['public_id']
+            # Update the image field with the new public_url and save again
             self.image = uploaded_image['secure_url']
             super(Ingredient, self).save(*args, **kwargs)
         else:
@@ -111,3 +110,48 @@ class Pizza(models.Model):
         """
         verbose_name = "Pizza"
         verbose_name_plural = "Pizzas"
+
+    def save(self, *args, **kwargs):
+        """
+        Overrides the default save method to handle image uploads. If an image file is present,
+        it saves the ingredient without the image, uploads the image to Cloudinary to
+        generate a public ID, and then saves the ingredient again with the updated image URL.
+        This approach ensures that the image is stored with a consistent naming convention
+        based on the ingredient's ID. If no image
+        file is provided, it simply saves the model as is.
+        """
+
+        if hasattr(self.image, 'file'):  # Check if it's a file to upload
+            temp_image = self.image
+            self.image = None
+            super(Pizza, self).save(*args, **kwargs)
+            # Generate the public_id based on the ingredient ID
+            public_id = f'pizza_image_{self.id}'
+
+            # Upload the image with the correct public_id and overwrite if same public_id
+            upload_options = {'public_id': public_id, 'overwrite': True, 'folder': 'pizzas'}
+            uploaded_image = upload(temp_image, **upload_options)
+
+            # Update the image field with the new public_url and save again
+            self.image = uploaded_image['secure_url']
+            super(Pizza, self).save(*args, **kwargs)
+        else:
+            # If it's not a file, just save the model as is
+            super(Pizza, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        """
+        Overrides the default delete method to handle the
+        deletion of the associated image from Cloudinary.
+        When an ingredient is deleted, this method checks if there is an associated image.
+        If there is, it constructs the public_id of the image based on the ingredient's ID
+        and the predefined folder path ('pizzas').
+        It then calls the Cloudinary API to delete the image from the cloud storage.
+        After deleting the image, it proceeds with deleting the Pizza instance from the database.
+        """
+
+        if self.image:
+            public_id = f'pizzas/pizza_image_{self.id}'
+            destroy(public_id)
+
+        super(Pizza, self).delete(*args, **kwargs)
