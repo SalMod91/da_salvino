@@ -163,10 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
+            // Checks if there is an image and sets it as a preview
             if (currentIngredientImage) {
                 currentIngredientImage.src = ingredientImage;
             }
 
+            // If the image elements exists, resets its value to an empty string
+            // This clears any file that has been previously selected 
             if (ingredientImageInput) {
                 ingredientImageInput.value = "";
             }
