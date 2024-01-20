@@ -134,15 +134,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Adds an Event Listener to the ingredients edit button, populating the fields with data from the database
 document.addEventListener('DOMContentLoaded', function() {
-    var editButtons = document.querySelectorAll('.edit-button');
+    let editButtons = document.querySelectorAll('.edit-button');
     editButtons.forEach(function(button) {
         button.addEventListener('click', function() {
-            var ingredientId = button.getAttribute('data-ingredient-id');
-            var ingredientName = button.getAttribute('data-ingredient-name');
-            var ingredientDescription = button.getAttribute('data-ingredient-description');
-            var ingredientCategory = button.getAttribute('data-ingredient-category');
-            var ingredientImage = button.getAttribute('data-ingredient-image');
-            var currentIngredientImage = document.getElementById('currentIngredientImage');
+            let ingredientId = button.getAttribute('data-ingredient-id');
+            let ingredientName = button.getAttribute('data-ingredient-name');
+            let ingredientDescription = button.getAttribute('data-ingredient-description');
+            let ingredientCategory = button.getAttribute('data-ingredient-category');
+            let ingredientImage = button.getAttribute('data-ingredient-image');
+            let currentIngredientImage = document.getElementById('currentIngredientImage');
+            let ingredientImageInput = document.getElementById('editIngredientImage');
             
             // Sets the field values
             document.getElementById('editIngredientId').value = ingredientId;
@@ -151,10 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editIngredientDescription').value = ingredientDescription;
 
             // Set the Category field value
-            var editCategoryField = document.getElementById('editCategory');
+            let editCategoryField = document.getElementById('editCategory');
             if (editCategoryField) {
                 // Ensures the correct category is selected
-                for (var i = 0; i < editCategoryField.options.length; i++) {
+                for (let i = 0; i < editCategoryField.options.length; i++) {
                     if (editCategoryField.options[i].value === ingredientCategory) {
                         editCategoryField.selectedIndex = i;
                         break;
@@ -165,7 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentIngredientImage) {
                 currentIngredientImage.src = ingredientImage;
             }
-                    });
+
+            if (ingredientImageInput) {
+                ingredientImageInput.value = "";
+            }
+        });
     });
 });
 
@@ -280,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Selects the image element inside the edit modal to update its source
             let currentMenuItemImage = document.getElementById('currentMenuItemImage');
             // Selects the edit image field
-            const imageInput = document.getElementById('editImage');
+            let menuImageInput = document.getElementById('editMenuImage');
             
             // Sets the values of the edit form fields with the data retrieved from the clicked button
             document.getElementById('editMenuItemId').value = menuItemId;
@@ -308,8 +313,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // If the image elements exists, resets its value to an empty string
             // This clears any file that has been previously selected 
-            if (imageInput) {
-                imageInput.value = '';
+            if (menuImageInput) {
+                menuImageInput.value = '';
             }
         });
     });
