@@ -279,6 +279,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Selects the image element inside the edit modal to update its source
             let currentMenuItemImage = document.getElementById('currentMenuItemImage');
+            // Selects the edit image field
+            const imageInput = document.getElementById('editImage');
             
             // Sets the values of the edit form fields with the data retrieved from the clicked button
             document.getElementById('editMenuItemId').value = menuItemId;
@@ -302,6 +304,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Checks if there is an image and sets it as a preview
             if (currentMenuItemImage) {
                 currentMenuItemImage.src = menuItemImage;
+            }
+
+            // If the image elements exists, resets its value to an empty string
+            // This clears any file that has been previously selected 
+            if (imageInput) {
+                imageInput.value = '';
             }
         });
     });
