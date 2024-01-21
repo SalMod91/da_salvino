@@ -8,81 +8,41 @@
     </div>
     
     <div class="container mt-5">
+        <!-- Dynamically create tabs for each category -->
         <ul class="nav nav-tabs justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link active" href="#vegetables" data-toggle="tab">Vegetables</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#cheese" data-toggle="tab">Cheese</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#meat" data-toggle="tab">Meat</a>
-            </li>
+            <!-- Loop through each category in the categorized_ingredients context -->
+            {% for category, ingredients in categorized_ingredients.items %}
+                <li class="nav-item">
+                    <!-- Tab link, active for the first item in the loop -->
+                    <a class="nav-link {% if forloop.first %}active{% endif %}" href="#{{ category }}" data-toggle="tab">{{ category }}</a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
-
+    <!-- Container for the content of each tab -->
     <div class="tab-content">
-        <div class="tab-pane container active" id="vegetables">
-            <div class="container">
-                <div class="row ingredients-content justify-content-center align-items-center mt-5">
-                    <div class="col-md-3">
-                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png"
-                            alt="Image of construction sign" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 text-center text-white">
-                        <h3>Description Vegetables</h3>
-                    </div>
-                </div>
-                <div class="row ingredients-content justify-content-center align-items-center mt-5">
-                    <div class="col-md-3">
-                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png" alt="Image of construction sign" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 text-center text-white">
-                        <h3>Description Vegetables</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane container fade" id="cheese">
-            <div class="container">
-                <div class="row ingredients-content justify-content-center align-items-center mt-5">
-                    <div class="col-md-3">
-                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png" alt="Image of construction sign" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 text-center text-white">
-                        <h3>Description Cheese</h3>
-                    </div>
-                </div>
-                <div class="row ingredients-content justify-content-center align-items-center mt-5">
-                    <div class="col-md-3">
-                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png" alt="Image of construction sign" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 text-center text-white">
-                        <h3>Description Cheese</h3>
-                    </div>
+        <!-- Loop through each category and its ingredients -->
+        {% for category, ingredients in categorized_ingredients.items %}
+            <!-- Content pane for each category, active for the first item in the loop -->
+            <div class="tab-pane container {% if forloop.first %}active{% endif %}" id="{{ category }}">
+                <div class="container">
+                    <!-- Loop through each ingredient in the current category -->
+                    {% for ingredient in ingredients %}
+                        <div class="row ingredients-content justify-content-center align-items-center mt-5">
+                            <div class="col-md-3">
+                                <!-- Displaying the ingredient's image -->
+                                <img src="{{ ingredient.image.url }}" alt="{{ ingredient.name }}" class="img-fluid">
+                            </div>
+                            <!-- Column for the ingredient's name and description -->
+                            <div class="col-md-9 text-center text-white">
+                                <h2>{{ ingredient.name }}</h2>
+                                <h3>{{ ingredient.description }}</h3>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-        </div>
-        <div class="tab-pane container fade" id="meat">
-            <div class="container">
-                <div class="row ingredients-content justify-content-center align-items-center mt-5">
-                    <div class="col-md-3">
-                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png" alt="Image of construction sign" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 text-center text-white">
-                        <h3>Description Meat</h3>
-                    </div>
-                </div>
-                <div class="row ingredients-content justify-content-center align-items-center mt-5">
-                    <div class="col-md-3">
-                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png" alt="Image of construction sign" class="img-fluid">
-                    </div>
-                    <div class="col-md-9 text-center text-white">
-                        <h3>Description Meat</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
