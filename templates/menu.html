@@ -23,17 +23,47 @@
         
             <!-- Tab content -->
             <div class="tab-content">
-                <div class="tab-pane container fade" id="all">
-                </div>
+
+                <div class="tab-pane container fade" id="all"></div>
+
                 <div class="tab-pane container active" id="pizza">
-                    <div class="row menu-item" data-target="#pizza1-details">
-                        <div class="col-md-2">
-                            <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1702464515/image/construction.png" alt="Construction" class="img-fluid">
+
+                    <!-- Iterate over each pizza in the 'pizzas' context passed from the view -->
+                    {% for pizza in pizzas %}
+                        <div class="row menu-item" data-target="#pizza{{ pizza.id }}-details">
+
+                            <div class="col-md-2">
+                                <!-- Displaying the image of the pizza -->
+                                <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" class="img-fluid">
+                            </div>
+
+                            <div class="col-md-10 text-center">
+                                <h3>{{ pizza.name }}</h3>
+                                <ul class="list-unstyled">
+                                        <li>Pizza Dough</li>
+
+                                    <!-- Conditional display of Tomato Sauce if the pizza has tomato -->
+                                    {% if pizza.has_tomato %}
+                                        <li>Tomato Sauce</li>
+                                    {% endif %}
+
+                                    <!-- Conditional display of Mozzarella if the pizza has mozzarella -->
+                                    {% if pizza.has_mozzarella %}
+                                        <li>Mozzarella</li>
+                                    {% endif %}
+
+                                    <!-- Iterating over each ingredient of the pizza -->
+                                    {% for ingredient in pizza.ingredients.all %}
+                                        <!-- Displaying the name of each ingredient -->
+                                        <li>{{ ingredient.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-md-10 text-center">
-                            <h3>Pizza Name</h3>
-                        </div>
-                    </div>
+                    {% empty %}
+                        <!-- Message displayed if there are no pizzas available -->
+                        <p>No pizzas available at the moment.</p>
+                    {% endfor %}
                 </div>
                 
                 <div class="tab-pane container fade" id="pasta">
@@ -41,11 +71,13 @@
                     <h3>Pasta 2</h3>
                     <h3>Pasta 3</h3>
                 </div>
+
                 <div class="tab-pane container fade" id="dessert">
                     <h3>Dessert 1</h3>
                     <h3>Dessert 2</h3>
                     <h3>Dessert 3</h3>
                 </div>
+
             </div>
         </div>
     </section>
