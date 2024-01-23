@@ -49,8 +49,14 @@ class Ingredient(models.Model):
             # Update the image field with the new public_url and save again
             self.image = uploaded_image['secure_url']
             super(Ingredient, self).save(*args, **kwargs)
+
         else:
-            # If it's not a file, just save the model as is
+            # If the image field is empty, execute this code
+            if not self.image:
+                # Sets the image to the default image stored on Cloudinary
+                self.image = 'https://res.cloudinary.com/dplsavizt/image/upload/v1705999566/image/default_image.jpg'
+
+            # Save the model
             super(Ingredient, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
@@ -135,8 +141,14 @@ class Pizza(models.Model):
             # Update the image field with the new public_url and save again
             self.image = uploaded_image['secure_url']
             super(Pizza, self).save(*args, **kwargs)
+
         else:
-            # If it's not a file, just save the model as is
+            # If the image field is empty, execute this code
+            if not self.image:
+                # Sets the image to the default image stored on Cloudinary
+                self.image = 'https://res.cloudinary.com/dplsavizt/image/upload/v1705999566/image/default_image.jpg'
+
+            # Save the model
             super(Pizza, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

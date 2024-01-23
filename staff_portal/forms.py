@@ -55,19 +55,24 @@ class IngredientForm(forms.ModelForm):
         not an Image type.
         
         - If an image is found and it's not of an image file type, it raises a 
-          Validation Error.
-        - If no new image is uploaded, it retains the existing image. 
-        - If there's no existing image, it defaults to None.
+          Validation Error
+        - If no new image is uploaded, it retains the existing image
+        - If there's no existing image, it defaults to None
         """
         image = self.cleaned_data.get('image', False)
 
+        # Check if an image was uploaded and if it's of the correct content type
         if image and hasattr(image, 'content_type'):
             if not image.content_type.startswith('image'):
                 raise forms.ValidationError('Only image files are allowed.')
             return image
 
         # Retain the existing image if no new image is uploaded
-        return self.instance.image if self.instance and hasattr(self.instance, 'image') else None
+        if self.instance and hasattr(self.instance, 'image'):
+            return self.instance.image
+        
+        # If no new image and no existing image, return None so the model's save method can set the default image
+        return None
 
 
 class MenuItemForm(forms.ModelForm):
@@ -129,9 +134,9 @@ class MenuItemForm(forms.ModelForm):
         not an Image type.
         
         - If an image is found and it's not of an image file type, it raises a 
-          Validation Error.
-        - If no new image is uploaded, it retains the existing image. 
-        - If there's no existing image, it defaults to None.
+          Validation Error
+        - If no new image is uploaded, it retains the existing image
+        - If there's no existing image, it defaults to None
         """
         image = self.cleaned_data.get('image', False)
 
@@ -142,7 +147,11 @@ class MenuItemForm(forms.ModelForm):
             return image
 
         # Retain the existing image if no new image is uploaded
-        return self.instance.image if self.instance and hasattr(self.instance, 'image') else None
+        if self.instance and hasattr(self.instance, 'image'):
+            return self.instance.image
+        
+        # If no new image and no existing image, return None so the model's save method can set the default image
+        return None
 
     def get_ingredient_choices(self):
         """
