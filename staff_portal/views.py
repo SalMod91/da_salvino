@@ -1,13 +1,14 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import StaffUserCreationForm, CustomPasswordChangeForm, IngredientForm, MenuItemForm
-from .models import Ingredient, IngredientCategory, Pizza
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from users.models import CustomStaffUser
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from cloudinary.uploader import destroy
+from users.models import CustomStaffUser
+from .forms import StaffUserCreationForm, CustomPasswordChangeForm, IngredientForm, MenuItemForm
+from .models import Ingredient, IngredientCategory, Pizza
 
 
 def staff_portal(request):
@@ -112,8 +113,19 @@ def manage_ingredients(request):
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
             # This pre-fills the form with the ingredient's existing data for editing
             form = IngredientForm(request.POST, request.FILES, instance=ingredient)
+
             # Checks if the submitted form data is valid
             if form.is_valid():
+
+                # Executes if the remove image checkbox is checked
+                if 'remove_image' in request.POST:
+                    # Specifies wich image to be deleted based on the item's id
+                    public_id = f'ingredients/ingredient_image_{ingredient.id}'
+                    # Deletes the image using the Cloudinary destroy function
+                    destroy(public_id)
+                    # Resets the image field to None
+                    ingredient.image = None
+
                 # Checks if the submitted form data is valid
                 form.save()
                 # Displays a success message indicating the ingredient has been updated successfully
@@ -236,6 +248,16 @@ def manage_menu_items(request):
                 # m2m relationships require the parent object to be saved first
                 # Save the form to create a new Pizza instance, but don't commit to the database yet
                 pizza = form.save(commit=False)
+
+                # Executes if the remove image checkbox is checked
+                if 'remove_image' in request.POST:
+                    # Specifies wich image to be deleted based on the item's id
+                    public_id = f'pizzas/pizza_image_{menu_item.id}'
+                    # Deletes the image using the Cloudinary destroy function
+                    destroy(public_id)
+                    # Resets the image field to None
+                    menu_item.image = None
+
                 # Manually save the Pizza instance to the database
                 pizza.save()
                 # Save the many-to-many fields of the form

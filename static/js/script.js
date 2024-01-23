@@ -132,6 +132,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Function to reset the checkbox for removing the uploaded ingredient image
+function resetRemoveIngredientImageCheckbox() {
+    let removeIngredientImageCheckbox = document.getElementById('removeIngredientImage');
+    if (removeIngredientImageCheckbox) {
+        removeIngredientImageCheckbox.checked = false;
+    }
+}
+
 // Adds an Event Listener to the ingredients edit button, populating the fields with data from the database
 document.addEventListener('DOMContentLoaded', function() {
     let editButtons = document.querySelectorAll('.edit-button');
@@ -150,6 +158,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editIngredientName').value = ingredientName;
             document.getElementById('editIngredientCategory').value = ingredientCategory;
             document.getElementById('editIngredientDescription').value = ingredientDescription;
+
+            // Uncheck the checkbox from remove ingredient image
+            resetRemoveIngredientImageCheckbox()
 
             // Set the Category field value
             let editCategoryField = document.getElementById('editCategory');
@@ -269,6 +280,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Function to reset the checkbox for removing the uploaded menu image
+function resetRemoveMenuImageCheckbox() {
+    let removeMenuImageCheckbox = document.getElementById('removeMenuImage');
+    if (removeMenuImageCheckbox) {
+        removeMenuImageCheckbox.checked = false;
+    }
+}
+
 // Adds an Event Listener to the edit menu item button, populating the fields with data from the database
 document.addEventListener('DOMContentLoaded', function() {
     // Selects all buttons with the class 'edit-menu-item-button'
@@ -293,6 +312,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Sets the values of the edit form fields with the data retrieved from the clicked button
             document.getElementById('editMenuItemId').value = menuItemId;
             document.getElementById('editMenuItemName').value = menuItemName;
+
+            // Uncheck the remove menu image checkbox
+            resetRemoveMenuImageCheckbox()
 
             // Checks the tomato and mozzarella checkboxes based on the retrieved values
             // Set the checked state of the checkboxes based on the data attributes
@@ -384,6 +406,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (errors) {
         // On reload automatically open the edit modal
         $('#editMenuItemModal').modal('show');
+
+        // Uncheck the remove menu image checkbox
+        resetRemoveMenuImageCheckbox()
 
         // Set the values of the form fields based on the values stored in the hidden inputs
         document.getElementById('editMenuItemName').value = document.getElementById('lastEditName').value;

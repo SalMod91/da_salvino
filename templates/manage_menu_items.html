@@ -213,6 +213,12 @@
                             <input type="file" class="form-control-file" id="editMenuImage" name="image">
                         </div>
 
+                        <!-- Checkbox for removing the uploaded image -->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="removeMenuImage" name="remove_image">
+                            <label class="form-check-label" for="removeMenuImage">Remove Image</label>
+                        </div>
+
                         <!-- Displays errors related to the 'image' field -->
                         {% if form.image.errors %}
                             <div class="edit-error-message mt-2">
