@@ -1,58 +1,66 @@
-// Listen for the scroll event
-window.addEventListener('scroll', function() {
-
-    // Select the header element
-    var header = document.querySelector('header');
-
-    // Check if the scroll position is greater than 50 pixels
-    if (window.scrollY > 50) {
-        // If true, add 'sticky-top' class to make the header sticky
-        header.setAttribute('class', 'sticky-top');
-    } else {
-        // If false, remove the class to position the header on top
-        header.removeAttribute('class');
-    }
-});
-
 // Waits for the DOM to be fully loaded before executing
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to "populate" the "All" tab
+
+    // Listen for the scroll event
+    window.addEventListener('scroll', function() {
+        // Select the header element
+        let header = document.querySelector('header');
+        // Check if the scroll position is greater than 50 pixels
+        if (window.scrollY > 50) {
+            // If true, add 'sticky-top' class to make the header sticky
+            header.setAttribute('class', 'sticky-top');
+        } else {
+            // If false, remove the class to position the header on top
+            header.removeAttribute('class');
+        }
+    });
+
+    /**
+     * Populates the "All" tab with content from each individual tab pane.
+     * This function clears the existing content in the "All" tab and then iterates
+     * through each element with the class '.tab-pane'.
+     * The inner HTML of each tab pane is concatenated and then set as the inner HTML of the "All" tab.
+     * This combines the content of all tab panes into the "All" tab.
+     */
     function populateAllTab() {
-        var allContent = ''; // Assigned a variable to the content of the "All" tab
-
+        // Assigned a variable to the content of the "All" tab
+        let allContent = ''; 
         // Clear the existing content in the "All" tab
-        var allTab = document.getElementById('all');
+        let allTab = document.getElementById('all');
         allTab.innerHTML = '';
-
         // Loop through each tab-pane and add its content to the "All" tab
-        var tabPanes = document.querySelectorAll('.tab-pane');
+        let tabPanes = document.querySelectorAll('.tab-pane');
         tabPanes.forEach(function(tabPane) {
             allContent += tabPane.innerHTML;
         });
-
-        allTab.innerHTML = allContent; // Set the content of the "All" tab
+        // Set the content of the "All" tab
+        allTab.innerHTML = allContent;
     }
 
-    // Call the function when the "All" tab is clicked
-    var allNavTab = document.querySelector('a[href="#all"]');
+    // Call the populateAllTab function when the "All" tab is clicked
+    let allNavTab = document.querySelector('a[href="#all"]');
     if (allNavTab) {
         allNavTab.addEventListener('click', populateAllTab);
     }
-});
 
-// Informs the user about their actions during authentication
-document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve the message container and message data elements
     const messageContainer = document.getElementById('message-container');
     const messagesData = document.getElementById('messages-data');
+    // Check if both messageContainer and messagesData elements exist
     if (messageContainer && messagesData) {
+        // Creates a variable in wich to store the message text
         let messageText = '';
+        // Iterate over each element with the class '.message-item' within messagesData
         messagesData.querySelectorAll('.message-item').forEach(function(messageSpan) {
+            // Adds the text by appending the 'data-message' value to messageText
             messageText += messageSpan.getAttribute('data-message');
         });
 
         if (messageText) {
             messageContainer.innerHTML = messageText;
+            // Add the 'alert-success' Bootstrap class
             messageContainer.classList.add('alert-success');
+            // Makes the message visible
             messageContainer.style.display = 'block';
             messageContainer.style.opacity = 1;
 
@@ -68,16 +76,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2600);
         }
     }
-});
 
-// Opens the Modal to the Registration Tab if there are form errors
-// Remember to specify that this is the first usage of jquery
-// Maybe refactor everything using jquery later after gaining more confidence with it
-document.addEventListener('DOMContentLoaded', function() {
+    // Opens the Modal to the Registration Tab if there are form errors
+    // This is my first jQuery test
     function openLoginRegisterTab() {
-        var loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
-        var registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
-        var passwordChangeFormErrors = document.querySelectorAll('#passwordChangeModal .alert-danger').length > 0;
+        let loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
+        let registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
+        let passwordChangeFormErrors = document.querySelectorAll('#passwordChangeModal .alert-danger').length > 0;
         if (registrationFormErrors) {
             $('#authModal').modal('show');
 
@@ -93,11 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#passwordChangeModal').modal('show');
         }
     }
-    openLoginRegisterTab();
-});
 
-// Adds an Event Listener to each ingredient delete button
-document.addEventListener('DOMContentLoaded', function () {
     // Assigns all buttons with the class 'delete-ingredient-button'to a constant variable
     const deleteIngredientButtons = document.querySelectorAll('.delete-ingredient-button');
 
@@ -112,10 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ingredientToDeleteId.value = ingredientId;
         });
     });
-});
 
-// Waits for the DOM to be fully loaded before executing the script
-document.addEventListener('DOMContentLoaded', function () {
     // Assigns all buttons with the class 'delete-menu-item-button'to a constant variable
     const deleteMenuItemButtons = document.querySelectorAll('.delete-menu-item-button');
 
@@ -130,20 +128,20 @@ document.addEventListener('DOMContentLoaded', function () {
             menuItemToDeleteId.value = menuItemId;
         });
     });
-});
 
-// Function to reset the checkbox for removing the uploaded ingredient image
-function resetRemoveIngredientImageCheckbox() {
-    let removeIngredientImageCheckbox = document.getElementById('removeIngredientImage');
-    if (removeIngredientImageCheckbox) {
-        removeIngredientImageCheckbox.checked = false;
+    // Function to reset the checkbox for removing the uploaded ingredient image
+    function resetRemoveIngredientImageCheckbox() {
+        let removeIngredientImageCheckbox = document.getElementById('removeIngredientImage');
+        if (removeIngredientImageCheckbox) {
+            removeIngredientImageCheckbox.checked = false;
+        }
     }
-}
 
-// Adds an Event Listener to the ingredients edit button, populating the fields with data from the database
-document.addEventListener('DOMContentLoaded', function() {
+    // Select all buttons with the class 'edit-button'
     let editButtons = document.querySelectorAll('.edit-button');
+    // Iterate over each button
     editButtons.forEach(function(button) {
+        // Event Listener retrieving the information of the ingredient to be edited
         button.addEventListener('click', function() {
             let ingredientId = button.getAttribute('data-ingredient-id');
             let ingredientName = button.getAttribute('data-ingredient-name');
@@ -186,10 +184,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
-
-// Waits for the document to load before executing
-document.addEventListener('DOMContentLoaded', function() {
 
     // Variable to keep track of the number of visible ingredient selectors
     let ingredientCount = 0;
@@ -278,18 +272,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
 
-// Function to reset the checkbox for removing the uploaded menu image
-function resetRemoveMenuImageCheckbox() {
-    let removeMenuImageCheckbox = document.getElementById('removeMenuImage');
-    if (removeMenuImageCheckbox) {
-        removeMenuImageCheckbox.checked = false;
+    // Function to reset the checkbox for removing the uploaded menu image
+    function resetRemoveMenuImageCheckbox() {
+        let removeMenuImageCheckbox = document.getElementById('removeMenuImage');
+        if (removeMenuImageCheckbox) {
+            removeMenuImageCheckbox.checked = false;
+        }
     }
-}
 
-// Adds an Event Listener to the edit menu item button, populating the fields with data from the database
-document.addEventListener('DOMContentLoaded', function() {
     // Selects all buttons with the class 'edit-menu-item-button'
     const editMenuItemButtons = document.querySelectorAll('.edit-menu-item-button');
     // Iterates over each button in the editMenuItemButtons
@@ -343,63 +334,60 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
 
-// Function that handles resetting and populating ingredient selectors
-function manageEditIngredientSelectors(ingredientIds) {
-    // Selects all elements wich the class 'ingredient-selector' within the modal with ID 'editMenuItemModal'
-    const selectors = document.querySelectorAll('#editMenuItemModal .ingredient-selector');
-    let visibleCount = 0;
-    // Reset all selectors
-    selectors.forEach(selector => {
-        // Adds the class 'hidden' to each selector and removes the 'visible' class
-        selector.classList.add('hidden');
-        // Resets the selector to the placeholder
-        selector.querySelector('select').selectedIndex = 0;
-    });
+    // Function that handles resetting and populating ingredient selectors
+    function manageEditIngredientSelectors(ingredientIds) {
+        // Selects all elements wich the class 'ingredient-selector' within the modal with ID 'editMenuItemModal'
+        const selectors = document.querySelectorAll('#editMenuItemModal .ingredient-selector');
+        let visibleCount = 0;
+        // Reset all selectors
+        selectors.forEach(selector => {
+            // Adds the class 'hidden' to each selector and removes the 'visible' class
+            selector.classList.add('hidden');
+            // Resets the selector to the placeholder
+            selector.querySelector('select').selectedIndex = 0;
+        });
 
-    // Populate selectors and count visible ones
-    ingredientIds.forEach((ingredientId, index) => {
-        // Check if the current index is within the range of available selectors
-            // Select the ingredient selector based on its position
-            const selector = selectors[index];
-            // Remove the 'hidden' class to make the selector visible
-            selector.classList.remove('hidden');
-            // Select the 'select' element within the current selector
-            const selectElement = selector.querySelector('select');
-            // Set the value of the 'select' element to the current ingredient ID
-            selectElement.value = ingredientId;
-            // Increment the count of visible selectors
-            visibleCount++;
-    });
+        // Populate selectors and count visible ones
+        ingredientIds.forEach((ingredientId, index) => {
+            // Check if the current index is within the range of available selectors
+                // Select the ingredient selector based on its position
+                const selector = selectors[index];
+                // Remove the 'hidden' class to make the selector visible
+                selector.classList.remove('hidden');
+                // Select the 'select' element within the current selector
+                const selectElement = selector.querySelector('select');
+                // Set the value of the 'select' element to the current ingredient ID
+                selectElement.value = ingredientId;
+                // Increment the count of visible selectors
+                visibleCount++;
+        });
 
-    // Select the "Add Ingredient" button within the edit modal
-    const addButton = document.querySelector('#editMenuItemModal #add-ingredient');
-    // Checks if the visible selectors are 10 or more
-    if (visibleCount >= 10) {
-        // If there are 10 or more selectors hides the "Add ingredient" button
-        addButton.classList.add('hidden');
-    } else {
-        // If there are fewer than 10 visible selectors makes the "Add ingredient" button visible
-        addButton.classList.remove('hidden')
+        // Select the "Add Ingredient" button within the edit modal
+        const addButton = document.querySelector('#editMenuItemModal #add-ingredient');
+        // Checks if the visible selectors are 10 or more
+        if (visibleCount >= 10) {
+            // If there are 10 or more selectors hides the "Add ingredient" button
+            addButton.classList.add('hidden');
+        } else {
+            // If there are fewer than 10 visible selectors makes the "Add ingredient" button visible
+            addButton.classList.remove('hidden')
+        }
     }
-}
 
-// Selects all elements with the class 'edit-menu-item-button' and adds a 'click' event listener to each of them
-document.querySelectorAll('.edit-menu-item-button').forEach(button => {
-    button.addEventListener('click', function() {
-        // Get the ingredient IDs from the edit button's data attribute
-        // Split: Separates the string of ID's into an array of single ID's
-        // Filter: Removes empty strings from the list that occur due to the last comma
-        const ingredientIds = this.getAttribute('data-menu_item-ingredients').split(',').filter(id => id);
-        manageEditIngredientSelectors(ingredientIds);
+    // Selects all elements with the class 'edit-menu-item-button' and adds a 'click' event listener to each of them
+    document.querySelectorAll('.edit-menu-item-button').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the ingredient IDs from the edit button's data attribute
+            // Split: Separates the string of ID's into an array of single ID's
+            // Filter: Removes empty strings from the list that occur due to the last comma
+            const ingredientIds = this.getAttribute('data-menu_item-ingredients').split(',').filter(id => id);
+            manageEditIngredientSelectors(ingredientIds);
+        });
     });
-});
 
-// When an error occurs opens automatically the ingredient edit modal on reload
-// When the edit modal is open through an error, repopulates the modal using the data of the past session
-document.addEventListener('DOMContentLoaded', function() {
-
+    // When an error occurs opens automatically the ingredient edit modal on reload
+    // When the edit modal is open through an error, repopulates the modal using the data of the past session
     // Assigns the elements with 'error-message' class to this variable
     const ingredientErrors = document.querySelector('.edit-ingredient-error-message');
 
@@ -429,11 +417,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editIngredientId').value = editIngredientId;
         }
     }
-});
 
-// When an error occurs opens automatically the edit modal on reload
-// When the edit modal is open through an error, repopulates the modal using the data of the past session
-document.addEventListener('DOMContentLoaded', function() {
+    // When an error occurs opens automatically the edit modal on reload
+    // When the edit modal is open through an error, repopulates the modal using the data of the past session
     // Assigns the elements with 'error-message' class to this variable
     const errors = document.querySelector('.edit-menu-error-message');
     // Check if there are any error messages on the page
@@ -466,44 +452,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const storedIngredientIds = document.getElementById('lastEditedIngredientIds').value.split(',').filter(id => id);
         manageEditIngredientSelectors(storedIngredientIds);
     }
-});
 
-// Event listener for clearing the error messages when the edit ingredient modal is closed
-$('#editIngredientModal').on('hide.bs.modal', function () {
-    // Clear error messages and reset fields
-    document.querySelectorAll('.edit-ingredient-error-message').forEach(function (message) {
-        message.innerHTML = '';
+    // Event listener for clearing the error messages when the edit ingredient modal is closed
+    $('#editIngredientModal').on('hide.bs.modal', function () {
+        // Clear error messages and reset fields
+        document.querySelectorAll('.edit-ingredient-error-message').forEach(function (message) {
+            message.innerHTML = '';
+        });
     });
-});
 
-// Event listener for clearing the error messages when the edit menu modal is closed
-$('#editMenuItemModal').on('hide.bs.modal', function () {
-    // Clear error messages and reset fields
-    document.querySelectorAll('.edit-menu-error-message').forEach(function (message) {
-        message.innerHTML = '';
+    // Event listener for clearing the error messages when the edit menu modal is closed
+    $('#editMenuItemModal').on('hide.bs.modal', function () {
+        // Clear error messages and reset fields
+        document.querySelectorAll('.edit-menu-error-message').forEach(function (message) {
+            message.innerHTML = '';
+        });
     });
-});
 
-// Event listener for the close and cancel buttons inside the editIngredientModal
-$('#editIngredientModal .close, #cancelIngredientModal').on('click', function() {
-    // Hide the modal
-    $('#editIngredientModal').modal('hide');
-});
+    // Event listener for the close and cancel buttons inside the editIngredientModal
+    $('#editIngredientModal .close, #cancelIngredientModal').on('click', function() {
+        // Hide the modal
+        $('#editIngredientModal').modal('hide');
+    });
 
-// Event listener for the close and cancel buttons inside the editMenutModal
-$('#editMenuItemModal .close, #cancelMenuItemModal').on('click', function() {
-    // Hide the modal
-    $('#editMenuItemModal').modal('hide');
-});
+    // Event listener for the close and cancel buttons inside the editMenutModal
+    $('#editMenuItemModal .close, #cancelMenuItemModal').on('click', function() {
+        // Hide the modal
+        $('#editMenuItemModal').modal('hide');
+    });
 
-// Event listener for the close button inside the authModal
-$('#authModal .close, #closeAuthModal').on('click', function() {
-    // Hide the modal
-    $('#authModal').modal('hide');
-});
+    // Event listener for the close button inside the authModal
+    $('#authModal .close, #closeAuthModal').on('click', function() {
+        // Hide the modal
+        $('#authModal').modal('hide');
+    });
 
-// Event listener for the close button inside the passwordChangeModal
-$('#passwordChangeModal .close, #closePasswordChangeModal').on('click', function() {
-    // Hide the modal
-    $('#passwordChangeModal').modal('hide');
+    // Event listener for the close button inside the passwordChangeModal
+    $('#passwordChangeModal .close, #closePasswordChangeModal').on('click', function() {
+        // Hide the modal
+        $('#passwordChangeModal').modal('hide');
+    });
+
+    openLoginRegisterTab();
 });
