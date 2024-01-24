@@ -115,6 +115,7 @@
         <!-- Modal for editing the ingredients, not focusable through tab buttons and hidden from assistive technologies -->
         <div id="editIngredientModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
+
                 <div class="modal-content">
                     <form method="post" action="{% url 'manage_ingredients' %}" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -126,6 +127,12 @@
                         <input type="hidden" id="lastIngredientEditCategory" value="{{ last_ingredient_edit_details.category }}">
                         <input type="hidden" id="lastIngredientEditImageURL" value="{{ last_ingredient_edit_details.image_url }}">
                         
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-ingredient-title">Edit Ingredient</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
                         <div class="modal-body">
                             <!-- Stores and transmits the ID of the ingredient -->

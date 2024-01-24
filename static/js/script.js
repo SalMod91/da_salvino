@@ -467,3 +467,19 @@ document.addEventListener('DOMContentLoaded', function() {
         manageEditIngredientSelectors(storedIngredientIds);
     }
 });
+
+// Event listener for clearing the error messages when the edit ingredient modal is closed
+$('#editIngredientModal').on('hide.bs.modal', function () {
+    // Clear error messages and reset fields
+    document.querySelectorAll('.edit-ingredient-error-message').forEach(function (message) {
+        message.innerHTML = '';
+    });
+});
+
+// Event listener for clearing the error messages when the edit menu modal is closed
+$('#editMenuItemModal').on('hide.bs.modal', function () {
+    // Clear error messages and reset fields
+    document.querySelectorAll('.edit-menu-error-message').forEach(function (message) {
+        message.innerHTML = '';
+    });
+});
