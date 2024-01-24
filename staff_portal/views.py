@@ -89,6 +89,18 @@ def manage_ingredients(request):
     ingredients = Ingredient.objects.all()
     categories = IngredientCategory.objects.all()
 
+    # Initialize the form with POST data if available, otherwise create an empty form
+    form = IngredientForm(request.POST or None, request.FILES or None)
+
+    # Retrieve 'last__ingredient_edit_details' from the session or initialize with default values
+    last_ingredient_edit_details = request.session.get('last_edit_details', {
+        'edit_id': '',
+        'name': '',
+        'description': '',
+        'category': '',
+        'image_url': ''
+    })
+
     # Check if the request method is POST
     if request.method == 'POST':
 
@@ -107,7 +119,7 @@ def manage_ingredients(request):
 
         # Check if the 'edit_id' action is specified in the POST data
         elif 'edit_id' in request.POST:
-             # Retrieve the ID of the ingredient to edit from the POST data
+            # Retrieve the ID of the ingredient to edit from the POST data
             ingredient_id = request.POST.get('edit_id')
             # Fetch the corresponding ingredient object from the database or return a 404 if not found
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
@@ -130,19 +142,39 @@ def manage_ingredients(request):
                 form.save()
                 # Displays a success message indicating the ingredient has been updated successfully
                 messages.success(request, "Ingredient updated successfully.")
+
+                # Redirects the user back to the 'manage_ingredients' page after the form submission
+                return redirect('manage_ingredients')
+
             else:
+                # Update session data for invalid form submission
+                request.session['last_ingredient_edit_details'] = {
+                    'edit_id': ingredient_id,
+                    'name': form.cleaned_data.get('name', ''),
+                    'description': form.cleaned_data.get('description', ''),
+                    'category': form.cleaned_data.get('category', '').id if form.cleaned_data.get('category', '') else '',
+                    'image_url': form.cleaned_data.get('image', '').url if form.cleaned_data.get('image', '') else ''
+                }
                 # If the form data is not valid, it displays an error message with form validation errors
-                messages.error(request, "Error updating ingredient: " + str(form.errors))
-            
-            # Redirects the user back to the 'manage_ingredients' page after the form submission
-            return redirect('manage_ingredients')
+                messages.error(request, "Error updating ingredient: ")
+
+                # Return with updated form data for the first error
+                return render(request, 'manage_ingredients.html', {
+                    'form': form,
+                    'ingredients': ingredients,
+                    'categories': categories,
+                    'last_ingredient_edit_details': request.session['last_ingredient_edit_details'],
+                })
 
         # Adds a general error message if an unexpected action is encountered
         else:
                 messages.error(request, "Error updating ingredient.")
 
     # Renders the 'manage_ingredients' template, passing in the ingredients and categories
-    return render(request, 'manage_ingredients.html', {'ingredients': ingredients,'categories': categories,})
+    return render(request, 'manage_ingredients.html', {
+        'ingredients': ingredients,
+        'categories': categories,
+    })
 
 
 def create_menu_item(request):
@@ -185,7 +217,7 @@ def create_menu_item(request):
     # Render the form template on GET request or if form is invalid
     return render(request, 'add_menu_item.html', {
         'form': form, 
-        'ingredient_choices': ingredient_choices
+        'ingredient_choices': ingredient_choices,
     })
 
 

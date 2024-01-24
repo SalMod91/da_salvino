@@ -227,7 +227,7 @@ ul.errorlist {
     color: red;
 }
 
-.edit-error-message {
+.edit-error-message, .edit-menu-error-message, .edit-ingredient-error-message {
     color: red;
 }
 

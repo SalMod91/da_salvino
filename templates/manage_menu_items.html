@@ -146,15 +146,13 @@
 
                             <!-- Displays errors related to the 'name' field -->
                             {% if form.name.errors %}
-                                <div class="edit-error-message mt-2">
+                                <div class="edit-menu-error-message mt-2">
                                     {% for error in form.name.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
-
-                        
 
                         <!-- Has Tomato Sauce Radio Buttons -->
                         <fieldset class="form-group">
@@ -171,7 +169,7 @@
 
                         <!-- Displays errors related to the 'has_tomato' field -->
                         {% if form.has_tomato.errors %}
-                            <div class="edit-error-message mt-2">
+                            <div class="edit-menu-error-message mt-2">
                                 {% for error in form.has_tomato.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
@@ -193,7 +191,7 @@
 
                         <!-- Displays errors related to the 'has_mozzarella' field -->
                         {% if form.has_mozzarella.errors %}
-                            <div class="edit-error-message mt-2">
+                            <div class="edit-menu-error-message mt-2">
                                 {% for error in form.has_mozzarella.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
@@ -221,7 +219,7 @@
 
                         <!-- Displays errors related to the 'image' field -->
                         {% if form.image.errors %}
-                            <div class="edit-error-message mt-2">
+                            <div class="edit-menu-error-message mt-2">
                                 {% for error in form.image.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
@@ -230,7 +228,7 @@
 
                         <!-- Displays ingredients specific errors -->
                         {% if form.non_field_errors %}
-                            <div class="edit-error-message mt-3">
+                            <div class="edit-menu-error-message mt-3">
                                 {% for error in form.non_field_errors %}
                                     {{ error }}
                                 {% endfor %}

@@ -396,11 +396,46 @@ document.querySelectorAll('.edit-menu-item-button').forEach(button => {
     });
 });
 
+// When an error occurs opens automatically the ingredient edit modal on reload
+// When the edit modal is open through an error, repopulates the modal using the data of the past session
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Assigns the elements with 'error-message' class to this variable
+    const ingredientErrors = document.querySelector('.edit-ingredient-error-message');
+
+    // Check if there are any error messages on the page
+    // If errors exist, indicating form submission failure, repopulate the form
+    if (ingredientErrors) {
+        // On reload automatically open the edit modal
+        $('#editIngredientModal').modal('show');
+
+        // Uncheck the remove menu image checkbox
+        resetRemoveMenuImageCheckbox()
+
+        // Set the values of the form fields based on the values stored in the hidden inputs
+        document.getElementById('editIngredientName').value = document.getElementById('lastIngredientEditName').value;
+        document.getElementById('editIngredientDescription').value = document.getElementById('lastIngredientEditDescription').value;
+        document.getElementById('editIngredientCategory').value = document.getElementById('lastIngredientEditCategory').value;
+
+        // If there is an image URL, set it to the image element
+        const imageIngredientUrl = document.getElementById('lastIngredientEditImageURL').value;
+        if (imageIngredientUrl) {
+            document.getElementById('currentIngredientImage').src = imageIngredientUrl;
+        }
+
+        // Set the edit_id
+        const editIngredientId = document.getElementById('lastIngredientEditId').value;
+        if (editIngredientId) {
+            document.getElementById('editIngredientId').value = editIngredientId;
+        }
+    }
+});
+
 // When an error occurs opens automatically the edit modal on reload
 // When the edit modal is open through an error, repopulates the modal using the data of the past session
 document.addEventListener('DOMContentLoaded', function() {
     // Assigns the elements with 'error-message' class to this variable
-    const errors = document.querySelector('.edit-error-message');
+    const errors = document.querySelector('.edit-menu-error-message');
     // Check if there are any error messages on the page
     // If errors exist, indicating form submission failure, repopulate the form
     if (errors) {

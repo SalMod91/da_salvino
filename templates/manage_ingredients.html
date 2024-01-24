@@ -118,6 +118,15 @@
                 <div class="modal-content">
                     <form method="post" action="{% url 'manage_ingredients' %}" enctype="multipart/form-data">
                         {% csrf_token %}
+
+                        <!-- Hidden input fields to store last edit details for repopulating the form in case of an error -->
+                        <input type="hidden" id="lastIngredientEditId" value="{{ last_ingredient_edit_details.edit_id }}">
+                        <input type="hidden" id="lastIngredientEditName" value="{{ last_ingredient_edit_details.name }}">
+                        <input type="hidden" id="lastIngredientEditDescription" value="{{ last_ingredient_edit_details.description }}">
+                        <input type="hidden" id="lastIngredientEditCategory" value="{{ last_ingredient_edit_details.category }}">
+                        <input type="hidden" id="lastIngredientEditImageURL" value="{{ last_ingredient_edit_details.image_url }}">
+                        
+
                         <div class="modal-body">
                             <!-- Stores and transmits the ID of the ingredient -->
                             <input type="hidden" name="edit_id" id="editIngredientId">
@@ -126,11 +135,22 @@
                             <div class="form-group">
                                 <label>Name:</label>
                                 <input type="text" class="form-control" id="editIngredientName" name="name">
+
+                                <!-- Displays errors related to the 'name' field -->
+                                {% if form.name.errors %}
+                                    <div class="edit-ingredient-error-message mt-2">
+                                        {% for error in form.name.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
                             </div>
+
                             <div class="form-group">
                                 <label>Description:</label>
                                 <textarea class="form-control" id="editIngredientDescription" name="description"></textarea>
                             </div>
+
                             <div class="form-group">
                                 <label>Category:</label>
                                 <select id="editIngredientCategory" name="category">
@@ -139,6 +159,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>Current Image:</label>
                                 <div>
@@ -156,6 +177,15 @@
                                 <input type="checkbox" class="form-check-input" id="removeIngredientImage" name="remove_image">
                                 <label class="form-check-label" for="removeIngredientImage">Remove Image</label>
                             </div>
+
+                            <!-- Displays errors related to the 'image' field -->
+                            {% if form.image.errors %}
+                                <div class="edit-ingredient-error-message mt-2">
+                                    {% for error in form.image.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
