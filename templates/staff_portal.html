@@ -12,14 +12,8 @@
             </div>
         </div>
     {% endif %}
-
-    {% if not user.is_authenticated %}
-        <!-- When the user is not logged in it prompts to do so -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
-            Login/Register
-        </button>
     
-    {% else %}
+    {% if user.is_authenticated and user.is_staff %}
         <!-- Section for profile modification/log out -->
         <div class="d-flex justify-content-end margin-right">
             <div>
@@ -73,35 +67,31 @@
             </div>
         </div>
 
-        <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
- 
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">X</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        Are you sure you want to logout, <strong>{{ user.username }}</strong>?
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
-                        <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="logout">
-                            <button type="submit" class="btn btn-warning"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Yes</button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
+    {% elif user.is_authenticated %}
+    <!-- Section for profile modification/log out -->
+    <div class="d-flex justify-content-end margin-right">
+        <div>
+            <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
+            <p>
+                <a href="#passwordChangeModal" data-toggle="modal">Modify Password</a>
+            </p>
+            <p>
+                <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+            </p>
         </div>
+    </div>
+
+    <!-- Content for authenticated non-staff users -->
+    <div class="container mt-4 text-white text-center">
+        <h2>Welcome, <strong>{{ user.username }}</strong>!</h2>
+        <p>You are logged in, but only staff members can modify ingredients and menu items.</p>
+    </div>
+
+    {% else %}
+    <!-- When the user is not logged in it prompts to do so -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
+        Login/Register
+    </button>
     {% endif %}
 
         <!-- Initially hidden Modal for login/registering, not focusable through tab buttons and hidden from assistive technologies -->
@@ -254,6 +244,36 @@
                         </form>
                     </div>
         
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+ 
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Are you sure you want to logout, <strong>{{ user.username }}</strong>?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                        <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="logout">
+                            <button type="submit" class="btn btn-warning"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Yes</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
