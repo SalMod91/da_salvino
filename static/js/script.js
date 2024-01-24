@@ -495,3 +495,15 @@ $('#editMenuItemModal .close, #cancelMenuItemModal').on('click', function() {
     // Hide the modal
     $('#editMenuItemModal').modal('hide');
 });
+
+// Event listener for the close button inside the authModal
+$('#authModal .close, #closeAuthModal').on('click', function() {
+    // Hide the modal
+    $('#authModal').modal('hide');
+});
+
+// Event listener for the close button inside the passwordChangeModal
+$('#passwordChangeModal .close, #closePasswordChangeModal').on('click', function() {
+    // Hide the modal
+    $('#passwordChangeModal').modal('hide');
+});
