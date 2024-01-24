@@ -483,3 +483,15 @@ $('#editMenuItemModal').on('hide.bs.modal', function () {
         message.innerHTML = '';
     });
 });
+
+// Event listener for the close and cancel buttons inside the editIngredientModal
+$('#editIngredientModal .close, #cancelIngredientModal').on('click', function() {
+    // Hide the modal
+    $('#editIngredientModal').modal('hide');
+});
+
+// Event listener for the close and cancel buttons inside the editMenutModal
+$('#editMenuItemModal .close, #cancelMenuItemModal').on('click', function() {
+    // Hide the modal
+    $('#editMenuItemModal').modal('hide');
+});
