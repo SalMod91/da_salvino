@@ -263,6 +263,14 @@ ul.errorlist {
     margin-left: 1rem;
 }
 
+table tr td, table-dark tr td {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.fixed-width {
+    width: 72px;
+}
+
 /* Media Queries */
 @media screen and (max-width:992px){
     .navbar-container {

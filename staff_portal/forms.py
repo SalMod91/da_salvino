@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class StaffUserCreationForm(UserCreationForm):
+
     class Meta(UserCreationForm.Meta):
         model = CustomStaffUser
         fields = ('username',)
@@ -32,6 +33,7 @@ class StaffUserCreationForm(UserCreationForm):
 
 
 class CustomPasswordChangeForm(AuthPasswordChangeForm):
+
     def __init__(self, *args, **kwargs):
         super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
         for fieldname in ['old_password', 'new_password1', 'new_password2']:
@@ -39,6 +41,7 @@ class CustomPasswordChangeForm(AuthPasswordChangeForm):
 
 
 class IngredientForm(forms.ModelForm):
+
     class Meta:
         model = Ingredient
         fields = ['name', 'category', 'description', 'image']
@@ -122,10 +125,8 @@ class MenuItemForm(forms.ModelForm):
 
         return cleaned_data
 
-
     def clean_name(self):
             return self.cleaned_data['name'].capitalize()
-
 
     def clean_image(self):
         """

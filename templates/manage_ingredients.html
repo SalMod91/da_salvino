@@ -25,38 +25,41 @@
         </div>
 
         <div class="container mt-4 text-white text-center">
-            <h2>Manage Ingredients</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for ingredient in ingredients %}
-                    <tr>
-                        <td>{{ ingredient.name }}</td>
-                        <td>
-
-                            <!-- Edit Button -->
-                            <button type="button" class="btn btn-primary edit-button"
-                                data-ingredient-id="{{ ingredient.id }}" data-ingredient-name="{{ ingredient.name }}"
-                                data-ingredient-description="{{ ingredient.description }}"
-                                data-ingredient-category="{{ ingredient.category.id }}"
-                                data-ingredient-image="{{ ingredient.image }}" data-toggle="modal"
-                                data-target="#editIngredientModal">Edit</button>
-                            <!-- Delete Button -->
-                            <button type="button" class="btn btn-danger delete-ingredient-button"
-                                data-ingredient-id="{{ ingredient.id }}" data-toggle="modal"
-                                data-target="#deleteIngredientModal">Delete</button>
-
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <h2 class="mb-3">Manage Ingredients</h2>
+            <div class="table-responsive-lg">
+                <table class="table table-dark table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingredient in ingredients %}
+                        <tr>
+                            <td>{{ ingredient.category.name }}</td>
+                            <td>{{ ingredient.id }}</td>
+                            <td>{{ ingredient.name }}</td>
+                            <td>
+                                <!-- Edit Button -->
+                                <button type="button" class="btn btn-primary edit-button me-sm-3 fixed-width"
+                                    data-ingredient-id="{{ ingredient.id }}" data-ingredient-name="{{ ingredient.name }}"
+                                    data-ingredient-description="{{ ingredient.description }}"
+                                    data-ingredient-category="{{ ingredient.category.id }}"
+                                    data-ingredient-image="{{ ingredient.image }}" data-toggle="modal"
+                                    data-target="#editIngredientModal">Edit</button>
+                                <!-- Delete Button -->
+                                <button type="button" class="btn btn-danger delete-ingredient-button fixed-width"
+                                    data-ingredient-id="{{ ingredient.id }}" data-toggle="modal"
+                                    data-target="#deleteIngredientModal">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         {% elif user.is_authenticated %}

@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.db.models import Case, When
 from cloudinary.uploader import destroy
 from users.models import CustomStaffUser
 from .forms import StaffUserCreationForm, CustomPasswordChangeForm, IngredientForm, MenuItemForm
@@ -85,9 +86,18 @@ def manage_ingredients(request):
     It responds to both GET and POST requests, handling ingredient deletions and updates accordingly.
     """
 
-    # Retrieves all ingredients and ingredient categories from the database
-    ingredients = Ingredient.objects.all()
+    # Retrieves all ingredient categories from the database
     categories = IngredientCategory.objects.all()
+
+    # Custom order for categories, to be later used to assign to each category its ingredients
+    custom_category_order = ['Dairy', 'Meat', 'Vegetables', 'Misc']
+
+    # Create an ordered list of When clauses for each category, assigning a position number
+    ordering = Case(*[When(category__name=cat, then=pos) for pos, cat in enumerate(custom_category_order)])
+
+    # Get ingredients, ordered by custom category order and then by name
+    # Annotates each ingredient to the custom ordered category and then alphabetically orders the ingredients
+    ingredients = Ingredient.objects.annotate(custom_category_order=ordering).order_by('custom_category_order', 'name')
 
     # Initialize the form with POST data if available, otherwise create an empty form
     form = IngredientForm(request.POST or None, request.FILES or None)
