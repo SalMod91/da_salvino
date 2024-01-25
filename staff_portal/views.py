@@ -249,7 +249,7 @@ def manage_menu_items(request):
     })
 
     # Fetch all pizza items from the database
-    pizzas = Pizza.objects.all()
+    pizzas = Pizza.objects.all().order_by('name')
 
     # Initialize the form with POST data if available, otherwise create an empty form
     form = MenuItemForm(request.POST or None, request.FILES or None)

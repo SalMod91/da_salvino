@@ -31,8 +31,8 @@
                     <thead>
                         <tr>
                             <th>Category</th>
-                            <th>ID</th>
                             <th>Name</th>
+                            <th>ID</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -40,8 +40,8 @@
                         {% for ingredient in ingredients %}
                         <tr>
                             <td>{{ ingredient.category.name }}</td>
-                            <td>{{ ingredient.id }}</td>
                             <td>{{ ingredient.name }}</td>
+                            <td>{{ ingredient.id }}</td>
                             <td>
                                 <!-- Edit Button -->
                                 <button type="button" class="btn btn-primary edit-button me-sm-3 fixed-width"
