@@ -31,7 +31,11 @@ class IngredientsPage(TemplateView):
         # For each category, filter the ingredients from the database that belong to that category
         # and store them in the categorized_ingredients dictionary with the category name as the key
         for category in categories:
-            categorized_ingredients[category.name] = Ingredient.objects.filter(category=category)
+            ingredients = Ingredient.objects.filter(
+                category=category
+            # Orders ingredients alphabetically by name
+            ).order_by('name')
+            categorized_ingredients[category.name] = ingredients
 
         # Add categorized ingredients dictionary to the context dictionary
         context['categorized_ingredients'] = categorized_ingredients
