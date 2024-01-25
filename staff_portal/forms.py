@@ -48,7 +48,8 @@ class IngredientForm(forms.ModelForm):
     
 
     def clean_name(self):
-            return self.cleaned_data['name'].capitalize()
+        # Capitalize each word in the name
+        return ' '.join(word.capitalize() for word in self.cleaned_data['name'].split())
 
 
     def clean_image(self):
@@ -126,7 +127,8 @@ class MenuItemForm(forms.ModelForm):
         return cleaned_data
 
     def clean_name(self):
-            return self.cleaned_data['name'].capitalize()
+        # Capitalize each word in the name
+        return ' '.join(word.capitalize() for word in self.cleaned_data['name'].split())
 
     def clean_image(self):
         """

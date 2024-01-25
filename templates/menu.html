@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% load static %} 
+{% load static %}
 {% block content %}
+
     <section class="container mt-5 text-white">
         <div class="container mt-5">
             <h1 class="text-center mb-4">Our Menu</h1>
@@ -40,22 +41,38 @@
                             <div class="col-md-10 text-center">
                                 <h3>{{ pizza.name }}</h3>
                                 <ul class="list-unstyled">
+                                    {% if pizza_dough_id %}
+                                        <li>
+                                            <a href="{% url 'ingredients' %}#ingredient-{{ pizza_dough_id }}" target="_blank">Pizza Dough</a>
+                                        </li>
+                                    {% else %}
                                         <li>Pizza Dough</li>
+                                    {% endif %}
 
                                     <!-- Conditional display of Tomato Sauce if the pizza has tomato -->
                                     {% if pizza.has_tomato %}
-                                        <li>Tomato Sauce</li>
+                                        {% if tomato_sauce_id %}
+                                            <li><a href="{% url 'ingredients' %}#ingredient-{{ tomato_sauce_id }}" target="_blank">Tomato Sauce</a></li>
+                                        {% else %}
+                                            <li>Tomato Sauce</li>
+                                        {% endif %}
                                     {% endif %}
 
                                     <!-- Conditional display of Mozzarella if the pizza has mozzarella -->
                                     {% if pizza.has_mozzarella %}
-                                        <li>Mozzarella</li>
+                                        {% if mozzarella_id %}
+                                            <li><a href="{% url 'ingredients' %}#ingredient-{{ mozzarella_id }} " target="_blank">Mozzarella</a></li>
+                                        {% else %}
+                                            <li>Mozzarella</li>
+                                        {% endif %}
                                     {% endif %}
 
                                     <!-- Iterating over each ingredient of the pizza -->
                                     {% for ingredient in pizza.ingredients.all %}
                                         <!-- Displaying the name of each ingredient -->
-                                        <li>{{ ingredient.name }}</li>
+                                        <li>
+                                            <a href="{% url 'ingredients' %}#ingredient-{{ ingredient.id }}" target="_blank">{{ ingredient.name }}</a>
+                                        </li>
                                     {% endfor %}
                                 </ul>
                             </div>

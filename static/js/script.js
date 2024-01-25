@@ -493,5 +493,33 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#passwordChangeModal').modal('hide');
     });
 
+    // Fragment logic to open tabs and scroll to ingredient
+    // The 'fragment' variable gets the hash part of the URL
+    let fragment = window.location.hash;
+    // Check if the fragment includes the string 'ingredient-'
+    if (fragment.includes('ingredient-')) {
+        // Selects the fragment
+        let ingredientElement = document.querySelector(fragment);
+        // If it exists in the DOM
+        if (ingredientElement) {
+            // Finds the closest parent element with the class '.tab-pane', wich should be the tab-pane in wich the ingredient resides
+            let tabPane = ingredientElement.closest('.tab-pane');
+            // If the parent tab-pane exists
+            if (tabPane) {
+                // Selects the specific tab-pane
+                let tabId = tabPane.getAttribute('id');
+                let tabLink = document.querySelector(`.nav-tabs a[href="#${tabId}"]`);
+                // If the selected link exists
+                if (tabLink) {
+                    // Triggers a click on the tab link opening the corresponding tab after a short delay, scrolling to the ingredient
+                    tabLink.click();
+                    setTimeout(function() {
+                        ingredientElement.scrollIntoView();
+                    }, 100);
+                }
+            }
+        }
+    }
+
     openLoginRegisterTab();
 });
