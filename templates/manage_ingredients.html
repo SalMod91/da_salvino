@@ -46,8 +46,9 @@
                                 <!-- Edit Button -->
                                 <button type="button" class="btn btn-primary edit-button me-sm-3 fixed-width"
                                     data-ingredient-id="{{ ingredient.id }}" data-ingredient-name="{{ ingredient.name }}"
-                                    data-ingredient-description="{{ ingredient.description }}"
                                     data-ingredient-category="{{ ingredient.category.id }}"
+                                    data-ingredient-description="{{ ingredient.description }}"
+                                    data-ingredient-origin="{{ ingredient.origin }}"
                                     data-ingredient-image="{{ ingredient.image }}" data-toggle="modal"
                                     data-target="#editIngredientModal">Edit</button>
                                 <!-- Delete Button -->
@@ -155,8 +156,9 @@
                         <!-- Hidden input fields to store last edit details for repopulating the form in case of an error -->
                         <input type="hidden" id="lastIngredientEditId" value="{{ last_ingredient_edit_details.edit_id }}">
                         <input type="hidden" id="lastIngredientEditName" value="{{ last_ingredient_edit_details.name }}">
-                        <input type="hidden" id="lastIngredientEditDescription" value="{{ last_ingredient_edit_details.description }}">
                         <input type="hidden" id="lastIngredientEditCategory" value="{{ last_ingredient_edit_details.category }}">
+                        <input type="hidden" id="lastIngredientEditDescription" value="{{ last_ingredient_edit_details.description }}">
+                        <input type="hidden" id="lastIngredientEditOrigin" value="{{ last_ingredient_edit_details.origin }}">
                         <input type="hidden" id="lastIngredientEditImageURL" value="{{ last_ingredient_edit_details.image_url }}">
                         
                         <div class="modal-header">
@@ -186,17 +188,40 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Description:</label>
-                                <textarea class="form-control" id="editIngredientDescription" name="description"></textarea>
-                            </div>
-
-                            <div class="form-group">
                                 <label>Category:</label>
                                 <select id="editIngredientCategory" name="category">
                                     {% for category in categories %}
                                         <option value="{{ category.id }}">{{ category.name }}</option>
                                     {% endfor %}
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description:</label>
+                                <textarea class="form-control" id="editIngredientDescription" name="description"></textarea>
+
+                                <!-- Displays errors related to the 'description' field -->
+                                {% if form.description.errors %}
+                                    <div class="edit-ingredient-error-message mt-2">
+                                        {% for error in form.description.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label>Origin:</label>
+                                <textarea class="form-control" id="editIngredientOrigin" name="origin"></textarea>
+
+                                <!-- Displays errors related to the 'origin' field -->
+                                {% if form.origin.errors %}
+                                    <div class="edit-ingredient-error-message mt-2">
+                                        {% for error in form.origin.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
                             </div>
 
                             <div class="form-group">

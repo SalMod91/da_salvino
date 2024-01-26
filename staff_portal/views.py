@@ -98,8 +98,9 @@ def manage_ingredients(request):
     last_ingredient_edit_details = request.session.get('last_edit_details', {
         'edit_id': '',
         'name': '',
-        'description': '',
         'category': '',
+        'description': '',
+        'origin': '',
         'image_url': ''
     })
 
@@ -153,8 +154,9 @@ def manage_ingredients(request):
                 request.session['last_ingredient_edit_details'] = {
                     'edit_id': ingredient_id,
                     'name': form.cleaned_data.get('name', ''),
-                    'description': form.cleaned_data.get('description', ''),
                     'category': form.cleaned_data.get('category', '').id if form.cleaned_data.get('category', '') else '',
+                    'description': form.cleaned_data.get('description', ''),
+                    'origin': form.cleaned_data.get('origin', ''),
                     'image_url': form.cleaned_data.get('image', '').url if form.cleaned_data.get('image', '') else ''
                 }
                 # If the form data is not valid, it displays an error message with form validation errors

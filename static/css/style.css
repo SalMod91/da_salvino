@@ -170,11 +170,6 @@ footer {
     color: #fff;
 }
 
-/* This section applies to ingredients.html */
-.ingredients-content:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
 .tab-content .tab-pane .row:last-child {
     margin-bottom: 3rem;
 }

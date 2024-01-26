@@ -145,8 +145,9 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             let ingredientId = button.getAttribute('data-ingredient-id');
             let ingredientName = button.getAttribute('data-ingredient-name');
-            let ingredientDescription = button.getAttribute('data-ingredient-description');
             let ingredientCategory = button.getAttribute('data-ingredient-category');
+            let ingredientDescription = button.getAttribute('data-ingredient-description');
+            let ingredientOrigin = button.getAttribute('data-ingredient-origin');
             let ingredientImage = button.getAttribute('data-ingredient-image');
             let currentIngredientImage = document.getElementById('currentIngredientImage');
             let ingredientImageInput = document.getElementById('editIngredientImage');
@@ -156,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editIngredientName').value = ingredientName;
             document.getElementById('editIngredientCategory').value = ingredientCategory;
             document.getElementById('editIngredientDescription').value = ingredientDescription;
+            document.getElementById('editIngredientOrigin').value = ingredientOrigin;
 
             // Uncheck the checkbox from remove ingredient image
             resetRemoveIngredientImageCheckbox()
@@ -402,8 +404,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set the values of the form fields based on the values stored in the hidden inputs
         document.getElementById('editIngredientName').value = document.getElementById('lastIngredientEditName').value;
-        document.getElementById('editIngredientDescription').value = document.getElementById('lastIngredientEditDescription').value;
         document.getElementById('editIngredientCategory').value = document.getElementById('lastIngredientEditCategory').value;
+        document.getElementById('editIngredientDescription').value = document.getElementById('lastIngredientEditDescription').value;
+        document.getElementById('editIngredientOrigin').value = document.getElementById('lastIngredientEditOrigin').value;
 
         // If there is an image URL, set it to the image element
         const imageIngredientUrl = document.getElementById('lastIngredientEditImageURL').value;
@@ -418,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // When an error occurs opens automatically the edit modal on reload
+    // When an error occurs opens automatically the menu edit modal on reload
     // When the edit modal is open through an error, repopulates the modal using the data of the past session
     // Assigns the elements with 'error-message' class to this variable
     const errors = document.querySelector('.edit-menu-error-message');

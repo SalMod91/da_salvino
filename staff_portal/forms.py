@@ -44,7 +44,7 @@ class IngredientForm(forms.ModelForm):
 
     class Meta:
         model = Ingredient
-        fields = ['name', 'category', 'description', 'image']
+        fields = ['name', 'category', 'description', 'origin', 'image']
     
 
     def clean_name(self):

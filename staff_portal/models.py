@@ -55,6 +55,7 @@ class Ingredient(models.Model):
     category = models.ForeignKey(
         IngredientCategory, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
+    origin = models.TextField(max_length=100, blank=True)
     image = CloudinaryField(
         'image', blank=True, null=True, folder='ingredients')
     created_at = models.DateTimeField(auto_now_add=True)
