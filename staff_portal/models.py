@@ -10,9 +10,12 @@ class IngredientCategory(models.Model):
 
     Attributes:
     - name (CharField): The name of the ingredient category, with a maximum
-    length of 20 characters.
+      length of 20 characters.
+    - order (IntegerField): The order in which this category should appear.
+      A lower value indicates a higher priority for display.
     """
     name = models.CharField(max_length=20, unique=True)
+    order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -20,6 +23,7 @@ class IngredientCategory(models.Model):
     class Meta:
         verbose_name = "Ingredient Category"
         verbose_name_plural = "Ingredient Categories"
+        ordering = ['order', 'name']
 
 
 class Ingredient(models.Model):
