@@ -31,14 +31,14 @@
 
                     <!-- Iterate over each pizza in the 'pizzas' context passed from the view -->
                     {% for pizza in pizzas %}
-                        <div class="row menu-item" data-target="#pizza{{ pizza.id }}-details">
+                        <div class="row menu-item mt-5 width-60" data-target="#pizza{{ pizza.id }}-details">
 
-                            <div class="col-md-2">
+                            <div class="col-md-5">
                                 <!-- Displaying the image of the pizza -->
                                 <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" class="img-fluid">
                             </div>
 
-                            <div class="col-md-10 text-center">
+                            <div class="col-md-7 mt-sm-3 text-center">
                                 <h3>{{ pizza.name }}</h3>
                                 <ul class="list-unstyled">
                                     {% if pizza_dough_id %}

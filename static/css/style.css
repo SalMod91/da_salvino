@@ -10,7 +10,7 @@ body {
 
 /* This CSS section applies to base.html */
 /* Navigation CSS */
-.navbar-container {
+.width-60 {
     width: 60%;
     margin: auto;
 }
@@ -268,7 +268,7 @@ table tr td, table-dark tr td {
 
 /* Media Queries */
 @media screen and (max-width:992px){
-    .navbar-container {
+    .width-60 {
         width: 90%;
     }
 
