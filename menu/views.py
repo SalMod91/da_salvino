@@ -23,7 +23,7 @@ class MenuPage(TemplateView):
         context = super().get_context_data(**kwargs)
         
         # Retrieve all pizza items
-        pizzas = Pizza.objects.all()
+        pizzas = Pizza.objects.order_by('name')
         # Add pizzas to the context
         context['pizzas'] = pizzas
 
