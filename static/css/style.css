@@ -1,5 +1,5 @@
 body {
-    background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1702088767/image/pu4tnlxnrjgp85nxcpue.jpg') no-repeat fixed;
+    background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1706550734/image/background.jpg') no-repeat fixed;
     background-size: cover;
     /* Will be removed in the end */
     display: flex;
@@ -43,6 +43,7 @@ body {
 header {
     background-color: rgba(0,0,0,1);
     transition: 0.3s ease;
+    z-index: 9001;
 }
 
 /* Class assigned from JS when the user scrolls down from top position */
@@ -90,42 +91,32 @@ header {
     color: white;
 }
 
-/* Footer Section */
-footer {
-    margin-top: auto;
-}
-
-.icon {
-    color:#ffab18;
-}
-
-.social {
-    transition: 0.3s ease;
-}
-
-.social:hover {
-    color:#ffab18;
-    transition: 0.3s;
-    cursor: pointer;
-    font-size: 1.2em;
-}
-
 /* This section applies to index.html */
 
 #home-hero-container {
     width: 100%;
-    height: 94vh;
-    background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1702190808/image/cnzfxtllyooo4nyfdcmy.webp') no-repeat;
-    background-size: cover;
-    background-position: center center;
+    height: 750px;
+    background: url("https://res.cloudinary.com/dplsavizt/image/upload/v1706641755/image/wooden-planks.webp");
 }
 
-#hero-width {
-    width: 90%;
+#intro-separator {
+    background-color: black;
+}
+
+.fa-leaf {
+    color: green;
+}
+
+.pizza-slice {
+    color: red;
 }
 
 .button-container {
     margin-top: auto;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .custom-button {
@@ -172,6 +163,26 @@ footer {
 
 .tab-content .tab-pane .row:last-child {
     margin-bottom: 3rem;
+}
+
+/* Footer Section */
+footer {
+    margin-top: auto;
+}
+
+.icon {
+    color:#ffab18;
+}
+
+.social {
+    transition: 0.3s ease;
+}
+
+.social:hover {
+    color:#ffab18;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size: 1.2em;
 }
 
 /* This section applies to the staff portal */
@@ -267,13 +278,21 @@ table tr td, table-dark tr td {
 }
 
 /* Media Queries */
-@media screen and (max-width:992px){
+@media screen and (max-width:991px){
     .width-60 {
         width: 90%;
     }
 
-    #hero-width {
-        width: 50%;
+    .text-right {
+        text-align: center;
+    }
+    
+    .img-sm-w-50 {
+        width: 50% !important;
+    }
+
+    .small-text-center {
+        text-align: center;
     }
 }
 
@@ -286,5 +305,12 @@ table tr td, table-dark tr td {
 @media screen and (max-width:576px) {
     #hero-width {
         width: 90%;
+    }
+
+    #intro-separator h5 {
+        font-size: 90%;
+    }
+    #intro-separator p {
+        font-size: 90%;
     }
 }

@@ -13,33 +13,33 @@
         </div>
 
         <div class="container mt-4 text-white text-center">
-                <div class="container mt-4 text-white text-center mb-4">
-                    <h2>Add New Ingredient</h2>
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
+            <div class="container mt-4 text-white text-center mb-4">
+                <h2>Add New Ingredient</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                 
-                        <!-- Loop through each field in the form -->
-                        {% for field in form %}
-                            <!-- Create a div for each form field -->
-                            <div class="form-group">
-                                {{ field.label_tag }}
-                                {{ field }}
-                                <!-- Check if there are any validation errors for this field -->
-                                {% if field.errors %}
-                                    <div class="error-message">
-                                        <!-- Loop through each error fields -->
-                                        {% for error in field.errors %}
-                                            <!-- Display the error message -->
-                                            {{ error }}
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                
-                        <button type="submit" class="btn btn-success">Add Ingredient</button>
-                    </form>
-                </div>
+                    <!-- Loop through each field in the form -->
+                    {% for field in form %}
+                        <!-- Create a div for each form field -->
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            <!-- Check if there are any validation errors for this field -->
+                            {% if field.errors %}
+                                <div class="error-message">
+                                    <!-- Loop through each error fields -->
+                                    {% for error in field.errors %}
+                                        <!-- Display the error message -->
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-success">Add Ingredient</button>
+                </form>
+            </div>
         </div>
 
         {% elif user.is_authenticated %}
