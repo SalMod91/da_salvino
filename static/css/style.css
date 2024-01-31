@@ -43,7 +43,7 @@ body {
 header {
     background-color: rgba(0,0,0,1);
     transition: 0.3s ease;
-    z-index: 9001;
+    /* z-index: 9001; */
 }
 
 /* Class assigned from JS when the user scrolls down from top position */
@@ -95,7 +95,7 @@ header {
 
 #home-hero-container {
     width: 100%;
-    height: 750px;
+    height: 760px;
     background: url("https://res.cloudinary.com/dplsavizt/image/upload/v1706641755/image/wooden-planks.webp");
 }
 
@@ -134,8 +134,9 @@ header {
     transition: 0.3s;
 }
 
-#menu-link {
-    color:#fff
+#menu-link, #ingredients-link {
+    width: 200px;
+    height: 70px;
 }
 
 /* This section applies to menu.html */
@@ -300,11 +301,28 @@ table tr td, table-dark tr td {
     #hero-width {
         width: 75%;
     }
+
+    #menu-link, #ingredients-link {
+        width: 181px;
+        height: 50px;
+    }
+
+    .img-sm-w-50 {
+        width: 65% !important;
+    }
+
+    .custom-button {
+        font-size: 80%;
+    }
 }
 
 @media screen and (max-width:576px) {
     #hero-width {
         width: 90%;
+    }
+
+    .img-sm-w-50 {
+        width: 90% !important;
     }
 
     #intro-separator h5 {

@@ -5,11 +5,15 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-4 text-white text-right justify-content-center">
-                <h1 class="mb-5">WELCOME TO THIS PLACE</h1>
-                <h2 class="mb-5">BLABLABLA</h2>
-                <h3>BLABLA</h3>
-                <button type="button" class="btn custom-button mt-3">
-                    <a href="{% url 'menu' %}" id="menu-link">Discover the Menu</a>
+                <h1 class="mb-5">DA SALVINO</h1>
+                <h2 class="mb-5">Italian Cousine</h2>
+                <p>Where you can enjoy crunchy pizza baked in a wood oven</p>
+
+                <button type="button" class="btn custom-button mt-3" id="menu-link">
+                    <a href="{% url 'menu' %}" class="text-white">View the Menu</a>
+                </button>
+                <button type="button" class="btn custom-button mt-3" id="ingredients-link">
+                    <a href="{% url 'ingredients' %}" class="text-white">View our Ingredients</a>
                 </button>
             </div>
 
@@ -45,22 +49,30 @@
     </div>
 </section>
 
-<section class="mb-5">
+<section>
+    <div class="container-fluid">
+        <div class="row no-gutters">
 
-    <div class="text-white text-center mt-5">
-        <h2>About Us</h2>
-    </div>
+            <div class="col-md-6 px-0">
+                <img class="img-fluid" src="https://res.cloudinary.com/dplsavizt/image/upload/v1706730983/image/restaurant-image.png" alt="Image of the inside of the Restaurant">
+            </div>
 
-    <div class="row text-center mt-3">
-
-        <div class="col 3">
-            <img class="w-25" src="https://res.cloudinary.com/dplsavizt/image/upload/v1705999566/image/default_image.jpg" alt="">
+            <div class="col-md-6 text-white d-flex flex-column justify-content-center text-left px-5">
+                <h3 class="mb-xxl-5 mb-lg-3">Welcome Da Salvino</span></h3>
+                <p>Escape into a world of old-world charm at Da Salvino. Our intimate dining space is a haven of quiet elegance, where time slows down, and every meal is a celebration of flavors. Soft lighting and comfortable seating create a warm, inviting atmosphere.</p>
+            </div>
         </div>
 
-        <div class="col 9 text-white">
-            <h3>Ajiofsdop</h3>
-            <h5>Assurdo</h5>
-            <p>Cretino</p>
+        <div class="row no-gutters">
+
+            <div class="col-md-6 px-0 order-md-2">
+                <img class="img-fluid" src="https://res.cloudinary.com/dplsavizt/image/upload/v1706731344/image/oven.jpg" alt="Image of the inside of the Restaurant">
+            </div>
+
+            <div class="col-md-6 text-white d-flex flex-column justify-content-center text-left px-5 mt-5">
+                <h3 class="mb-xxl-5 mb-lg-3">Wood Oven</h3>
+                <p>Experience the authentic taste of Italy with our wood-fired pizzas. Our traditional wood oven infuses each pizza with a rich, smoky flavor that can't be replicated.</p>
+            </div>
         </div>
     </div>
 </section>
