@@ -1,10 +1,8 @@
 body {
     background: url('https://res.cloudinary.com/dplsavizt/image/upload/v1706550734/image/background.jpg') no-repeat fixed;
     background-size: cover;
-    /* Will be removed in the end */
     display: flex;
     flex-direction: column;
-    /* end remove */
     min-height: 100vh;
 }
 
@@ -15,35 +13,9 @@ body {
     margin: auto;
 }
 
-/* Defines the 'wiggle' animation */
-@-webkit-keyframes wiggle {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-}
-
-@keyframes wiggle {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-}
-
-/* Applies the wiggle animation */
-#phone-icon-container:hover .fa-phone {
-    -webkit-animation: wiggle 0.05s alternate ease infinite;
-    animation: wiggle 0.05s alternate ease infinite;
-}
-
-#map-icon-container:hover .fa-map-location-dot {
-    transform: scale(1.4);
-}
-
-.fa-map-location-dot:hover {
-    cursor: pointer;
-}
-
 header {
     background-color: rgba(0,0,0,1);
     transition: 0.3s ease;
-    /* z-index: 9001; */
 }
 
 /* Class assigned from JS when the user scrolls down from top position */
@@ -89,6 +61,54 @@ header {
     width: 20px;
     height: auto;
     color: white;
+}
+
+/* Footer Section */
+footer {
+    margin-top: auto;
+}
+
+.icon {
+    color:#ffab18;
+    font-size: 1.5rem;
+}
+
+.social {
+    transition: 0.3s ease;
+    font-size: 1.8em;
+    color: white;
+}
+
+.social:hover {
+    color:#ffab18;
+    transition: 0.3s;
+    cursor: pointer;
+    transform: scale(1.4);
+}
+
+/* Defines the 'wiggle' animation */
+@-webkit-keyframes wiggle {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+/* Applies the wiggle animation */
+#phone-icon-container:hover .fa-phone {
+    -webkit-animation: wiggle 0.05s alternate ease infinite;
+    animation: wiggle 0.05s alternate ease infinite;
+}
+
+#map-icon-container:hover .fa-map-location-dot {
+    transform: scale(1.4);
+}
+
+.fa-map-location-dot:hover {
+    cursor: pointer;
 }
 
 /* This section applies to index.html */
@@ -164,26 +184,6 @@ header {
 
 .tab-content .tab-pane .row:last-child {
     margin-bottom: 3rem;
-}
-
-/* Footer Section */
-footer {
-    margin-top: auto;
-}
-
-.icon {
-    color:#ffab18;
-}
-
-.social {
-    transition: 0.3s ease;
-}
-
-.social:hover {
-    color:#ffab18;
-    transition: 0.3s;
-    cursor: pointer;
-    font-size: 1.2em;
 }
 
 /* This section applies to the staff portal */

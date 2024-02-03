@@ -14,7 +14,7 @@
             {% for category, ingredients in categorized_ingredients.items %}
                 <li class="nav-item">
                     <!-- Tab link, active for the first item in the loop -->
-                    <a class="nav-link {% if forloop.first %}active{% endif %}" href="#{{ category }}" data-toggle="tab">{{ category }}</a>
+                    <a class="nav-link {% if forloop.first %}active{% endif %}" href="#{{ category }}" data-bs-toggle="tab">{{ category }}</a>
                 </li>
             {% endfor %}
         </ul>

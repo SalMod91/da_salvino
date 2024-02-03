@@ -9,16 +9,16 @@
             <!-- Menu Categories -->
             <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="#all" data-toggle="tab">All</a>
+                    <a class="nav-link" href="#all" data-bs-toggle="tab">All</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#pizza" data-toggle="tab">Pizza</a>
+                    <a class="nav-link active" href="#pizza" data-bs-toggle="tab">Pizza</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#salad" data-toggle="tab">Salad</a>
+                    <a class="nav-link" href="#salad" data-bs-toggle="tab">Salad</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#dessert" data-toggle="tab">Dessert</a>
+                    <a class="nav-link" href="#dessert" data-bs-toggle="tab">Dessert</a>
                 </li>
             </ul>
         
@@ -31,7 +31,7 @@
 
                     <!-- Iterate over each pizza in the 'pizzas' context passed from the view -->
                     {% for pizza in pizzas %}
-                        <div class="row menu-item mt-5 width-60" data-target="#pizza{{ pizza.id }}-details">
+                        <div class="row menu-item mt-5 width-60" data-bs-target="#pizza{{ pizza.id }}-details">
 
                             <div class="col-md-5">
                                 <!-- Displaying the image of the pizza -->
