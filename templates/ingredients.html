@@ -28,13 +28,13 @@
                 <div class="container">
                     <!-- Loop through each ingredient in the current category -->
                     {% for ingredient in ingredients %}
-                        <div id="ingredient-{{ ingredient.id }}" class="row justify-content-center align-items-center mt-5">
+                        <div id="ingredient-{{ ingredient.id }}" class="row align-items-center mt-5">
                             <div class="col-md-3">
                                 <!-- Displaying the ingredient's image -->
                                 <img src="{{ ingredient.image.url }}" alt="{{ ingredient.name }}" class="img-fluid">
                             </div>
                             <!-- Column for the ingredient's name and description -->
-                            <div class="col-md-9 d-flex flex-column justify-content-between">
+                            <div class="col-md-9 d-flex flex-column">
                                 <!-- Top Part - Name -->
                                 <h2>{{ ingredient.name }}</h2>
                                 <!-- Middle Part - Description -->

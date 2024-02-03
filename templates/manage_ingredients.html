@@ -187,7 +187,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label>Category:</label>
                                 <select id="editIngredientCategory" name="category">
                                     {% for category in categories %}
@@ -196,7 +196,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label>Description:</label>
                                 <textarea class="form-control" id="editIngredientDescription" name="description"></textarea>
 
@@ -210,7 +210,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label>Origin:</label>
                                 <textarea class="form-control" id="editIngredientOrigin" name="origin"></textarea>
 
@@ -224,14 +224,14 @@
                                 {% endif %}
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label>Current Image:</label>
                                 <div>
                                     <img src="{{ ingredient.image.url }}" id="currentIngredientImage" class="edit-image-size"/>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label for="editIngredientImage">Change Image:</label>
                                 <input type="file" class="form-control-file" id="editIngredientImage" name="image">
                             </div>

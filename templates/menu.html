@@ -15,7 +15,7 @@
                     <a class="nav-link active" href="#pizza" data-toggle="tab">Pizza</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#pasta" data-toggle="tab">Pasta</a>
+                    <a class="nav-link" href="#salad" data-toggle="tab">Salad</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#dessert" data-toggle="tab">Dessert</a>
@@ -83,16 +83,120 @@
                     {% endfor %}
                 </div>
                 
-                <div class="tab-pane container fade" id="pasta">
-                    <h3> Pasta 1</h3>
-                    <h3>Pasta 2</h3>
-                    <h3>Pasta 3</h3>
+                <div class="tab-pane container fade" id="salad">
+                    <div class="container">
+                        <div class="row menu-item mt-5 width-60">
+
+                            <div class="col-md-5">
+                                <!-- Displaying the image of the salad -->
+                                <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706975835/salads/caeser.webp" alt="An image of a caeser salad" class="img-fluid">
+                            </div>
+
+                            <div class="col-md-7 mt-sm-3 text-center">
+                                <h3>Caeser Salad</h3>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-124" target="_blank">Romaine Lettuce</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-93" target="_blank">Grana Padano</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-126" target="_blank">Chicken Breast</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-125" target="_blank">Croutons</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="row menu-item mt-5 width-60">
+
+                            <div class="col-md-5">
+                                <!-- Displaying the image of the salad -->
+                                <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706979635/salads/caprese.webp" alt="An image of a caprese salad" class="img-fluid">
+                            </div>
+
+                            <div class="col-md-7 mt-sm-3 text-center">
+                                <h3>Caprese Salad</h3>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-127" target="_blank">Lettuce</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-92" target="_blank">Mozzarella</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-118" target="_blank">Tomato</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-106" target="_blank">Basil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row menu-item mt-5 width-60">
+
+                            <div class="col-md-5">
+                                <!-- Displaying the image of the salad -->
+                                <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706980625/salads/mixed-salad.webp" alt="An image of the Lulu salad" class="img-fluid">
+                            </div>
+
+                            <div class="col-md-7 mt-sm-3 text-center">
+                                <h3>Lulu Salad</h3>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-127" target="_blank">Lettuce</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-118" target="_blank">Tomato</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-129" target="_blank">Parsley</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-128" target="_blank">Onions</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-107" target="_blank">Black Olives</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'ingredients' %}#ingredient-93" target="_blank">Grana Padano</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="tab-pane container fade" id="dessert">
-                    <h3>Dessert 1</h3>
-                    <h3>Dessert 2</h3>
-                    <h3>Dessert 3</h3>
+                    <div class="container">
+                        <div class="row menu-item mt-5 width-60">
+                            <div class="col-md-5">
+                                <!-- Displaying the image of the dessert -->
+                                <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706982043/desserts/panna-cotta.webp" alt="An image of Panna Cotta decorated with a strawberry" class="img-fluid">
+                            </div>
+
+                            <div class="col-md-7 mt-sm-3 text-center">
+                                <h3>Panna Cotta</h3>
+                                <p>Our self-made panna cotta is a smooth, creamy delight, prepared with fresh milk, rich cream, a hint of cornstarch for the perfect consistency, and infused with vanilla for a subtle, aromatic sweetness. A simple, elegant dessert that's sure to please.</p>
+                            </div>
+                        </div>
+
+                        <div class="row menu-item mt-5 width-60">
+                            <div class="col-md-5">
+                                <!-- Displaying the image of the dessert -->
+                                <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706982041/desserts/tiramisu.webp" alt="An image of a Tiramisu" class="img-fluid">
+                            </div>
+
+                            <div class="col-md-7 mt-sm-3 text-center">
+                                <h3>Tiramisu</h3>
+                                <p>Our homemade tiramisu is a simple yet indulgent dessert, crafted with layers of ladyfinger biscuits soaked in rich coffee, nestled between a creamy blend of mascarpone and fresh eggs. Finished with a dusting of cocoa, it's a classic treat that comforts and delights.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
