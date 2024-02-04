@@ -1,20 +1,26 @@
 // Waits for the DOM to be fully loaded before executing
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Select all elements with the class 'dropdown-toggle'
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
+    // Iterate over each 'dropdown-toggle' element
     dropdownToggles.forEach(function (toggle) {
         const dropdownParent = toggle.closest('.dropdown, .dropend');
 
+        // Add an event listener for mouse enter
+        // When the mouse enters the dropdown area, show the dropdown menu
         dropdownParent.addEventListener('mouseenter', function () {
             const dropdown = new bootstrap.Dropdown(toggle);
             dropdown.show();
         });
 
+        // Add an event listener for mouse leave
+        // When the mouse leaves the dropdown area, hide the dropdown menu
         dropdownParent.addEventListener('mouseleave', function () {
             const dropdown = new bootstrap.Dropdown(toggle);
             dropdown.hide();
-            // Blur the toggle button when mouse leaves the dropdown area
+            // Remove the background on focus
             toggle.blur();
         });
     });
