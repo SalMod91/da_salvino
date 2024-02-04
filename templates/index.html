@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% load static %} 
 {% block content %}
+<!-- Home hero container contains the wooden planks background and server as the container for the hero image and text -->
 <section id="home-hero-container" class="d-flex justify-content-center align-items-center">
     <div class="container-fluid">
         <div class="row align-items-center">
+            <!-- Hero text introducing the user to the website -->
             <div class="col-xl-6 col-lg-4 text-white text-right justify-content-center">
                 <h1 class="mb-5">DA SALVINO</h1>
                 <h2 class="mb-5">Italian Cuisine</h2>
                 <p>Where you can enjoy crunchy pizza baked in a wood oven</p>
 
+                <!-- Further Navigation buttons directing the user to the menu or the ingredients -->
                 <a href="{% url 'menu' %}" class="btn custom-button mt-3 text-white align-items-center">View the Menu</a>
                 <a href="{% url 'ingredients' %}" class="btn custom-button mt-3 text-white">View our Ingredients</a>
             </div>
 
+            <!-- Hero image -->
             <div class="col-xl-6 col-lg-8 small-text-center">
                 <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706345727/image/fxu5pjucplk6vzsqmzac.webp" alt="Pizza" class="img-fluid w-75 img-sm-w-50">
             </div>
@@ -20,6 +24,7 @@
     </div>
 </section>
 
+<!-- Highlights the selling points of the restaurant -->
 <section id="intro-separator">
     <div class="container">
         <div class="row align-items-center pt-3 pb-3 text-center">
@@ -45,6 +50,7 @@
     </div>
 </section>
 
+<!-- About us section, further details the ambience and the wood oven -->
 <section>
     <div class="container-fluid">
         <div class="row no-gutters">
