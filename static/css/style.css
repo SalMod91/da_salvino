@@ -18,6 +18,10 @@ header {
     transition: 0.3s ease;
 }
 
+.navbar-collapse.show {
+   padding-right: 40px;
+}
+
 /* Class assigned from JS when the user scrolls down from top position */
 .sticky-top {
     animation: slideDown 0.5s ease forwards;
@@ -142,9 +146,6 @@ footer {
 .custom-button {
     border: 2px solid #ffab18;
     text-transform: uppercase;
-    color: white;
-    padding: 8px 18px;
-    background-color: transparent;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
@@ -152,11 +153,6 @@ footer {
     background-color: #ffab18;
     color: black;
     transition: 0.3s;
-}
-
-#menu-link, #ingredients-link {
-    width: 200px;
-    height: 70px;
 }
 
 /* This section applies to menu.html */
