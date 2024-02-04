@@ -165,7 +165,7 @@
                         <!-- Fields for editing the menu item, each id will be used by JS in order to populate the fields with data -->
                         <!-- Name Field -->
                         <div class="form-group">
-                            <label>Name:</label>
+                            <label for="editMenuItemName">Name:</label>
                             <input type="text" class="form-control" id="editMenuItemName" name="name">
 
                             <!-- Displays errors related to the 'name' field -->
@@ -224,7 +224,7 @@
 
                         <!-- Current Image Field -->
                         <div class="form-group">
-                            <label>Current Image:</label>
+                            <p>Current Image:</p>
                             <div>
                                 <img src="{{ pizza.image.url }}" id="currentMenuItemImage" class="edit-image-size" alt="An image depicting the currently used image for the menu item">
                             </div>
@@ -264,9 +264,9 @@
                             {% for i in "0123456789" %}
                                 <div class="ingredient-selector hidden" data-index="{{ i }}">
                                     <!-- Uses the loop counter to display dynamically in the paragraph the current iteration of the loop -->
-                                    <p class="ingredient-number">Ingredient #{{ forloop.counter }}</p>
+                                    <label class="ingredient-number" for="ingredient_{{ i }}">Ingredient #{{ forloop.counter }}:</label>
                                     <!-- Assigns an attribute name to each ingredient dynamically corresponding to the iteration of the loop -->
-                                    <select name="ingredient_{{ i }}">
+                                    <select name="ingredient_{{ i }}" id="ingredient_{{ i }}">
                                         <!-- The first option as a placeholder, it will not submit any data -->
                                         <option value="">Choose an ingredient...</option>
                                         <!-- Iterates over ingredient_choices -->
