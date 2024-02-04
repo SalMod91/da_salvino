@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // When the fade out timer runs out, the container will be hidden
             setTimeout(function() {
                 messageContainer.style.display = 'none';
-                messageContainer.classList.remove('alert-success');
+                messagesData.style.display = 'none';
             }, 2600);
         }
     }
