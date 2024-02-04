@@ -24,7 +24,7 @@
         <!-- Loop through each category and its ingredients -->
         {% for category, ingredients in categorized_ingredients.items %}
             <!-- Content pane for each category, active for the first item in the loop -->
-            <div class="tab-pane container {% if forloop.first %}active{% endif %}" id="{{ category }}">
+            <div class="tab-pane container {% if forloop.first %}active{% endif %}" id="{{ category }}" role="tabpanel">
                 <div class="container">
                     <!-- Loop through each ingredient in the current category -->
                     {% for ingredient in ingredients %}
@@ -46,6 +46,9 @@
                                 {% endif %}
                             </div>
                         </div>
+                    {% empty %}
+                        <!-- Message displayed if there are no ingredients available -->
+                        <p>No ingredients available at the moment.</p>
                     {% endfor %}
                 </div>
             </div>

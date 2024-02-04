@@ -25,8 +25,10 @@
             <!-- Tab content -->
             <div class="tab-content">
 
+                <!-- Placeholder for 'All' category, dynamically filled based on available items -->
                 <div class="tab-pane container fade" id="all"></div>
 
+                <!-- Pizza category content -->
                 <div class="tab-pane container active" id="pizza">
 
                     <!-- Iterate over each pizza in the 'pizzas' context passed from the view -->
@@ -35,11 +37,11 @@
 
                             <div class="col-md-5">
                                 <!-- Displaying the image of the pizza -->
-                                <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" class="img-fluid">
+                                <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" class="img-fluid" loading="lazy">
                             </div>
 
                             <div class="col-md-7 mt-sm-3 text-center">
-                                <h3>{{ pizza.name }}</h3>
+                                <h2>{{ pizza.name }}</h2>
                                 <ul class="list-unstyled">
                                     {% if pizza_dough_id %}
                                         <li>
@@ -83,6 +85,7 @@
                     {% endfor %}
                 </div>
                 
+                <!-- Salad category, will be also dynamically added as a future feature -->
                 <div class="tab-pane container fade" id="salad">
                     <div class="container">
                         <div class="row menu-item mt-5 width-60">
@@ -93,7 +96,7 @@
                             </div>
 
                             <div class="col-md-7 mt-sm-3 text-center">
-                                <h3>Caeser Salad</h3>
+                                <h2>Caeser Salad</h2>
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="{% url 'ingredients' %}#ingredient-124" target="_blank">Romaine Lettuce</a>
@@ -119,7 +122,7 @@
                             </div>
 
                             <div class="col-md-7 mt-sm-3 text-center">
-                                <h3>Caprese Salad</h3>
+                                <h2>Caprese Salad</h2>
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="{% url 'ingredients' %}#ingredient-127" target="_blank">Lettuce</a>
@@ -145,7 +148,7 @@
                             </div>
 
                             <div class="col-md-7 mt-sm-3 text-center">
-                                <h3>Lulu Salad</h3>
+                                <h2>Lulu Salad</h2>
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="{% url 'ingredients' %}#ingredient-127" target="_blank">Lettuce</a>
@@ -171,6 +174,7 @@
                     </div>
                 </div>
 
+                <!-- Dessert category, will also be dynamically added as a future feature -->
                 <div class="tab-pane container fade" id="dessert">
                     <div class="container">
                         <div class="row menu-item mt-5 width-60">
@@ -180,7 +184,7 @@
                             </div>
 
                             <div class="col-md-7 mt-sm-3 text-center">
-                                <h3>Panna Cotta</h3>
+                                <h2>Panna Cotta</h2>
                                 <p>Our self-made panna cotta is a smooth, creamy delight, prepared with fresh milk, rich cream, a hint of cornstarch for the perfect consistency, and infused with vanilla for a subtle, aromatic sweetness. A simple, elegant dessert that's sure to please.</p>
                             </div>
                         </div>
@@ -192,7 +196,7 @@
                             </div>
 
                             <div class="col-md-7 mt-sm-3 text-center">
-                                <h3>Tiramisu</h3>
+                                <h2>Tiramisu</h2>
                                 <p>Our homemade tiramisu is a simple yet indulgent dessert, crafted with layers of ladyfinger biscuits soaked in rich coffee, nestled between a creamy blend of mascarpone and fresh eggs. Finished with a dusting of cocoa, it's a classic treat that comforts and delights.</p>
                             </div>
                         </div>
