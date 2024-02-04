@@ -174,7 +174,7 @@
 
                             <!-- Fields for editing the ingredient, each id will be used by JS in order to populate the fields with data -->
                             <div class="form-group">
-                                <label><strong>Name:</strong></label>
+                                <label for="editIngredientName"><strong>Name:</strong></label>
                                 <input type="text" class="form-control" id="editIngredientName" name="name">
 
                                 <!-- Displays errors related to the 'name' field -->
@@ -188,7 +188,7 @@
                             </div>
 
                             <div class="form-group mt-2">
-                                <label><strong>Category:</strong></label>
+                                <label for="editIngredientCategory"><strong>Category:</strong></label>
                                 <select id="editIngredientCategory" name="category">
                                     {% for category in categories %}
                                         <option value="{{ category.id }}">{{ category.name }}</option>
@@ -197,7 +197,7 @@
                             </div>
 
                             <div class="form-group mt-2">
-                                <label><strong>Description:</strong></label>
+                                <label for="editIngredientDescription"><strong>Description:</strong></label>
                                 <textarea class="form-control" id="editIngredientDescription" name="description"></textarea>
 
                                 <!-- Displays errors related to the 'description' field -->
@@ -211,7 +211,7 @@
                             </div>
 
                             <div class="form-group mt-2">
-                                <label><strong>Origin:</strong></label>
+                                <label for="editIngredientOrigin"><strong>Origin:</strong></label>
                                 <textarea class="form-control" id="editIngredientOrigin" name="origin"></textarea>
 
                                 <!-- Displays errors related to the 'origin' field -->
@@ -225,9 +225,9 @@
                             </div>
 
                             <div class="form-group mt-2">
-                                <label><strong>Current Image:</strong></label>
+                                <p><strong>Current Image:</strong></p>
                                 <div>
-                                    <img src="{{ ingredient.image.url }}" id="currentIngredientImage" class="edit-image-size" alt="The current image used for the Ingredient">
+                                    <img src="{{ ingredient.image.url }}" id="currentIngredientImage" class="edit-image-size" alt="An image depicting the currently used image for the Ingredient">
                                 </div>
                             </div>
 
