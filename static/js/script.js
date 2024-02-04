@@ -1,6 +1,24 @@
 // Waits for the DOM to be fully loaded before executing
 document.addEventListener('DOMContentLoaded', function() {
 
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    dropdownToggles.forEach(function (toggle) {
+        const dropdownParent = toggle.closest('.dropdown, .dropend');
+
+        dropdownParent.addEventListener('mouseenter', function () {
+            const dropdown = new bootstrap.Dropdown(toggle);
+            dropdown.show();
+        });
+
+        dropdownParent.addEventListener('mouseleave', function () {
+            const dropdown = new bootstrap.Dropdown(toggle);
+            dropdown.hide();
+            // Blur the toggle button when mouse leaves the dropdown area
+            toggle.blur();
+        });
+    });
+
     // Listen for the scroll event
     window.addEventListener('scroll', function() {
         // Select the header element

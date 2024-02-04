@@ -44,9 +44,22 @@
                             </li>
                             <!-- Conditional display for staff portal link based on user authentication and staff status -->
                             {% if user.is_authenticated and user.is_staff %}
-                            <li class="nav-item pe-3">
-                                <a class="nav-link text-white {% if request.path == '/staff_portal/' %}active-page{% endif %}" href="{% url 'staff_portal' %}"><i class="fa-solid fa-users pe-2"></i></i>Staff Portal</a>
-                            </li>
+                            <li class="nav-item dropdown pe-3">
+                                <div class="btn-group dropend">
+                                    <a class="nav-link text-white {% if request.path == '/staff_portal/' or request.path == '/add_ingredient' or request.path == '/manage_ingredients' or request.path == '/add_menu_item' or request.path == '/manage_menu_items'%}active-page{% endif %}" id="staff-portal-link" href="{% url 'staff_portal' %}" role="button">
+                                        <i class="fa-solid fa-users pe-2"></i>Staff Portal
+                                    </a>
+                                    <button class="btn dropdown-toggle dropdown-toggle-split {% if request.path == '/add_ingredient' or request.path == '/manage_ingredients' or request.path == '/add_menu_item' or request.path == '/manage_menu_items' %}active-dropdown{% endif %}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item {% if request.path == '/add_ingredient' %}active-dropdown{% endif %}" href="{% url 'add_ingredient' %}">Add Ingredients</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/manage_ingredients' %}active-dropdown{% endif %}" href="{% url 'manage_ingredients' %}">Manage Ingredients</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/add_menu_item' %}active-dropdown{% endif %}" href="{% url 'add_menu_item' %}">Add Menu Item</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/manage_menu_items' %}active-dropdown{% endif %}" href="{% url 'manage_menu_items' %}">Manage Menu Item</a></li>
+                                    </ul>
+                                </div>
+                            </li>                           
                             {% endif %}
                         </ul>
                     </div>
@@ -144,7 +157,7 @@
                         <p>This product is for educational purposes only.</p>
                     </div>
                     <div class="col text-center">
-                        <p>&copy; 2023 Salvino Modica, Switzerland</p>
+                        <p>&copy; 2023 Salvino Modica, Switzerland <a href="https://github.com/SalMod91" target="_blank" rel="noopener noreferrer" aria-label="Visit my Github Page"><i class="fa-brands fa-square-github"></i></a></p>
                     </div>
                 </div>
             </div>
