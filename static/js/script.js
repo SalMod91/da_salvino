@@ -1,28 +1,49 @@
 // Waits for the DOM to be fully loaded before executing
 document.addEventListener('DOMContentLoaded', function() {
-
     // Select all elements with the class 'dropdown-toggle'
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    // Iterate over each 'dropdown-toggle' element
     dropdownToggles.forEach(function (toggle) {
-        const dropdownParent = toggle.closest('.dropdown, .dropend');
+        // Store the timeout
+        let closeTimeout;
 
-        // Add an event listener for mouse enter
-        // When the mouse enters the dropdown area, show the dropdown menu
-        dropdownParent.addEventListener('mouseenter', function () {
+        /**
+         * Shows the dropdown menu and clears any pending timeout to hide it.
+         * This ensures that if the user quickly moves between the dropdown toggle and the menu,
+         * the menu stays open.
+         */
+        function showDropdown() {
             const dropdown = new bootstrap.Dropdown(toggle);
             dropdown.show();
-        });
+            if (closeTimeout) {
+                // Clear any pending timeout if the dropdown is shown again
+                clearTimeout(closeTimeout);
+            }
+        }
 
-        // Add an event listener for mouse leave
-        // When the mouse leaves the dropdown area, hide the dropdown menu
-        dropdownParent.addEventListener('mouseleave', function () {
-            const dropdown = new bootstrap.Dropdown(toggle);
-            dropdown.hide();
-            // Remove the background on focus
-            toggle.blur();
-        });
+        /**
+         * Initiates a countdown before hiding the dropdown menu. If the countdown completes without interruption,
+         * the menu is hidden. This delay allows users a brief moment to move their cursor to the menu without it disappearing.
+         * The countdown duration is set to 250 milliseconds.
+         */
+        function hideDropdown() {
+            closeTimeout = setTimeout(function () {
+                const dropdown = new bootstrap.Dropdown(toggle);
+                dropdown.hide();
+                toggle.blur();
+            }, 250);
+        }
+
+        // Mouse enter on the toggle button shows the dropdown immediately
+        toggle.addEventListener('mouseenter', showDropdown);
+
+        // Mouse leave on the toggle button starts the countdown to hide the dropdown
+        toggle.addEventListener('mouseleave', hideDropdown);
+
+        // Additionally, ensure the dropdown menu itself cancels the hide action if the mouse enters it
+        const dropdownMenu = toggle.nextElementSibling;
+        dropdownMenu.addEventListener('mouseenter', showDropdown);
+        dropdownMenu.addEventListener('mouseleave', hideDropdown);
     });
 
     // Listen for the scroll event

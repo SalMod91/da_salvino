@@ -61,20 +61,21 @@ header {
     color: white !important;
     max-width: 24px !important;
     max-height: 40px !important;
-}
-
-.dropdown-toggle {
     border: none !important;
+    background-color: #000000 !important;
 }
 
-.dropdown-toggle:hover, .dropdown-toggle:focus {
-    background-color: #52575C !important;
+.dropdown-toggle:focus, .dropdown-toggle:hover {
+    background-color: #171717 !important;
 }
 
+.active-dropdown {
+    color: #ffab18 !important;
+    background-color: transparent !important;
+}
 
-
-.dropend .dropdown-menu[data-bs-popper] {
-    left: 98% !important;
+.dropdown-item:focus, .dropdown-menu {
+    background-color: #171717 !important;
 }
 
 .active-page {
@@ -91,19 +92,6 @@ header {
 
 #staff-portal-link {
     margin-right: 5px;
-}
-
-.active-dropdown {
-    color: #ffab18 !important;
-    background-color: transparent !important;
-}
-
-.active-dropdown:hover {
-    background-color: #52575C !important;
-}
-
-.dropdown-item:focus {
-    background-color: #52575C !important;
 }
 
 /* Footer Section */
@@ -146,8 +134,13 @@ footer {
     animation: wiggle 0.05s alternate ease infinite;
 }
 
+#map-icon-container .fa-map-location-dot {
+    transition: 0.3s;
+}
+
 #map-icon-container:hover .fa-map-location-dot {
     transform: scale(1.4);
+    transition: 0.3s;
 }
 
 .fa-map-location-dot:hover {
@@ -158,11 +151,14 @@ footer {
     color: white;
     font-size: 150%;
     margin-left: 6px;
+    transition: 0.3s;
 }
 
 .fa-square-github:hover {
     color: #ffab18;
     cursor: pointer;
+    transform: scale(1.4);
+    transition: 0.3s;
 }
 
 /* This section applies to index.html */
