@@ -77,25 +77,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Opens the Modal to the Registration Tab if there are form errors
-    // This is my first jQuery test
+    // Opens the Modal to the Registration/Login/Password Change Tab if there are form errors
     function openLoginRegisterTab() {
-        let loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
-        let registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
-        let passwordChangeFormErrors = document.querySelectorAll('#passwordChangeModal .alert-danger').length > 0;
-        if (registrationFormErrors) {
-            $('#authModal').modal('show');
-
-            $('#authModal .nav-tabs a[href="#register"]').tab('show');
+        const loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
+        const registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
+        const passwordChangeFormErrors = document.querySelectorAll('#passwordChangeModal .alert-danger').length > 0;
+    
+        // Check for the authModal existence
+        const authModalElement = document.getElementById('authModal');
+        if (authModalElement) {
+            const authModal = new bootstrap.Modal(authModalElement);
+            // Check for specific form errors to decide which tab to show
+            if (registrationFormErrors) {
+                authModal.show();
+                // Manually trigger click event on tab
+                document.querySelector('#authModal .nav-tabs a[href="#register"]').click();
+            } else if (loginFormErrors) {
+                authModal.show();
+                // Manually trigger click event on tab
+                document.querySelector('#authModal .nav-tabs a[href="#login"]').click();
+            }
         }
-
-        if (loginFormErrors) {
-            $('#authModal').modal('show');
-            $('#authModal .nav-tabs a[href="#login"]').tab('show');
-        }
-
-        if (passwordChangeFormErrors) {
-            $('#passwordChangeModal').modal('show');
+    
+        // Check for the passwordChangeModal existence
+        const passwordChangeModalElement = document.getElementById('passwordChangeModal');
+        if (passwordChangeModalElement && passwordChangeFormErrors) {
+            const passwordChangeModal = new bootstrap.Modal(passwordChangeModalElement);
+            passwordChangeModal.show();
         }
     }
 
@@ -138,19 +146,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Select all buttons with the class 'edit-button'
-    let editButtons = document.querySelectorAll('.edit-button');
+    const editButtons = document.querySelectorAll('.edit-button');
     // Iterate over each button
     editButtons.forEach(function(button) {
         // Event Listener retrieving the information of the ingredient to be edited
         button.addEventListener('click', function() {
-            let ingredientId = button.getAttribute('data-ingredient-id');
-            let ingredientName = button.getAttribute('data-ingredient-name');
-            let ingredientCategory = button.getAttribute('data-ingredient-category');
-            let ingredientDescription = button.getAttribute('data-ingredient-description');
-            let ingredientOrigin = button.getAttribute('data-ingredient-origin');
-            let ingredientImage = button.getAttribute('data-ingredient-image');
-            let currentIngredientImage = document.getElementById('currentIngredientImage');
-            let ingredientImageInput = document.getElementById('editIngredientImage');
+            const ingredientId = button.getAttribute('data-ingredient-id');
+            const ingredientName = button.getAttribute('data-ingredient-name');
+            const ingredientCategory = button.getAttribute('data-ingredient-category');
+            const ingredientDescription = button.getAttribute('data-ingredient-description');
+            const ingredientOrigin = button.getAttribute('data-ingredient-origin');
+            const ingredientImage = button.getAttribute('data-ingredient-image');
+            const currentIngredientImage = document.getElementById('currentIngredientImage');
+            const ingredientImageInput = document.getElementById('editIngredientImage');
             
             // Sets the field values
             document.getElementById('editIngredientId').value = ingredientId;
@@ -163,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resetRemoveIngredientImageCheckbox()
 
             // Set the Category field value
-            let editCategoryField = document.getElementById('editCategory');
+            const editCategoryField = document.getElementById('editCategory');
             if (editCategoryField) {
                 // Ensures the correct category is selected
                 for (let i = 0; i < editCategoryField.options.length; i++) {
@@ -397,7 +405,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // If errors exist, indicating form submission failure, repopulate the form
     if (ingredientErrors) {
         // On reload automatically open the edit modal
-        $('#editIngredientModal').modal('show');
+        const editIngredientModal = new bootstrap.Modal(document.getElementById('editIngredientModal'));
+        editIngredientModal.show();
 
         // Uncheck the remove menu image checkbox
         resetRemoveMenuImageCheckbox()
@@ -429,7 +438,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // If errors exist, indicating form submission failure, repopulate the form
     if (errors) {
         // On reload automatically open the edit modal
-        $('#editMenuItemModal').modal('show');
+        const editMenuItemModal = new bootstrap.Modal(document.getElementById('editMenuItemModal'));
+        editMenuItemModal.show();
 
         // Uncheck the remove menu image checkbox
         resetRemoveMenuImageCheckbox()
@@ -457,43 +467,81 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event listener for clearing the error messages when the edit ingredient modal is closed
-    $('#editIngredientModal').on('hide.bs.modal', function () {
-        // Clear error messages and reset fields
-        document.querySelectorAll('.edit-ingredient-error-message').forEach(function (message) {
-            message.innerHTML = '';
+    const editIngredientModal = document.getElementById('editIngredientModal');
+    
+    // Check if the modal element exists to avoid errors
+    if (editIngredientModal) {
+        editIngredientModal.addEventListener('hide.bs.modal', function () {
+            document.querySelectorAll('.edit-ingredient-error-message').forEach(function (message) {
+                // Clear the innerHTML of each message element, removing any error messages
+                message.innerHTML = '';
+            });
         });
-    });
+    }
 
     // Event listener for clearing the error messages when the edit menu modal is closed
-    $('#editMenuItemModal').on('hide.bs.modal', function () {
-        // Clear error messages and reset fields
-        document.querySelectorAll('.edit-menu-error-message').forEach(function (message) {
-            message.innerHTML = '';
+    const editMenuItemModal = document.getElementById('editMenuItemModal');
+    
+    // Check if the modal element exists to avoid errors
+    if (editMenuItemModal) {
+        editMenuItemModal.addEventListener('hide.bs.modal', function () {
+            document.querySelectorAll('.edit-menu-error-message').forEach(function (message) {
+                // Clear the innerHTML of each message element, removing any error messages
+                message.innerHTML = '';
+            });
+        });
+    }
+
+    // Select the close and cancel buttons inside the editIngredientModal
+    document.querySelectorAll('#editIngredientModal .close, #cancelIngredientModal').forEach(function(button) {
+        // Add a click event listener to each button
+        button.addEventListener('click', function() {
+            // Hide the modal using BS 5
+            const editIngredientModalElement = document.getElementById('editIngredientModal');
+            const editIngredientModal = bootstrap.Modal.getInstance(editIngredientModalElement);
+            if (editIngredientModal) {
+                editIngredientModal.hide();
+            }
         });
     });
 
-    // Event listener for the close and cancel buttons inside the editIngredientModal
-    $('#editIngredientModal .close, #cancelIngredientModal').on('click', function() {
-        // Hide the modal
-        $('#editIngredientModal').modal('hide');
+    // Select the close and cancel buttons inside the editMenuItemModal
+    document.querySelectorAll('#editMenuItemModal .close, #cancelMenuItemModal').forEach(function(button) {
+        // Add a click event listener to each button
+        button.addEventListener('click', function() {
+            // Hide the modal using Bs 5
+            const editMenuItemModalElement = document.getElementById('editMenuItemModal');
+            const editMenuItemModal = bootstrap.Modal.getInstance(editMenuItemModalElement);
+            if (editMenuItemModal) {
+                editMenuItemModal.hide();
+            }
+        });
     });
 
-    // Event listener for the close and cancel buttons inside the editMenutModal
-    $('#editMenuItemModal .close, #cancelMenuItemModal').on('click', function() {
-        // Hide the modal
-        $('#editMenuItemModal').modal('hide');
+    // Select the close button in authModal
+    document.querySelectorAll('#authModal .close, #closeAuthModal').forEach(function(button) {
+        // Add a click event listener to each selected button
+        button.addEventListener('click', function() {
+            // Hide the modal using Bs 5
+            const authModalElement = document.getElementById('authModal');
+            const authModal = bootstrap.Modal.getInstance(authModalElement);
+            if (authModal) {
+                authModal.hide();
+            }
+        });
     });
 
-    // Event listener for the close button inside the authModal
-    $('#authModal .close, #closeAuthModal').on('click', function() {
-        // Hide the modal
-        $('#authModal').modal('hide');
-    });
-
-    // Event listener for the close button inside the passwordChangeModal
-    $('#passwordChangeModal .close, #closePasswordChangeModal').on('click', function() {
-        // Hide the modal
-        $('#passwordChangeModal').modal('hide');
+    // Select the close button inside the passwordChangeModal
+    document.querySelectorAll('#passwordChangeModal .close, #closePasswordChangeModal').forEach(function(button) {
+        // Add a click event listener to each selected button
+        button.addEventListener('click', function() {
+            // Hide the modal using Bs 5
+            const passwordChangeModalElement = document.getElementById('passwordChangeModal');
+            const passwordChangeModal = bootstrap.Modal.getInstance(passwordChangeModalElement);
+            if (passwordChangeModal) {
+                passwordChangeModal.hide();
+            }
+        });
     });
 
     // Fragment logic to open tabs and scroll to ingredient

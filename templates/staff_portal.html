@@ -20,10 +20,10 @@
             <div>
                 <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
                 <p>
-                    <a href="#passwordChangeModal" data-toggle="modal">Modify Password</a>
+                    <a href="#passwordChangeModal" data-bs-toggle="modal">Modify Password</a>
                 </p>
                 <p>
-                    <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                    <a href="#logoutModal" data-bs-toggle="modal" class="logout-prompt">Click here to logout</a>
                 </p>
             </div>
         </div>
@@ -74,10 +74,10 @@
         <div>
             <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
             <p>
-                <a href="#passwordChangeModal" data-toggle="modal">Modify Password</a>
+                <a href="#passwordChangeModal" data-bs-toggle="modal">Modify Password</a>
             </p>
             <p>
-                <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                <a href="#logoutModal" data-bs-toggle="modal" class="logout-prompt">Click here to logout</a>
             </p>
         </div>
     </div>
@@ -90,7 +90,7 @@
 
     {% else %}
     <!-- When the user is not logged in it prompts to do so -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#authModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal">
         Login/Register
     </button>
     {% endif %}
@@ -102,7 +102,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="authModalLabel">Login/Register</h5>
                         <!-- Button that closes the Modal -->
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeAuthModal">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" id="closeAuthModal">
                             <span aria-hidden="true">X</span>
                         </button>
                     </div>
@@ -111,11 +111,11 @@
                         <!-- Tab Navigation -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active text-black" data-toggle="tab" href="#login" role="tab"
+                                <a class="nav-link active text-black" data-bs-toggle="tab" href="#login" role="tab"
                                     aria-controls="login" aria-selected="true">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-black" data-toggle="tab" href="#register" role="tab"
+                                <a class="nav-link text-black" data-bs-toggle="tab" href="#register" role="tab"
                                     aria-controls="register" aria-selected="false">Register</a>
                             </li>
                         </ul>
@@ -199,7 +199,7 @@
         
                     <div class="modal-header">
                         <h5 class="modal-title" id="passwordChangeModalLabel">Change Password for <strong>{{ user.username }}</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePasswordChangeModal">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" id="closePasswordChangeModal">
                             <span aria-hidden="true">X</span>
                         </button>
                     </div>
@@ -257,7 +257,7 @@
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">X</span>
                         </button>
                     </div>
@@ -267,7 +267,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
                         <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="logout">

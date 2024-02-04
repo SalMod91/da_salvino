@@ -7,7 +7,7 @@
             <div>
                 <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
                 <p>
-                    <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                    <a href="#logoutModal" data-bs-toggle="modal" class="logout-prompt">Click here to logout</a>
                 </p>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <div>
                     <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>
                     <p>
-                        <a href="#logoutModal" data-toggle="modal" class="logout-prompt">Click here to logout</a>
+                        <a href="#logoutModal" data-bs-toggle="modal" class="logout-prompt">Click here to logout</a>
                     </p>
                 </div>
             </div>
@@ -74,7 +74,7 @@
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">X</span>
                         </button>
                     </div>
@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;No</button>
                         <form method="post" action="{% url 'staff_portal' %}" class="d-inline">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="logout">
