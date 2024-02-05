@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-size: 110%;
+    font-size: 1.1rem;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -219,7 +219,7 @@ footer {
     position: relative;
     inset: 0;
     cursor: pointer;
-    transform: rotateX(0), rotateY(0) rotateZ(0);
+    transform: rotateX(0) rotateY(0) rotateZ(0);
     display: inline-block;
     outline: 2px dashed transparent;
     transition: all 200ms ease;
@@ -230,10 +230,6 @@ footer {
     transform: rotateX(5deg) rotateY(3deg) rotateZ(.25deg);
     box-shadow: none;
 }
-
-/* .custom-button:active {
-    background-color: white;
-} */
 
 /* This section applies to menu.html */
 .nav-tabs .nav-link {
@@ -351,6 +347,10 @@ table tr td, table-dark tr td {
 
 .fixed-width {
     width: 72px;
+}
+
+legend {
+    font-size: 1.1rem;
 }
 
 /* Media Queries */

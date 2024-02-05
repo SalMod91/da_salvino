@@ -89,7 +89,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">X</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
@@ -165,7 +165,7 @@
                         <!-- Fields for editing the menu item, each id will be used by JS in order to populate the fields with data -->
                         <!-- Name Field -->
                         <div class="form-group">
-                            <label for="editMenuItemName">Name:</label>
+                            <label for="editMenuItemName"><strong>Name:</strong></label>
                             <input type="text" class="form-control" id="editMenuItemName" name="name">
 
                             <!-- Displays errors related to the 'name' field -->
@@ -180,7 +180,7 @@
 
                         <!-- Has Tomato Sauce Radio Buttons -->
                         <fieldset class="form-group">
-                            <legend>Has Tomato Sauce?</legend>
+                            <legend><strong>Has Tomato Sauce?</strong></legend>
                             <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" id="editMenuItemHasTomatoYes" name="has_tomato" value="True">
                                 <label class="form-check-label" for="editMenuItemHasTomatoYes">Yes</label>
@@ -202,7 +202,7 @@
 
                         <!-- Has Mozzarella Radio Buttons -->
                         <fieldset class="form-group">
-                            <legend>Has Mozzarella?</legend>
+                            <legend><strong>Has Mozzarella?</strong></legend>
                             <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" id="editMenuItemHasMozzarellaYes" name="has_mozzarella" value="True">
                                 <label class="form-check-label" for="editMenuItemHasMozzarellaYes">Yes</label>
@@ -224,21 +224,21 @@
 
                         <!-- Current Image Field -->
                         <div class="form-group">
-                            <p>Current Image:</p>
+                            <p><strong>Current Image:</strong></p>
                             <div>
                                 <img src="{{ pizza.image.url }}" id="currentMenuItemImage" class="edit-image-size" alt="An image depicting the currently used image for the menu item">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="editMenuImage">Change Image:</label>
+                            <label for="editMenuImage"><strong>Change Image:</strong></label>
                             <input type="file" class="form-control-file" id="editMenuImage" name="image">
                         </div>
 
                         <!-- Checkbox for removing the uploaded image -->
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="removeMenuImage" name="remove_image">
-                            <label class="form-check-label" for="removeMenuImage">Remove Image</label>
+                            <label class="form-check-label" for="removeMenuImage"><strong>Remove Image</strong></label>
                         </div>
 
                         <!-- Displays errors related to the 'image' field -->

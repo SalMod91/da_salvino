@@ -3,6 +3,6 @@ from django.views.generic import TemplateView
 
 class HomePage(TemplateView):
     """
-    View for home page
+    View for rendering home page
     """
     template_name = "index.html"
