@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editIngredientOrigin').value = ingredientOrigin;
 
             // Uncheck the checkbox from remove ingredient image
-            resetRemoveIngredientImageCheckbox()
+            resetRemoveIngredientImageCheckbox();
 
             // Set the Category field value
             const editCategoryField = document.getElementById('editCategory');
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editMenuItemName').value = menuItemName;
 
             // Uncheck the remove menu image checkbox
-            resetRemoveMenuImageCheckbox()
+            resetRemoveMenuImageCheckbox();
 
             // Checks the tomato and mozzarella checkboxes based on the retrieved values
             // Set the checked state of the checkboxes based on the data attributes
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
             addButton.classList.add('hidden');
         } else {
             // If there are fewer than 10 visible selectors makes the "Add ingredient" button visible
-            addButton.classList.remove('hidden')
+            addButton.classList.remove('hidden');
         }
     }
 
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
         editIngredientModal.show();
 
         // Uncheck the remove menu image checkbox
-        resetRemoveMenuImageCheckbox()
+        resetRemoveMenuImageCheckbox();
 
         // Set the values of the form fields based on the values stored in the hidden inputs
         document.getElementById('editIngredientName').value = document.getElementById('lastIngredientEditName').value;
@@ -487,7 +487,7 @@ document.addEventListener('DOMContentLoaded', function() {
         editMenuItemModal.show();
 
         // Uncheck the remove menu image checkbox
-        resetRemoveMenuImageCheckbox()
+        resetRemoveMenuImageCheckbox();
 
         // Set the values of the form fields based on the values stored in the hidden inputs
         document.getElementById('editMenuItemName').value = document.getElementById('lastEditName').value;
