@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from staff_portal.models import Pizza, Ingredient
 
+
 class MenuPage(TemplateView):
     """
-    A class-based view for rendering the ingredients page using Django's class TemplateView.
-    Enables the Template to display dynamic data.
+    A class-based view for rendering the ingredients page using Django's class
+    TemplateView. Enables the Template to display dynamic data.
     """
 
     # Specifies the template to be used when rendering this view
@@ -19,15 +20,16 @@ class MenuPage(TemplateView):
         customizes its content with the Pizza model.
         """
 
-        # Calls the get_context_data method from its parent class, "TemplateView"
+        # Calls the get_context_data method from parent class, "TemplateView"
         context = super().get_context_data(**kwargs)
-        
+
         # Retrieve all pizza items
         pizzas = Pizza.objects.order_by('name')
         # Add pizzas to the context
         context['pizzas'] = pizzas
 
-        # Retrieve "Pizza Dough", "Tomato Sauce" and "Mozzarella" ingredients if they exist
+        # Retrieve "Pizza Dough", "Tomato Sauce"
+        # and "Mozzarella" ingredients if they exist
         pizza_dough = Ingredient.objects.filter(name="Pizza Dough").first()
         tomato_sauce = Ingredient.objects.filter(name="Tomato Sauce").first()
         mozzarella = Ingredient.objects.filter(name="Mozzarella").first()
