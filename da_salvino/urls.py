@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from staff_portal.views import create_ingredient, manage_ingredients, create_menu_item, manage_menu_items
+from staff_portal.views import (
+    create_ingredient, manage_ingredients,
+    create_menu_item, manage_menu_items
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +30,5 @@ urlpatterns = [
     path('add_ingredient', create_ingredient, name='add_ingredient'),
     path('manage_ingredients', manage_ingredients, name='manage_ingredients'),
     path('add_menu_item', create_menu_item, name='add_menu_item'),
-    path('manage_menu_items', manage_menu_items, name = 'manage_menu_items')
+    path('manage_menu_items', manage_menu_items, name='manage_menu_items')
 ]
