@@ -1,3 +1,5 @@
+/* global bootstrap */ // Tells JSHint that 'bootstrap' is a global variable
+
 // Waits for the DOM to be fully loaded before executing
 document.addEventListener('DOMContentLoaded', function() {
     // Select all elements with the class 'dropdown-toggle'
