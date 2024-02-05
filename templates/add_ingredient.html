@@ -2,7 +2,7 @@
 {% load static %} 
 {% block content %}
     {% if user.is_authenticated and user.is_staff %}
-        <!-- Section for profile modification/log out -->
+        <!-- Section for profile log out -->
         <div class="d-flex justify-content-end margin-right">
             <div>
                 <span class="text-white">You are logged in as <strong>{{ user.username }}</strong></span>

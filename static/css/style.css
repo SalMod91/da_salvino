@@ -415,3 +415,9 @@ legend {
         font-size: 90%;
     }
 }
+
+@media screen and (max-width:576px) {
+    body {
+        font-size: 0.8rem;
+    }
+}
