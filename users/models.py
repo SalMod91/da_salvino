@@ -1,9 +1,14 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager, PermissionsMixin
+)
 from django.db import models
+
 
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None, **extra_fields):
-        """Create and save a regular user with the given username and password."""
+        """
+        Create and save a regular user with the given username and password.
+        """
         if not username:
             raise ValueError('The given username must be set')
         user = self.model(username=username, **extra_fields)
@@ -24,18 +29,26 @@ class UserManager(BaseUserManager):
 
 class CustomStaffUser(AbstractBaseUser, PermissionsMixin):
     """
-    Custom User for Staff
+    Custom User model for Staff that replaces the default Django user model.
+
+    This model uses a username for authentication instead of an email address
+    and includes additional fields like staff, admin, and is_approved flags.
     """
+
+    # Username field with a maximum length of 15 characters, must be unique
     username = models.CharField(
         max_length=15,
         unique=True,
     )
+    # Boolean fields to determine if a user is staff, admin, or approved
     staff = models.BooleanField(default=True)
     admin = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
 
+    # Specify the field used for logging in
     USERNAME_FIELD = 'username'
 
+    # Custom manager for creating users and superusers
     objects = UserManager()
 
     class Meta:
