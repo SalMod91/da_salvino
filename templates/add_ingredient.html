@@ -43,6 +43,7 @@
         </div>
 
         {% elif user.is_authenticated %}
+
             <!-- Section for profile modification/log out -->
             <div class="d-flex justify-content-end margin-right">
                 <div>
@@ -54,16 +55,71 @@
             </div>
 
             <!-- Content for authenticated non-staff users -->
-            <div class="container mt-4 text-white text-center">
-                <h2>Welcome, <strong>{{ user.username }}</strong>!</h2>
-                <p>You are logged in, but only staff members can modify ingredients and menu items.</p>
+            <div class="container mt-4 mb-4" id="nonstaff-container">
+                <div class="row align-items-center alert alert-light m-0 g-0 p-0">
+
+                    <!-- Heading -->
+                    <div class="col d-flex flex-column justify-content-center p-5">
+                        <h3 class="alert-heading text-center"><strong>Restricted Access</strong></h3>
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <!-- Text Message -->
+                    <div class="col d-flex flex-column justify-content-center p-5">
+                        <h4 class="mt-3">Welcome, <strong>{{ user.username }}</strong>!</h4>
+                        <p>You are logged in, but only staff members can access this page.</p>
+                        <p>Please return to the home page.</p>
+                    </div>
+
+                    <!-- Waiter Image -->
+                    <div class="col p-0 text-right">
+                        <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1707254198/image/waiter.png" alt="Waiter" class="img-fluid">
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <!-- Additional Section for Login/Register Button -->
+                    <div class="col d-flex justify-content-center p-3">
+                        <a href="{% url 'home' %}" class="btn btn-primary" aria-label="Home Page">Home Page</a>
+                    </div>
+
+                </div>
             </div>
     
         {% else %}
-            <div class="container mt-4 text-white text-center">
-                <!-- When the user is not logged in it prompts to do so -->
-                <p>Only approved Staff Users are allowed to add Ingredients. Please <a href="{% url 'staff_portal' %}">Sign In</a>.</p>
+
+        <!-- When the user is not logged in it prompts to do so -->
+        <div class="container mt-4 mb-4" id="login-prompt-container">
+            <div class="row align-items-center alert alert-light m-0 g-0 p-0">
+
+                <!-- Heading -->
+                <div class="col d-flex flex-column justify-content-center p-5">
+                    <h3 class="alert-heading text-center"><strong>Restricted Access</strong></h3>
+                </div>
+
+                <div class="w-100"></div>
+
+                <!-- Text Message -->
+                <div class="col d-flex flex-column justify-content-center p-5">
+                    <p class="mt-3">Only authorized personnel allowed.</p>
+                    <p>Please head to the staff portal and sign in.</p>
+                </div>
+    
+                <!-- Waiter Image -->
+                <div class="col p-0 text-right">
+                    <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1707254198/image/waiter.png" alt="Waiter" class="img-fluid">
+                </div>
+    
+                <div class="w-100"></div>
+    
+                <!-- Additional Section for Login/Register Button -->
+                <div class="col d-flex justify-content-center p-3">
+                    <a href="{% url 'staff_portal' %}" aria-label="This link will redirect you to the staff portal" class="btn btn-primary">Staff Portal</a>
+                </div>
+    
             </div>
+        </div>
         {% endif %}
 
         <!-- Modal for logout confirmation, not focusable through tab buttons and hidden from assistive technologies -->

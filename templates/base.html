@@ -22,11 +22,11 @@
             <div class="width-60">
                 <!-- Navigation Bar -->
                 <nav class="navbar navbar-expand-lg navbar-dark">
-                    <a class="logo navbar-brand" href="{% url 'home' %}" aria-label="Home Page">
+                    <a class="logo navbar-brand" href="{% url 'home' %}" aria-label="The logo of the pizzeria that will redirect you to the homepage">
                         <img src="{% static 'media/favicon.ico' %}" alt="Pizzeria Logo">
                     </a>
 
-                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false" aria-label="Toggle navigation list">
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false" aria-label="Toggle hamburger menu">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
@@ -34,29 +34,29 @@
                         <!-- Navigation items with dynamic highlighting for the current page -->
                         <ul class="navbar-nav">
                             <li class="nav-item pe-3">
-                                <a class="nav-link text-white {% if request.path == '/' %}active-page{% endif %}" href="{% url 'home' %}"><i class="fa-solid fa-house pe-2"></i>Home</a>
+                                <a class="nav-link text-white {% if request.path == '/' %}active-page{% endif %}" href="{% url 'home' %}"><i class="fa-solid fa-house pe-2" aria-label="This link will redirect you to the homepage"></i>Home</a>
                             </li>
                             <li class="nav-item pe-3">
-                                <a class="nav-link text-white {% if request.path == '/menu/' %}active-page{% endif %}" href="{% url 'menu' %}"><i class="fa-solid fa-utensils pe-2"></i>Menu</a>
+                                <a class="nav-link text-white {% if request.path == '/menu/' %}active-page{% endif %}" href="{% url 'menu' %}"><i class="fa-solid fa-utensils pe-2" aria-label="This link will redirect you to the menu page"></i>Menu</a>
                             </li>
                             <li class="nav-item pe-3">
-                                <a class="nav-link text-white {% if request.path == '/ingredients/' %}active-page{% endif %}" href="{% url 'ingredients' %}"><i class="fa-solid fa-pizza-slice pe-2"></i>Ingredients</a>
+                                <a class="nav-link text-white {% if request.path == '/ingredients/' %}active-page{% endif %}" href="{% url 'ingredients' %}"><i class="fa-solid fa-pizza-slice pe-2" aria-label="This link will redirect you to the ingredients page"></i>Ingredients</a>
                             </li>
                             <!-- Conditional display for staff portal link based on user authentication and staff status -->
                             {% if user.is_authenticated and user.is_staff %}
                             <li class="nav-item dropdown pe-3">
                                 <div class="btn-group dropend">
-                                    <a class="nav-link text-white {% if request.path == '/staff_portal/' or request.path == '/add_ingredient' or request.path == '/manage_ingredients' or request.path == '/add_menu_item' or request.path == '/manage_menu_items'%}active-page{% endif %}" id="staff-portal-link" href="{% url 'staff_portal' %}" role="button">
+                                    <a class="nav-link text-white {% if request.path == '/staff_portal/' or request.path == '/add_ingredient' or request.path == '/manage_ingredients' or request.path == '/add_menu_item' or request.path == '/manage_menu_items'%}active-page{% endif %}" id="staff-portal-link" href="{% url 'staff_portal' %}" role="button" aria-label="This link will redirect you to the staff portal">
                                         <i class="fa-solid fa-users pe-2"></i>Staff Portal
                                     </a>
                                     <button class="btn dropdown-toggle dropdown-toggle-split {% if request.path == '/add_ingredient' or request.path == '/manage_ingredients' or request.path == '/add_menu_item' or request.path == '/manage_menu_items' %}active-dropdown{% endif %}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="visually-hidden">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item {% if request.path == '/add_ingredient' %}active-dropdown{% endif %}" href="{% url 'add_ingredient' %}">Add Ingredients</a></li>
-                                        <li><a class="dropdown-item {% if request.path == '/manage_ingredients' %}active-dropdown{% endif %}" href="{% url 'manage_ingredients' %}">Manage Ingredients</a></li>
-                                        <li><a class="dropdown-item {% if request.path == '/add_menu_item' %}active-dropdown{% endif %}" href="{% url 'add_menu_item' %}">Add Menu Item</a></li>
-                                        <li><a class="dropdown-item {% if request.path == '/manage_menu_items' %}active-dropdown{% endif %}" href="{% url 'manage_menu_items' %}">Manage Menu Item</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/add_ingredient' %}active-dropdown{% endif %}" href="{% url 'add_ingredient' %}" aria-label="This link will redirect you to the add ingredient page">Add Ingredients</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/manage_ingredients' %}active-dropdown{% endif %}" href="{% url 'manage_ingredients' %}" aria-label="This link will redirect you to the manage ingredients">Manage Ingredients</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/add_menu_item' %}active-dropdown{% endif %}" href="{% url 'add_menu_item' %}" aria-label="This link will redirect you to the add menu item page">Add Menu Item</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/manage_menu_items' %}active-dropdown{% endif %}" href="{% url 'manage_menu_items' %}" aria-label="This link will redirect you to the manage menu items page">Manage Menu Item</a></li>
                                     </ul>
                                 </div>
                             </li>                           

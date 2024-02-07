@@ -26,7 +26,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-salmod91-temporaryname-px1vuqq1u88.ws-eu108.gitpod.io', 'da-salvino-0dcb8f7f1479.herokuapp.com', '8000-salmod91-temporaryname-px1vuqq1u88.ws-eu107.gitpod.io']
 
@@ -66,7 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'users.middleware.AutoLogoutMiddleware',
+    'users.middleware.AutoLogoutMiddleware'
 ]
 
 ROOT_URLCONF = 'da_salvino.urls'
