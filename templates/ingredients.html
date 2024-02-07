@@ -9,7 +9,7 @@
     
     <div class="container mt-5">
         <!-- Dynamically create tabs for each category -->
-        <ul class="nav nav-tabs justify-content-center">
+        <ul class="nav nav-tabs justify-content-center" id="ingredient-tabs">
             <!-- Loop through each category in the categorized_ingredients context -->
             {% for category, ingredients in categorized_ingredients.items %}
                 <li class="nav-item">

@@ -258,6 +258,10 @@ footer {
     margin-bottom: 3rem;
 }
 
+#menu-tabs .nav-link.active:hover, #ingredient-tabs .nav-link.active:hover {
+    color: #fff !important;
+}
+
 /* This section applies to the staff portal */
 
 #authModal .nav-tabs, #authModal .nav-link {
@@ -355,6 +359,14 @@ legend {
 
 #login-prompt-container, #nonstaff-container {
     max-width: 500px;
+}
+
+.origin-input {
+    width: 200px;
+}
+
+.form-group {
+    margin-bottom: 5px;
 }
 
 /* Media Queries */
