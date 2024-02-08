@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+  <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+      <div class="text-center">
+          <h1 class="display-1 fw-bold">500</h1>
+          <p class="fs-3"> <span class="text-danger">Opps!</span> The server encountered an error.</p>
+          <p class="lead">
+              Your request was unable to be processed.
+            </p>
+            <a href="{% url 'home' %}" class="btn btn-primary" aria-label="This link will redirect you to the homepage">Go Home</a>
+            <a class="btn btn-danger" href="javascript:history.back()" aria-label="Return to the previous page">Go Back</a>
+  </div>
+{% endblock %}
