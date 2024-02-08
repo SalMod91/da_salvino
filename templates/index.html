@@ -6,18 +6,18 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <!-- Hero text introducing the user to the website -->
-            <div class="col-xl-6 col-lg-4 text-white text-right justify-content-center">
+            <div class="col-xl-6 col-lg-6 text-white text-right justify-content-center">
                 <h1 class="mb-5" id="hero-text">DA SALVINO</h1>
                 <h2 class="mb-5">Italian Cuisine</h2>
                 <p>Where you can enjoy crunchy pizza baked in a wood oven</p>
 
                 <!-- Further Navigation buttons directing the user to the menu or the ingredients -->
-                <a href="{% url 'menu' %}" class="btn custom-button mt-3 text-white align-items-center">View the Menu</a>
-                <a href="{% url 'ingredients' %}" class="btn custom-button mt-3 text-white margin-left">View our Ingredients</a>
+                <a href="{% url 'menu' %}" class="btn custom-button mt-3 text-white align-items-center" aria-label="This link will redirect you to the menu page">View the Menu</a>
+                <a href="{% url 'ingredients' %}" class="btn custom-button mt-3 text-white margin-left" aria-label="This link will redirect you to the ingredients page">View our Ingredients</a>
             </div>
 
             <!-- Hero image -->
-            <div class="col-xl-6 col-lg-8 small-text-center">
+            <div class="col-xl-6 col-lg-6 text-center">
                 <img src="https://res.cloudinary.com/dplsavizt/image/upload/v1706345727/image/fxu5pjucplk6vzsqmzac.webp" alt="Pizza" class="img-fluid w-75 img-sm-w-50">
             </div>
         </div>
