@@ -117,7 +117,7 @@ footer {
     transform: scale(1.4);
 }
 
-/* Defines the 'wiggle' animation */
+/* Defines the 'wiggle' animation of the footer phone icon */
 @-webkit-keyframes wiggle {
     0% { transform: rotate(-5deg); }
     100% { transform: rotate(5deg); }

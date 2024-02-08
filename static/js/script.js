@@ -124,8 +124,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Opens the Modal to the Registration/Login/Password Change Tab if there are form errors
-    function openLoginRegisterTab() {
+    /**
+     * Opens the authentication modal to the correct tab based on the presence of form errors.
+     * 
+     * This function checks for errors within the login, registration, and password change forms.
+     * If any errors are found, it displays the authModal and automatically navigates to the tab where the errors occurred.
+     * Additionally, it sets up an event listener to clear error messages when the modal is closed, ensuring
+     * a clean state for the next time the modal is opened.
+     * */
+    function openAuthModalOnError() {
         const loginFormErrors = document.querySelectorAll('#login .alert-danger').length > 0;
         const registrationFormErrors = document.querySelectorAll('#register .alert-danger').length > 0;
         const passwordChangeFormErrors = document.querySelectorAll('#passwordChangeModal .alert-danger').length > 0;
@@ -133,7 +140,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check for the authModal existence
         const authModalElement = document.getElementById('authModal');
         if (authModalElement) {
+            
             const authModal = new bootstrap.Modal(authModalElement);
+
+            // Event listener for clearing the error messages when the authModal is closed
+            authModalElement.addEventListener('hide.bs.modal', function () {
+                // Selects the error messages inside the authModal
+                authModalElement.querySelectorAll('.alert-danger').forEach(function (errorMessage) {
+                    // Hides the content of each error message element
+                    errorMessage.classList.add('hidden');
+                });
+            });
+
             // Check for specific form errors to decide which tab to show
             if (registrationFormErrors) {
                 authModal.show();
@@ -145,13 +163,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('#authModal .nav-tabs a[href="#login"]').click();
             }
         }
-    
-        // Check for the passwordChangeModal existence
-        const passwordChangeModalElement = document.getElementById('passwordChangeModal');
-        if (passwordChangeModalElement && passwordChangeFormErrors) {
-            const passwordChangeModal = new bootstrap.Modal(passwordChangeModalElement);
-            passwordChangeModal.show();
-        }
+        
+            // Check for the passwordChangeModal existence
+            const passwordChangeModalElement = document.getElementById('passwordChangeModal');
+            
+            if (passwordChangeModalElement && passwordChangeFormErrors) {
+                const passwordChangeModal = new bootstrap.Modal(passwordChangeModalElement);
+
+                // Event listener for clearing the error messages when the passwordChangeModal is closed
+                passwordChangeModalElement.addEventListener('hide.bs.modal', function () {
+                    // Selects the error messages inside the authModal
+                    passwordChangeModalElement.querySelectorAll('.alert-danger').forEach(function (errorMessage) {
+                        // Hides the content of each error message element
+                        errorMessage.classList.add('hidden');
+                    });
+                });
+                passwordChangeModal.show();
+            }
     }
 
     // Assigns all buttons with the class 'delete-ingredient-button'to a constant variable
@@ -619,5 +647,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    openLoginRegisterTab();
+    openAuthModalOnError();
 });
