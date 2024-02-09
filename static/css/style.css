@@ -229,6 +229,7 @@ footer {
     inset: 6px 0 5.5px 0;
     transform: rotateX(5deg) rotateY(3deg) rotateZ(.25deg);
     box-shadow: none;
+    transition: box-shadow 100ms, transform 100ms, inset 100ms;
 }
 
 /* This section applies to menu.html */
