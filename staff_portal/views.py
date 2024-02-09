@@ -180,6 +180,12 @@ def manage_ingredients(request):
             # Fetch the corresponding ingredient object from the database
             # or return a 404 if not found
             ingredient = get_object_or_404(Ingredient, id=ingredient_id)
+
+            # Get the current image URL if present
+            existing_image_url = (
+                ingredient.image.url if ingredient.image else None
+            )
+
             # This pre-fills the form with the ingredient's
             # existing data for editing
             form = IngredientForm(
@@ -198,8 +204,9 @@ def manage_ingredients(request):
                     # Resets the image field to None
                     ingredient.image = None
 
-                # Checks if the submitted form data is valid
+                # Save the form and the ingredient instance
                 form.save()
+
                 # Displays a success message indicating the ingredient
                 # has been updated successfully
                 messages.success(request, "Ingredient updated successfully.")
@@ -209,17 +216,15 @@ def manage_ingredients(request):
                 return redirect('manage_ingredients')
 
             else:
-                # Update session data for invalid form submission
+                # Store the current edit details in the session for
+                # re-rendering the form with validation errors
                 request.session['last_ingredient_edit_details'] = {
                     'edit_id': ingredient_id,
-                    'name': form.cleaned_data.get('name', ''),
-                    'category': form.cleaned_data.get('category', '').id
-
-                    if form.cleaned_data.get('category', '') else '',
-                    'description': form.cleaned_data.get('description', ''),
-                    'origin': form.cleaned_data.get('origin', ''),
-                    'image_url': form.cleaned_data.get('image', '').url
-                    if form.cleaned_data.get('image', '') else ''
+                    'name': form.data.get('name', ''),
+                    'category': form.data.get('category', ''),
+                    'description': form.data.get('description', ''),
+                    'origin': form.data.get('origin', ''),
+                    'image_url': existing_image_url
                 }
 
                 # If the form data is not valid,
@@ -239,7 +244,7 @@ def manage_ingredients(request):
                     }
                 )
 
-        # Adds a general error message if an unexpected action is encountered
+        # Handle unexpected actions
         else:
             messages.error(request, "Error updating ingredient.")
 
@@ -361,6 +366,9 @@ def manage_menu_items(request):
                 request.POST, request.FILES, instance=menu_item
                 )
 
+            # Store the original image URL if any
+            original_image_url = menu_item.image.url if menu_item.image else None
+
             if form.is_valid():
                 # m2m relationships require the parent object to be saved first
                 # Save the form to create a new Pizza instance,
@@ -410,7 +418,7 @@ def manage_menu_items(request):
                     'has_mozzarella': form.cleaned_data.get(
                         'has_mozzarella', False),
                     'has_tomato': form.cleaned_data.get('has_tomato', False),
-                    'image_url': menu_item.image.url if menu_item.image else '',
+                    'image_url': original_image_url,
                     'ingredient_ids': ','.join(
                         str(ingredient.id) for ingredient in menu_item.ingredients.all()
                     ),
