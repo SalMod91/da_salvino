@@ -160,6 +160,12 @@ class Pizza(models.Model):
       created. This field is automatically set.
     - updated_at (DateTimeField): Date and time when the Menu Item was last
       updated. This field is automatically updated.
+    - created_by (ForeignKey): The user who created the Menu Item.
+      This field is a ForeignKey that references the user model, allowing
+      to track who created each ingredient instance.
+    - updated_by (ForeignKey): The user who last updated the Menu Item.
+      Similar to created_by, this field references the user model and tracks
+      who made the last update to the ingredient instance.
     """
 
     # Name of the pizza; max length 20 characters

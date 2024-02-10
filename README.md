@@ -27,6 +27,12 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
         - [Staff Portal](#staff-portal)
         - [Staff Portal Pages](#staff-portal-pages)
         - [Site Flow](#site-flow)
+    - [Skeleton](#skeleton)
+        - [Wireframes & Design Evolution](#wireframes-and-design-evolution)
+    - [Surface](#surface)
+        - [Colour Scheme](#colour-scheme)
+        - [Typography](#typography)
+    - [Database Structure](#database-structure)
 
 ## UX
 
@@ -140,27 +146,50 @@ If the visitor users may happen in the future to land inside the Staff Portal th
 <details>
 <summary>Click to expand</summary>
 
-#### Wireframes
+#### Wireframes and Design Evolution
+The development of the website underwent significant modifications from the initial wireframes to the completed product, most notably:
+- The Home Page initially included a "Most Liked Dishes" feature, which would showcase a scrolling list of user favorites. This idea was set aside because the functionality to "like" a dish has not yet been introduced.
 
+- The initial design intended for a reversed row layout on the ingredient page. This concept was reconsidered to achieve a more visually comfortable and straightforward presentation for users.
 
+- Staff Portal was developed after the initial ideas, onsequently, there were no original wireframes for this feature.
 
+    - Mobile Home Page
 
+        ![Mobile Home Wireframe](/static/media/readme/wireframe-home-mobile.png)
 
+    - Desktop Home Page
 
+        ![Mobile Home Wireframe](/static/media/readme/wireframe-home.png)
 
+    - Mobile Menu/Ingredient Page
 
+        ![Mobile Home Wireframe](/static/media/readme/wireframe-menu-mobile.png)
 
+    - Desktop Menu Page
 
+        ![Mobile Home Wireframe](/static/media/readme/wireframe-menu.png)
 
+    - Desktop Ingredient Page
 
+        ![Mobile Home Wireframe](/static/media/readme/wireframe-ingredients.png)
+</details>
 
+### Surface
+<details>
+<summary>Click to expand</summary>
 
+#### Colour Scheme
+Upon falling in love with a dark chalkboard background found on Canva, i decided to center the font color scheme around it, opting for white text to ensure strong contrast and readability against the dark background. This choice was made to guarantee that the text stands out clearly and is easily readable.
 
+#FFB018 has been chosen purely for nostalgic reasons, as it was also used in my first project and first time writing code completely indepedent ever. Although the choice is nostalgic, it still offers good visibility against a dark background, ensuring interactive elements and interactive feedback are easily recognizable.
 
+![Colour Palette](/static/media/readme/colour-palette.png)
 
+#### Typography
+During the process of exploring Google Fonts for the website, I also considered the importance of a reliable fallback font. Initially, i chose Times New Roman to take on the job as a fallback font and upon implementation it became clear to me that this classic font also perfectly complements the website's theme. Its professional appearance aligns with the operational needs of the staff portal, while its timeless elegance enhances the overall layout of the website, marrying functionality with style.
 
+While a different font for the headings could have added further distinction to the website's design, I ultimately chose to maintain consistency by using the same font throughout.
+</details>
 
-
-
-
-
+### Database Structure
