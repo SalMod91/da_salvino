@@ -112,7 +112,18 @@ def create_ingredient(request):
     if request.method == 'POST':
         form = IngredientForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            # Save the form but don't commit to the database yet
+            ingredient = form.save(commit=False)
+
+            # Check if this is a new instance (recognized by no PK)
+            if not ingredient.pk:
+                # Set the creator of the ingredient
+                ingredient.created_by = request.user
+            # Set the user who last updated the ingredient
+            ingredient.updated_by = request.user
+
+            # Saves the ingredients instance to the database
+            ingredient.save()
             messages.success(request, "Ingredient created successfully.")
             return redirect('staff_portal')
 
@@ -194,6 +205,11 @@ def manage_ingredients(request):
 
             # Checks if the submitted form data is valid
             if form.is_valid():
+
+                # Save the form but don't commit to the database yet
+                ingredient = form.save(commit=False)
+                # Set updated_by to the current user
+                ingredient.updated_by = request.user
 
                 # Executes if the remove image checkbox is checked
                 if 'remove_image' in request.POST:
@@ -280,6 +296,13 @@ def create_menu_item(request):
         # Save the form to create a new Pizza instance,
         # but don't commit to the database yet
         pizza = form.save(commit=False)
+
+        # Check if this is a new instance (recognized by no PK)
+        if not pizza.pk:
+            # Set the creator of the menu item
+            pizza.created_by = request.user
+        # Set the user who last updated the menu item
+        pizza.updated_by = request.user
         # Manually save the Pizza instance to the database
         pizza.save()
         # Save the many-to-many fields of the form
@@ -374,6 +397,9 @@ def manage_menu_items(request):
                 # Save the form to create a new Pizza instance,
                 # but don't commit to the database yet
                 pizza = form.save(commit=False)
+
+                # Set updated_by to the current user
+                pizza.updated_by = request.user
 
                 # Executes if the remove image checkbox is checked
                 if 'remove_image' in request.POST:

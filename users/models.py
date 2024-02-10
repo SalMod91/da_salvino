@@ -1,6 +1,7 @@
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 
@@ -39,6 +40,7 @@ class CustomStaffUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         max_length=15,
         unique=True,
+        validators=[MinLengthValidator(3)],
     )
     # Boolean fields to determine if a user is staff, admin, or approved
     staff = models.BooleanField(default=True)

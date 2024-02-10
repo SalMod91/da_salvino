@@ -44,6 +44,12 @@ class Ingredient(models.Model):
       created. This field is automatically set.
     - updated_at (DateTimeField): Date and time when the ingredient was last
       updated. This field is automatically updated.
+    - created_by (ForeignKey): The user who created the ingredient.
+      This field is a ForeignKey that references the user model, allowing
+      to track who created each ingredient instance.
+    - updated_by (ForeignKey): The user who last updated the ingredient.
+      Similar to created_by, this field references the user model and tracks
+      who made the last update to the ingredient instance.
 
     The save method is overridden to handle image uploads.
     If an image is provided, it is uploaded to Cloudinary and the URL is stored
@@ -55,11 +61,25 @@ class Ingredient(models.Model):
     category = models.ForeignKey(
         IngredientCategory, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
-    origin = models.TextField(max_length=100, blank=True)
+    origin = models.TextField(max_length=40, blank=True)
     image = CloudinaryField(
         'image', blank=True, null=True, folder='ingredients')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='ingredient_created',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='ingredient_updated',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -68,7 +88,7 @@ class Ingredient(models.Model):
         """
         Overrides the default save method to handle image uploads.
         If an image file is present,it saves the ingredient without the image,
-         uploads the image to Cloudinary to generate a public ID,
+        uploads the image to Cloudinary to generate a public ID,
         and then saves the ingredient again with the updated image URL.
         This approach ensures that the image is stored with a consistent
         naming convention based on the ingredient's ID.
@@ -136,6 +156,10 @@ class Pizza(models.Model):
       Relates to the Ingredient model
     - image (CloudinaryField): An image of the pizza,
       stored and managed via Cloudinary
+    - created_at (DateTimeField): Date and time when the Menu Item was
+      created. This field is automatically set.
+    - updated_at (DateTimeField): Date and time when the Menu Item was last
+      updated. This field is automatically updated.
     """
 
     # Name of the pizza; max length 20 characters
@@ -152,6 +176,23 @@ class Pizza(models.Model):
     # Image field using Cloudinary for image hosting
     # 'blank=True, null=True' means the image is optional
     image = CloudinaryField('image', blank=True, null=True, folder='pizzas')
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='pizza_created',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='pizza_updated',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         """
