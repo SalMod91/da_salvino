@@ -32,7 +32,8 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
     - [Surface](#surface)
         - [Colour Scheme](#colour-scheme)
         - [Typography](#typography)
-    - [Database Structure](#database-structure)
+- [Database Structure](#database-structure)
+- [Agile Development](#agile-development)
 
 ## UX
 
@@ -192,4 +193,181 @@ During the process of exploring Google Fonts for the website, I also considered 
 While a different font for the headings could have added further distinction to the website's design, I ultimately chose to maintain consistency by using the same font throughout.
 </details>
 
-### Database Structure
+## Database Structure
+This ERD represents the database schema for the  application.
+- Custom Staff User
+
+    The Django User Model has been customized to "Custom Staff User".
+
+    Only usernames are required for staff logins, while an admin-granted approval status is necessary for operational access.
+
+    The staff portal is fortified with a security measure requiring admin approval for new registrations. This ensures that even if visitors accidentally find their way to the staff portal and register, they must be authorized by an admin to gain access.
+
+- Ingredient Categories
+
+    Ingredient categories are exclusively managed by the admin, with the ability to create, modify, and delete them. Any deletion of a category will result in the removal of all associated ingredients, demonstrating a cascading delete functionality.
+
+- Ingredients
+
+    Staff users have the authority to create ingredients, which are then utilized in menu items and displayed on the ingredients page. A default image is assigned in the absence of an uploaded image. Uploaded images are named using the ingredient's ID for consistency and to streamline management. To prevent cloud storage clutter, replacing an image results in the original being overwritten. Additionally, deleting an ingredient will also remove its associated image.
+
+- Pizza Menu Item
+
+    Staff users have also the authority to create pizza menu items with two predefined boolean fields: 'has tomato' and 'has mozzarella'. This design choice simplifies the process by providing quick access to these staple ingredients, eliminating the need to select them from a list each time. Other ingredients can be added as needed from the created selection. Image management for pizza menu items mirrors that of ingredients, with the same naming conventions and overwrite protocols to ensure efficient use of cloud storage.
+
+
+![Database ERD](/static/media/readme/database-erd.png)
+
+## Agile Development
+Throughout the development of the project, a physical Kanban board served as the primary tool for tracking progress due to initial insecurities about using GitHub issues.
+
+As the README was compiled my familiarity with GitHub's project management grew, revealing the platform's ease of use, wich in hindsight could have proven useful.
+
+User Stories were retrospectively documented withing GitHub project.
+
+Despite the traditional approach with a phisical Kanban board and post-its, Agile principles were upheld, including the assignment of MoSCoW priorities to focus on delivering a minimum viable product (MVP) in the time given.
+
+<details>
+<summary>Sprint Details</summary>
+
+- Sprint 1 - Planning and Initial Setup<br>
+The initial phase of development focused on laying the foundational elements of the project.
+
+    
+    - Initial Sketches <br>
+        Created wireframes and database designs to establish the visual layout and data structure.
+
+    - Environment Setup <br>
+        Configured the development environment using Gitpod, integrating Django as the web framework, PostgreSQL for database management, and Cloudinary for image storage solutions.
+
+    - Deployment <br>
+        Deployed the initial build on Heroku.
+
+- Sprint 2 - Navigation and Page Content<br>
+    This sprint established the core navigational and content framework of the website.<br>
+    The focus was on structuring the website for ease of navigation and preparing content placeholders. <br>
+
+    - Navigation Bar <br>
+        Implemented a navigation bar to guide users through the website,  with attention to ensuring its adaptability across various devices and screen sizes.
+
+    - Footer <br>
+        Added a footer section, providing additional information and navigation options, adaptability across various devices and screen sizes partly handled but not optimized.
+
+    - Home Page Content <br>
+        Drafted initial content for the home page to welcome users.
+    
+    - Menu Page <br>
+        Developed the menu page with temporary content to layout the structure for future menu items.
+    
+    - Ingredients Page <br>
+        Developed the ingredients page with temporary content to layout the structure for future ingredients.
+
+- Sprint 3 - User Management and Authentication<br>
+
+    Facing the inevitable, this sprint marked the initial dive into the database, a step i could no longer postpone as the project's further development depended on it.<br>
+
+    Given the database structure, it became essential to establish a user management system first, as it laid the foundation of the operational processes.<br>
+    
+    - Custom Staff User Model <br>
+        Developed to tailor user authentication and roles, specifically catering to staff functionalities.
+
+    - User Authentication <br>
+        Integrated Django's allauth library to manage user authentication processes, including login, registration, and password management.
+
+    - Interactive Forms and Modals <br>
+        Implemented forms and views for user login and registration, alongside modals for login, logout, and password modification, enhancing user interaction.
+
+- Sprint 4 -  Ingredient Model and Addition Functionality<br>
+This sprint focused on establishing the ingredient component of the database.<br>
+This phase was instrumental in enhancing the site's capability to catalog and manage ingredients efficiently, setting the groundwork for menu item development.
+
+    - Ingredient Model <br>
+        Introduced the initial ingredient model along with necessary views and forms.
+    
+    - Add Ingredient Page <br>
+        Developed a dedicated page for adding ingredients, incorporating error management to ensure smooth and accurate ingredient submissions.
+
+- Sprint 5 - Managing Ingredients<br>
+The fifth sprint advanced the ingredient management system by introducing functionalities for reading, modifying, and efficiently handling ingredient data.
+This sprint significantly improved the backend's usability, making ingredient management more accessible and error-resistant.
+    
+    - Ingredient Management Page <br>
+        Implemented a page for overseeing the existing ingredients, allowing for editing and deletion.
+    
+    - Ingredient-Specific Modals <br>
+        Introduced modals that open for each ingredient, facilitating detailed viewing and editing directly from the management page.
+    
+    - Confirmation Modals <br>
+        Added confirmation prompts for ingredient deletion.
+
+- Sprint 6 - Pizza Model and Addition Functionality <br>
+The final requirement for the planned MVP, the addition of the menu item. <br>
+This sprint added to the website a menu addition ability, enabling a versatile and user-friendly interface for adding pizza items to the menu.
+
+    - Pizza Model Implementation <br>
+        Developed the pizza model to encapsulate all necessary data attributes, including ingredient selections and boolean fields for common toppings like tomato and mozzarella.
+    
+    - Add Pizza Page <br>
+        Introduced a dedicated page for adding pizza items to the menu, complete with views and forms tailored to the process.
+    
+    - Ingredient Selectors <br>
+        Integrated ingredient selectors, allowing staff to dynamically read from the existing ingredients model and incorporating it into the new menu item.
+
+- Sprint 7 - Managing Pizza Menu Items <br>
+Sprint 7 focused on the management of pizza menu items, introducing comprehensive editing and deletion capabilities.
+This sprint significantly improved the backend interface for pizza menu management, making the process of editing and deleting items more intuitive and error-proof.
+
+    - Edit Menu Page <br>
+        A new page was added to facilitate the editing of existing pizza menu items, complete with associated views and URLs for seamless navigation and functionality.
+    
+    - Edit Functionality <br>
+        Implemented the ability for staff to modify details of pizza menu items.
+    
+    - Delete Functionality <br>
+        Introduced a delete option for pizza menu items.
+    
+    - Menu Item and Deletion Modals <br>
+        Similar to ingredient management, modals were added for each pizza item to facilitate editing, and confirmation modals were implemented for deletions to prevent accidental loss.
+    
+    - JavaScript Enhancements <br>
+        Developed JavaScript functionality to re-open modals upon submission failure, ensuring that users can correct errors without losing their progress or having to restart the process.
+
+- Sprint 8 - Finalizing Ingredients Page <br>
+Focused on finalizing the ingredients page, removing the temporary content and adding the dynamic rendering of the page showcasing the ingredients in the database.
+
+    - Dynamic Rendering <br>
+        Implemented a dynamic rendering system on the ingredients page, allowing for the display of each ingredient from the model. This ensures that all current ingredients are visible to users, reflecting real-time updates.
+    
+    - Categorization and Tabs <br>
+        Ingredients organized in tabs according to their categories, making navigation and exploration of different types of ingredients more intuitive and user-friendly.
+
+- Sprint 9 - Finalizing Menu Page <br>
+This sprint was dedicated to enhancing the menu page, paralleling the dynamic and interactive functionalities established in the ingredients management system. <br>
+Furthermore improved the ingredients management system by mirroring the menu management system.
+
+    - Dynamic Menu Rendering <br>
+        Adopted a dynamic rendering approach for the menu page, ensuring that all menu items are displayed directly from the model. This allows for real-time reflection of the menu offerings.
+    
+    - JavaScript Enhancements <br>
+        Applied the JavaScript functionality of the menu management to the ingredient management, mirroring the process to maintain a consistent user experience and reduce frustration during data entry corrections.
+    
+    - Ingredient Links <br>
+        Added hyperlinks to the ingredients listed in menu items, connecting users to the detailed ingredients page.
+
+- Sprint 10 - Enhancing Responsiveness
+In Sprint 10, the project's focus shifted towards optimizing the website's responsiveness of all elements, ensuring a seamless and accessible experience across all devices.
+
+    - Responsiveness Optimization <br>
+        Implemented CSS adjustments to enhance the responsiveness of all web pages.
+
+- Sprint 11 - Testing <br>
+This sprint marked a critical phase of thorough testing and refinement, focusing on ensuring every aspect of the website operates seamlessly
+
+    - Functionality Testing <br>
+        Conducted extensive tests on all website functionalities, including navigation, links on the home page, menu, ingredients, and the staff portal.
+    
+    - CRUD Operations <br>
+        Verified the creation, reading, updating, and deletion (CRUD) processes for ingredients and menu items.
+    
+    - User Authentication Tests <br>
+        Tested user registration, login, and password modification processes.
