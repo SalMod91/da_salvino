@@ -2,6 +2,21 @@ from django.contrib import admin
 from .models import Ingredient, IngredientCategory, Pizza
 
 
+class IngredientCategoryAdmin(admin.ModelAdmin):
+    """
+    Admin interface customization for the Ingredient Category model.
+
+    Provides a configuration for what attributes in the Ingredient Category
+    model are shown in the admin interface.
+    """
+
+    # Specify the fields to be displayed in the list view in the Django admin
+    list_display = ('name', 'order')
+
+    # Fields that should be read-only in the admin form.
+    readonly_fields = ('name', 'order')
+
+
 class IngredientAdmin(admin.ModelAdmin):
     """
     Admin interface customization for the Ingredient model.
@@ -9,6 +24,7 @@ class IngredientAdmin(admin.ModelAdmin):
     Provides a configuration for what attributes in the Ingredient
     model are shown in the admin interface.
     """
+
     # Specify the fields to be displayed in the list view in the Django admin
     list_display = (
         'name',
@@ -41,6 +57,7 @@ class PizzaAdmin(admin.ModelAdmin):
     Provides a configuration for what attributes in the Pizza
     model are shown in the admin interface.
     """
+
     # Specify the fields to be displayed in the list view in the Django admin
     list_display = (
         'name',
@@ -68,5 +85,5 @@ class PizzaAdmin(admin.ModelAdmin):
 # Register the models with the admin site to make them accessible
 # in the Django admin interface
 admin.site.register(Ingredient, IngredientAdmin)
-admin.site.register(IngredientCategory)
+admin.site.register(IngredientCategory, IngredientCategoryAdmin)
 admin.site.register(Pizza, PizzaAdmin)
