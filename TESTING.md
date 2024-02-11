@@ -4,7 +4,8 @@
     - [Authentication Testing](#authentication-testing)
     - [CRUD Testing](#crud-testing)
     - [Links Testing](#links-testing)
-    - [Validator Testing](#validator-testing)
+    - [Python Validator Testing](#python-validator-testing)
+- [HTML Validator](#html-validator)
 
 ## Testing Table
 
@@ -120,12 +121,13 @@
 | Ingredient Page | Click on Staff Portal Links | Correctly routes the user to the associated page chosen |✅|
 </details>
 
-### Validator Testing:
+### Python Validator Testing:
 <details>
 <summary>Click to expand</summary>
+
 The modules have been tested and reviewed using the Code Institute's linter.<br>
 
-There is one line in staff_portal - views.py and users - middleware that exceed the recommended 79 characters.<br>
+There is one line in staff_portal - views.py and users - middleware.py that exceed the recommended 79 characters.<br>
 The code works regardless but breaking these specific lines into multiple lines exceeds my current capabilities.
 
 | **TEST** | **ACTION** | **EXPECTATION** | **RESULT** |
@@ -151,4 +153,34 @@ The code works regardless but breaking these specific lines into multiple lines 
 | users - middleware.py | PEP8 Validator| No issues found |❗|
 | users - urls.py | PEP8 Validator| No issues found |✅|
 | users - views.py | PEP8 Validator| No issues found |✅|
+</details>
+
+## HTML Validator:
+<details>
+<summary>Click to expand</summary>
+
+For the HTML validation, all pages passed except for two, where the validator mistakenly flagged the src attribute in 'img src="{{ ingredient.image.url }}"' and 'img src="{{ pizza.image.url }}"' as empty. This issue arises because the validator doesn't recognize dynamic Django template language, which populates the src attribute with the URL of an ingredient's/menu item's image at runtime.
+
+![Home Page Validator](/static/media/readme/home-validator.png)
+![Menu Page Validator](/static/media/readme/menu-validator.png)
+![Ingredients Page Validator](/static/media/readme/ingredients-validator.png)
+![Staff Portal Validator](/static/media/readme/staff-validator.png)
+![Add Ingredient Validator](/static/media/readme/add-ingredient-validator.png)
+![Add Menu Item Validator](/static/media/readme/add-menu-validator.png)
+![Manage Ingredient Validator](/static/media/readme/manage-ingredients-validator.png)
+![Manage Menu Item Validator](/static/media/readme/manage-menu-validator.png)
+</details>
+
+## CSS Validator:
+<details>
+<summary>Click to expand</summary>
+
+![CSS validator](/static/media/readme/css-validator.png)
+</details>
+
+## JS Validator:
+<details>
+<summary>Click to expand</summary>
+
+![JS Validator](/static/media/readme/js-validator.png)
 </details>
