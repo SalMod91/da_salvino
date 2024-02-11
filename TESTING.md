@@ -6,6 +6,9 @@
     - [Links Testing](#links-testing)
     - [Python Validator Testing](#python-validator-testing)
 - [HTML Validator](#html-validator)
+- [CSS Validator](#css-validator)
+- [JS Validator](#js-validator)
+- [Lighthouse](#lighthouse)
 
 ## Testing Table
 
@@ -183,4 +186,26 @@ For the HTML validation, all pages passed except for two, where the validator mi
 <summary>Click to expand</summary>
 
 ![JS Validator](/static/media/readme/js-validator.png)
+</details>
+
+## Lighthouse:
+<details>
+<summary>Click to expand</summary>
+
+![Home Desktop Lighthouse](/static/media/readme/light-home-desktop.png)
+![Home Mobile Lighthouse](/static/media/readme/light-home-mobile.png)
+![Menu Desktop Lighthouse](/static/media/readme/light-menu-desktop.png)
+![Menu Mobile Lighthouse](/static/media/readme/light-menu-mobile.png)
+![Ingredients Desktop Lighthouse](/static/media/readme/light-ingredient-desktop.png)
+![Ingredients Mobile Lighthouse](/static/media/readme/light-ingredient-mobile.png)
+![Staff Portal Desktop Lighthouse](/static/media/readme/light-staff-desktop.png)
+![Staff Portal Mobile Lighthouse](/static/media/readme/light-staff-mobile.png)
+![Add Ingredient Desktop Lighthouse](/static/media/readme/light-add-ing-desktop.png)
+![Add Ingredient Mobile Lighthouse](/static/media/readme/light-add-ing-mobile.png)
+![Add Menu Desktop Lighthouse](/static/media/readme/light-add-menu-desktop.png)
+![Add Menu Mobile Lighthouse](/static/media/readme/light-add-menu-mobile.png)
+![Manage Ingredient Desktop Lighthouse](/static/media/readme/light-manage-ing-desktop.png)
+![Manage Ingredient Mobile Lighthouse](/static/media/readme/light-manage-ing-mobile.png)
+![Manage Menu Desktop Lighthouse](/static/media/readme/light-manage-menu-desktop.png)
+![Manage Menu Mobile Lighthouse](/static/media/readme/light-manage-menu-mobile.png)
 </details>

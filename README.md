@@ -43,6 +43,10 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
         - [General Pages](#general-pages)
     - [Future Features](#future-features)
 - [Testing](#testing)
+- [Technologies Used](#technologies-used)
+    - [Main Languages Used](#main-languages-used)
+    - [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
+    - [Installed Packages](#installed-packages)
 
 ## UX
 
@@ -611,3 +615,50 @@ During the testing phase of this project's features, I frequently encountered er
 
 ## Testing
 Testing has been documented in [TESTING.md](/TESTING.md)
+
+## Technologies Used
+
+### Main Languages Used
+- HTML5
+- CSS3
+- Javascript
+- Python
+- Django
+- SQL - Postgres
+
+### Frameworks, Libraries & Programs Used
+- Font Awesome - Used for the icons in the navigation bar and the footer.
+- GitPod - Used as IDE for writing and editing the project.
+- GitHub - Used for version control and repository hosting.
+- ElephantSQL - Used to host PostgreSQL Database.
+- Cloudinary - Used to store image files.
+- Heroku - Used for deploying the project.
+- Balsamiq - Used to create wireframes.
+- Am I Responsive? - Used to ensure the project is responsive.
+- Favicon.io - Used to convert png to ico.
+- Lucidchart - Used to create Site Flow and ERD.
+- Canva - Used to search for the background.
+- Dall-E - Used for generation of images.
+- Lighthouse - Used to test performances.
+- Wave - Used to evaluate the site's accessibility.
+- TinyPNG - Used for compressing PNG.
+- JsHint - Used for validating the JS code.
+- W3C HTML Validator - Used for validating the HTML code.
+- Jigsaw CSS Validator - Used for validating the CSS code.
+- CI Python linter - Used for validating the Python code.
+- Django
+- Bootstrap - Used for styling.
+
+### Installed Packages:
+- asgiref
+- cloudinary
+- dj-database-url
+- dj3-cloudinary-storage
+- Django
+- django-allauth
+- gunicorn
+- oauthlib
+- psycopg2
+- PyJWT
+- python3-openid
+- sqlparse
