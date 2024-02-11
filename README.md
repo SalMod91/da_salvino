@@ -35,10 +35,14 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
 - [Database Structure](#database-structure)
 - [Agile Development](#agile-development)
 - [Features](#features)
-    - [Navigation](#navigation)
-    - [Authentication](#authentication)
-    - [C.R.U.D](#crud)
-    - [User Feedback System](#user-feedback-system)
+    - [Existing Features](#existing-features)
+        - [Navigation](#navigation)
+        - [Authentication](#authentication)
+        - [C.R.U.D](#crud)
+        - [User Feedback System](#user-feedback-system)
+        - [General Pages](#general-pages)
+    - [Future Features](#future-features)
+- [Testing](#testing)
 
 ## UX
 
@@ -565,3 +569,44 @@ When the edit submission raises an error:
 
 ![Error Update Feedback](/static/media/readme/error-edit-feedback.png)
 </details>
+
+### General Pages
+<details>
+<summary>Click to expand</summary>
+
+### Home Page:
+![Home Page](/static/media/readme/homepage-1.png)
+![Home Page 2](/static/media/readme/homepage-2.png)
+
+### Menu Page:
+The menu page dynamically renders an alphabetical list of menu items directly from the pizza model. Each ingredient associated with a menu item acts as a hyperlink, opening the detailed ingredient information in a new tab on the ingredients page. This real-time update feature ensures that the menu is always current and provides users with a seamless and informative browsing experience.
+
+The Menu Page also features a tabbed interface with categories such as "All", "Pizza", "Salads", and "Desserts". The "All" tab gets populated with items from all categories thanks to use of JavaScript.
+
+![Menu Page](/static/media/readme/menu-page.png)
+
+### Ingredients Page:
+
+Mirroring the functionality of the menu page, the ingredients page is dynamically rendered using the ingredient models. It features a tab layout that organizes content by category. These categories are filled by iterating through the 'Ingredient Category' model, with the display order determined by an 'order' attribute assigned by the admin. Categories with a lower 'order' value are presented first, allowing for a custom, prioritized arrangement of ingredient listings.
+
+![Ingredients Page](/static/media/readme/ingredients-page.png)
+
+### Error Pages:
+
+During the testing phase of this project's features, I frequently encountered errors 403 and 500. Given their prevalence, alongside the well-known 404 error, I was inspired to create custom error pages for these specific situations. The design of these pages is closely aligned, with the primary distinction being the specific error number displayed. 
+
+![Error 404](/static/media/readme/404.png)
+</details>
+
+### Future Features
+- Visitor Login/Registration
+- Visitor Reviews
+- Visitor ability to like meals and review individual meals
+- Visitor able to make a reservation
+- Allergen information in the menu/ingredients page
+- Special offers for loyal customers
+- Real-time Sales and Inventory for the Admin
+- Ability to respond to customer feedback
+- Staff User work schedule
+
+## Testing
