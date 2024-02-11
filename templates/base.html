@@ -53,7 +53,7 @@
                                         <span class="visually-hidden">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item {% if request.path == '/add_ingredient' %}active-dropdown{% endif %}" href="{% url 'add_ingredient' %}" aria-label="This link will redirect you to the add ingredient page">Add Ingredients</a></li>
+                                        <li><a class="dropdown-item {% if request.path == '/add_ingredient' %}active-dropdown{% endif %}" href="{% url 'add_ingredient' %}" aria-label="This link will redirect you to the add ingredient page">Add Ingredient</a></li>
                                         <li><a class="dropdown-item {% if request.path == '/manage_ingredients' %}active-dropdown{% endif %}" href="{% url 'manage_ingredients' %}" aria-label="This link will redirect you to the manage ingredients">Manage Ingredients</a></li>
                                         <li><a class="dropdown-item {% if request.path == '/add_menu_item' %}active-dropdown{% endif %}" href="{% url 'add_menu_item' %}" aria-label="This link will redirect you to the add menu item page">Add Menu Item</a></li>
                                         <li><a class="dropdown-item {% if request.path == '/manage_menu_items' %}active-dropdown{% endif %}" href="{% url 'manage_menu_items' %}" aria-label="This link will redirect you to the manage menu items page">Manage Menu Item</a></li>

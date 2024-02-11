@@ -34,6 +34,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
         - [Typography](#typography)
 - [Database Structure](#database-structure)
 - [Agile Development](#agile-development)
+- [Features](#features)
 
 ## UX
 
@@ -43,7 +44,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
 
 
 #### Project Purpose
-The "Da Salvino" website aims to provide users with a comprehensive view of the restaurant, from essential details like location, opening times, and contact information to a deeper understanding of our identity and culinary offerings. It showcases our menu in an interactive manner, allowing users to explore each dish and its ingredients with just a click. This feature opens a new page for each ingredient, where users can learn about its description and origin, emphasizing our commitment to transparency and quality. Through this platform, we strive to inform and engage our customers, ensuring they have all the information they need about the high standards and authenticity of the ingredients used in our kitchen.
+The "Da Salvino" website aims to provide users with a comprehensive view of the restaurant, from essential details like location, opening times, and contact information to a deeper understanding of our identity and culinary offerings. It showcases our menu in an interactive manner, allowing users to explore each dish and its ingredients with just a click.<br> This feature opens a new page for each ingredient, where users can learn about its description and origin, emphasizing our commitment to transparency and quality.<br> Through this platform, we strive to inform and engage our customers, ensuring they have all the information they need about the high standards and authenticity of the ingredients used in our kitchen.
 
 #### Project Goal
 Build a website that offers clients an intuitive and informative browsing experience while providing a seamless backend experience for the staff managing the menu and updating ingredient information.
@@ -371,3 +372,63 @@ This sprint marked a critical phase of thorough testing and refinement, focusing
     
     - User Authentication Tests <br>
         Tested user registration, login, and password modification processes.
+</details>
+
+
+## Features
+
+### Existing Features
+
+### Navigation
+
+#### Header:
+The navigation bar includes the site's logo, which doubles as a link to the home page.<br>
+
+Direct Links to the Home, Menu and Ingredients page are prominently displayed, ensuring users can easily navigate these key sections.<br>
+
+The navigation dynamically assigns an "active" class to the link corresponding to the current page, based on the URL request path.<br>
+This visual cue helps users identify wich page they are viewing
+![Navigation](/static/media/readme/navigation-bar.png)
+
+For Staff Users that are logged in, an additional link to the Staff Portal appears.<br>
+This link features a split button that, upon hover, reveals four links dedicated to operational services: Add Ingredient, Manage Ingredients, Add Menu Item and Manage Menu Items.
+![Navigation Portal Links](/static/media/readme/staff-portal-links.png)
+
+When a user navigates to one of the four links within the staff portal dropdown menu, the button used to open the dropdown menu is also marked with an active status. This feature signals to the user that they are currently engaged with the staff portal section.
+
+![Navigation Staff Portal](/static/media/readme/navigation.png) ![Navigation Staff Portal Link](/static/media/readme/navigation-staff.png)
+
+On smaller screens, the navigation bar collapses into a hamburger menu, maintaining accessibility and user experience across devices.
+
+![Collapsed Navigation](/static/media/readme/navigation-mobile.png)
+
+#### Footer:
+The footer of the website is designed to provide essential contact information and encourage user interaction.
+
+- Contact Information:
+
+    Features a phone number with a playful wiggle animation on hover, simulating a ringing phone.
+
+- Address Section:
+
+    Includes a location detail that, when hovered over, enlarges to signify interactivity. Clicking on it directs users to a Google Maps link for the restaurant's address.
+
+- Opening times:
+    
+    Clearly displays the restaurant's hours of operation for user convenience.
+
+- Social Media Links
+
+    A set of social media icons that connects users to the restaurant's social platforms.
+
+![Footer](/static/media/readme/footer.png)
+
+### Authentication:
+Upon entering the Staff Portal, users are greeted with a prompt to log in or register. Selecting this option activates a modal window with a tabbed interface, allowing for a seamless transition between login and registration forms. This design choice streamlines the authentication process, eliminating the need for separate pages and ensuring a quick, user-friendly experience.
+
+If submission of the modal encounters errors, the page will reload and the modal will automatically reopen to the tab where the issue occurred. Error messages will be displayed to inform the user of the specific problem, guiding them to correct the information and successfully complete the authentication process.
+
+
+![Staff Portal](/static/media/readme/staff-portal-notloggedin.png)
+![Login Modal](/static/media/readme/login-modal.png) ![Register Modal](/static/media/readme/register-modal.png)
+![Errors Login](/static/media/readme/login%20errors.png)
