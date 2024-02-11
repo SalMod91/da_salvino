@@ -49,6 +49,8 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
     - [Installed Packages](#installed-packages)
 - [Deployment](#deployment)
 - [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
 
 ## UX
 
@@ -697,6 +699,8 @@ How to use window.location.hash: [Educative](https://www.educative.io/answers/wh
 Button animation in the Home Page: [Lambdatest](https://www.lambdatest.com/blog/best-css-button-hover-effects/)
 
 How to logout inactive user: [Medium](https://medium.com/@m.ambenge01/implementing-user-inactivity-logout-in-django-a020f6ebeb27)
+
+Testing Table - Testing table layout of my mentor [Lauren](https://github.com/CluelessBiker)
 
 ### Media
 Logo and favicon - [Link](https://www.flaticon.com/free-icon/pizza_1404945)
