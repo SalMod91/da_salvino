@@ -37,6 +37,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
 - [Features](#features)
     - [Navigation](#navigation)
     - [Authentication](#authentication)
+    - [C.R.U.D](#crud)
 
 ## UX
 
@@ -440,6 +441,8 @@ The footer of the website is designed to provide essential contact information a
 <details>
 <summary>Click to expand</summary>
 
+Within the staff portal, authentication is tailored to ensure secure and efficient access to CRUD functionalities. Staff users can log in to engage with the system, while new staff registrations require admin approval. This approval process is crucial to prevent unauthorized access by visitors who might discover the staff portal. Additionally, to enhance security, an automatic logout feature triggers after 3 minutes of inactivity, redirecting users back to the staff portal login page.
+
 ### Staff Portal:
 
 Upon entering the Staff Portal, users are greeted with a prompt to log in or register. Selecting this option activates a modal window with a tabbed interface, allowing for a seamless transition between login and registration forms. This design choice streamlines the authentication process, eliminating the need for separate pages and ensuring a quick, user-friendly experience.
@@ -459,3 +462,53 @@ Should there be any errors in the submission, the modal will reappear with highl
 ![Logged in as](/static/media/readme/logged-in-as.png)
 ![Modify Password](/static/media/readme/modify-password.png)
 ![Logout Modal](/static/media/readme/logout.png)
+</details>
+
+### C.R.U.D
+<details>
+<summary>Click to expand</summary>
+
+Within the staff portal, logged-in staff members have access to various operational functionalities.
+
+![Staff Portal Logged In](/static/media/readme/staff-portal-loggedin.png)
+
+### Add Ingredient Page / Add Menu Item:
+
+The Add Ingredient and Add Menu Item pages feature a form that leverages Django's capabilities to auto-generate fields.<br>
+This leaves the layout somewhat utilitarian.<br>
+
+To enhance user experience and interface design, future forms have been personally customized, moving away from the auto-generated approach.
+
+
+- Create New Ingredient Entries:<br>
+    Input the ingredient's name, assign it to a category, and add descriptions and origin details.
+
+- Image Upload:<br>
+    There's an option to upload an image for the ingredient or the menu item. If no image is uploaded, a default one is used.
+
+- Image File Naming and Management: <br>
+     Uploaded images are automatically named using a standard format that includes the ingredient's unique ID (e.g., ingredient_ID). Should an image be updated, the new file replaces the previous one, ensuring the storage remains uncluttered. Similarly, if an ingredient is deleted from the database, its associated image is also removed, keeping the system efficient and organized.
+
+- Error Handling:<br>
+    In the event of an error during  submission, such as uploading a non-image file, the page will refresh, displaying a specific error message next to the relevant field to inform the user of the exact issue that needs resolution.
+
+![Add Ingredients Page](/static/media/readme/add-ingredient-page.png)
+![Add Ingredient Error](/static/media/readme/add-ingredient-error.png)
+
+The 'Add New Menu Item' page is currently tailored for pizza creations, with plans to expand for additional items like salads and pasta.
+
+- Essential Ingredients Toggle:<br>
+    Staff can quickly indicate whether a pizza includes common ingredients like tomato sauce and mozzarella with a simple yes/no toggle.
+
+- Image Upload:<br>
+    The image upload functionality mirrors that of the 'Add Ingredient' feature, maintaining consistency across the platform.
+
+- Dynamic Ingredient Selector:<br>
+    An 'Add Ingredient' button initiates a selector, bringing up a list of ingredient categories from the database. Ingredients within these categories are displayed in alphabetical order for easy selection, with an option to remove the selector if needed. If an ingredient selector is activated but not specified upon submission, it will not be added to the database.
+
+![Menu Item Page](/static/media/readme/add-new-menu-item.png)
+![Ingredient Selector](/static/media/readme/ingredient-selector.png)
+![Ingredient Selector 2](/static/media/readme/ingredient-selector-2.png)
+
+### Manage Ingredients/Menu Items:
+</details>
