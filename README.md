@@ -35,6 +35,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
 - [Database Structure](#database-structure)
 - [Agile Development](#agile-development)
 - [Features](#features)
+    - [Navigation](#navigation)
 
 ## UX
 
@@ -195,7 +196,11 @@ While a different font for the headings could have added further distinction to 
 </details>
 
 ## Database Structure
+<details>
+<summary>Click to expand</summary>
+
 This ERD represents the database schema for the  application.
+
 - Custom Staff User
 
     The Django User Model has been customized to "Custom Staff User".
@@ -218,6 +223,7 @@ This ERD represents the database schema for the  application.
 
 
 ![Database ERD](/static/media/readme/database-erd.png)
+</details>
 
 ## Agile Development
 Throughout the development of the project, a physical Kanban board served as the primary tool for tracking progress due to initial insecurities about using GitHub issues.
@@ -380,29 +386,34 @@ This sprint marked a critical phase of thorough testing and refinement, focusing
 ### Existing Features
 
 ### Navigation
+<details>
+<summary>Click to expand</summary>
 
-#### Header:
+### Header:
 The navigation bar includes the site's logo, which doubles as a link to the home page.<br>
 
 Direct Links to the Home, Menu and Ingredients page are prominently displayed, ensuring users can easily navigate these key sections.<br>
 
 The navigation dynamically assigns an "active" class to the link corresponding to the current page, based on the URL request path.<br>
-This visual cue helps users identify wich page they are viewing
-![Navigation](/static/media/readme/navigation-bar.png)
+This visual cue helps users identify wich page they are viewing.<br>
 
 For Staff Users that are logged in, an additional link to the Staff Portal appears.<br>
 This link features a split button that, upon hover, reveals four links dedicated to operational services: Add Ingredient, Manage Ingredients, Add Menu Item and Manage Menu Items.
+
+![Navigation](/static/media/readme/navigation-bar.png)
 ![Navigation Portal Links](/static/media/readme/staff-portal-links.png)
 
 When a user navigates to one of the four links within the staff portal dropdown menu, the button used to open the dropdown menu is also marked with an active status. This feature signals to the user that they are currently engaged with the staff portal section.
 
-![Navigation Staff Portal](/static/media/readme/navigation.png) ![Navigation Staff Portal Link](/static/media/readme/navigation-staff.png)
+
+![Navigation Staff Portal](/static/media/readme/navigation.png)
+![Navigation Staff Portal Link](/static/media/readme/navigation-staff.png)
 
 On smaller screens, the navigation bar collapses into a hamburger menu, maintaining accessibility and user experience across devices.
 
 ![Collapsed Navigation](/static/media/readme/navigation-mobile.png)
 
-#### Footer:
+### Footer:
 The footer of the website is designed to provide essential contact information and encourage user interaction.
 
 - Contact Information:
@@ -422,6 +433,7 @@ The footer of the website is designed to provide essential contact information a
     A set of social media icons that connects users to the restaurant's social platforms.
 
 ![Footer](/static/media/readme/footer.png)
+</details>
 
 ### Authentication:
 Upon entering the Staff Portal, users are greeted with a prompt to log in or register. Selecting this option activates a modal window with a tabbed interface, allowing for a seamless transition between login and registration forms. This design choice streamlines the authentication process, eliminating the need for separate pages and ensuring a quick, user-friendly experience.
