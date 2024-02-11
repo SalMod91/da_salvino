@@ -390,7 +390,8 @@ def manage_menu_items(request):
                 )
 
             # Store the original image URL if any
-            original_image_url = menu_item.image.url if menu_item.image else None
+            original_image_url = (menu_item.image.url
+                                  if menu_item.image else None)
 
             if form.is_valid():
                 # m2m relationships require the parent object to be saved first

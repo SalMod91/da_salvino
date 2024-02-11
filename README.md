@@ -38,7 +38,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
     - [Existing Features](#existing-features)
         - [Navigation](#navigation)
         - [Authentication](#authentication)
-        - [C.R.U.D](#crud)
+        - [CRUD](#crud)
         - [User Feedback System](#user-feedback-system)
         - [General Pages](#general-pages)
     - [Future Features](#future-features)
@@ -469,7 +469,7 @@ Should there be any errors in the submission, the modal will reappear with highl
 ![Logout Modal](/static/media/readme/logout.png)
 </details>
 
-### C.R.U.D
+### CRUD
 <details>
 <summary>Click to expand</summary>
 
@@ -610,3 +610,4 @@ During the testing phase of this project's features, I frequently encountered er
 - Staff User work schedule
 
 ## Testing
+Testing has been documented in [TESTING.md](/TESTING.md)

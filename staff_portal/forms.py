@@ -67,7 +67,7 @@ class IngredientForm(forms.ModelForm):
         model = Ingredient
         fields = ['name', 'category', 'description', 'origin', 'image']
         widgets = {
-            'origin': forms.TextInput(attrs={'class': 'origin-input', 'style': 'width: 200px;'}),  # Combine class and style
+            'origin': forms.TextInput(attrs={'class': 'origin-input'}),
         }
 
     def clean_name(self):
