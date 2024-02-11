@@ -600,6 +600,17 @@ Mirroring the functionality of the menu page, the ingredients page is dynamicall
 
 ![Ingredients Page](/static/media/readme/ingredients-page.png)
 
+### Staff Portal:
+
+The Staff Portal serves as a dedicated access point for staff members to log in and manage their tasks. It ensures secure and exclusive access, keeping it off-limits to general visitors. To maintain confidentiality and security, the portal is deliberately made less accessible.
+
+- Visibility: <br>
+    The link to the Staff Portal appears in the navigation menu solely for logged-in staff members, ensuring it remains invisible to unauthorized users.
+
+- Access:<br>
+    Staff members can navigate to the Staff Portal by appending staff_portal/ to the website's base URL. For convenience and faster access, it's highly recommended that staff users bookmark this page.
+
+![Staff Portal Page](/static/media/readme/staff-portal.png)
 ### Error Pages:
 
 During the testing phase of this project's features, I frequently encountered errors 403 and 500. Given their prevalence, alongside the well-known 404 error, I was inspired to create custom error pages for these specific situations. The design of these pages is closely aligned, with the primary distinction being the specific error number displayed. 
