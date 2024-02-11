@@ -628,6 +628,7 @@ During the testing phase of this project's features, I frequently encountered er
 - Real-time Sales and Inventory for the Admin
 - Ability to respond to customer feedback
 - Staff User work schedule
+- More convenient way for the Staff Users to reach the Staff Portal
 
 ## Testing
 Testing has been documented in [TESTING.md](/TESTING.md)
