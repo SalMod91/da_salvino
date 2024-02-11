@@ -544,4 +544,24 @@ Moving away from the Django auto-generated forms used initially, these pages fea
 <summary>Click to expand</summary>
 
 The website is designed with a comprehensive feedback system that acknowledges every user action. Whether it’s logging in, registering, changing passwords, logging out, or performing database operations such as adding, modifying, or deleting instances, users receive immediate feedback. This ensures users are always informed of the success or need for attention of their recent action, enhancing the interactivity and responsiveness of the user experience.
+
+In future updates a distinction between positive and negative messages will be included.
+
+When logging in and logging out:
+
+![Login Feedback](/static/media/readme/login-confirmation.png)
+![Logout Feedback](/static/media/readme/logout-feedback.png)
+
+When trying to login with an account that has not been approved by the Admin:
+
+![Pending Approval](/static/media/readme/approval-pending.png)
+
+When creating and deleting an Item:
+
+![Creation Feedback](/static/media/readme/creation-confirmation.png)
+![Deletion Feedback](/static/media/readme/delete-feedback.png)
+
+When the edit submission raises an error:
+
+![Error Update Feedback](/static/media/readme/error-edit-feedback.png)
 </details>
