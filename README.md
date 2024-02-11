@@ -36,6 +36,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
 - [Agile Development](#agile-development)
 - [Features](#features)
     - [Navigation](#navigation)
+    - [Authentication](#authentication)
 
 ## UX
 
@@ -435,7 +436,12 @@ The footer of the website is designed to provide essential contact information a
 ![Footer](/static/media/readme/footer.png)
 </details>
 
-### Authentication:
+### Authentication
+<details>
+<summary>Click to expand</summary>
+
+### Staff Portal:
+
 Upon entering the Staff Portal, users are greeted with a prompt to log in or register. Selecting this option activates a modal window with a tabbed interface, allowing for a seamless transition between login and registration forms. This design choice streamlines the authentication process, eliminating the need for separate pages and ensuring a quick, user-friendly experience.
 
 If submission of the modal encounters errors, the page will reload and the modal will automatically reopen to the tab where the issue occurred. Error messages will be displayed to inform the user of the specific problem, guiding them to correct the information and successfully complete the authentication process.
@@ -444,3 +450,12 @@ If submission of the modal encounters errors, the page will reload and the modal
 ![Staff Portal](/static/media/readme/staff-portal-notloggedin.png)
 ![Login Modal](/static/media/readme/login-modal.png) ![Register Modal](/static/media/readme/register-modal.png)
 ![Errors Login](/static/media/readme/login%20errors.png)
+
+Upon logging in, users are welcomed by a personalized message acknowledging their access.<br>
+To elevate user convenience, options to modify the password or log out are integrated within the interface through modals, eliminating the disruption of page redirections.<br>
+Should there be any errors in the submission, the modal will reappear with highlighted errors for correction.
+
+
+![Logged in as](/static/media/readme/logged-in-as.png)
+![Modify Password](/static/media/readme/modify-password.png)
+![Logout Modal](/static/media/readme/logout.png)
