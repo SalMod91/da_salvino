@@ -38,6 +38,7 @@ The website is live [HERE](https://da-salvino-0dcb8f7f1479.herokuapp.com/)
     - [Navigation](#navigation)
     - [Authentication](#authentication)
     - [C.R.U.D](#crud)
+    - [User Feedback System](#user-feedback-system)
 
 ## UX
 
@@ -536,4 +537,11 @@ Moving away from the Django auto-generated forms used initially, these pages fea
 ![Edit Ingredient Modal](/static/media/readme/edit-ingredient-modal.png)
 ![Edit Menu Item Modal](/static/media/readme/edit-menu-modal.png)
 ![Delete Modal](/static/media/readme/deletion-modal.png)
+</details>
+
+### User Feedback System
+<details>
+<summary>Click to expand</summary>
+
+The website is designed with a comprehensive feedback system that acknowledges every user action. Whether it’s logging in, registering, changing passwords, logging out, or performing database operations such as adding, modifying, or deleting instances, users receive immediate feedback. This ensures users are always informed of the success or need for attention of their recent action, enhancing the interactivity and responsiveness of the user experience.
 </details>
