@@ -511,4 +511,26 @@ The 'Add New Menu Item' page is currently tailored for pizza creations, with pla
 ![Ingredient Selector 2](/static/media/readme/ingredient-selector-2.png)
 
 ### Manage Ingredients/Menu Items:
+
+Both the ingredient and menu item management pages share a virtually identical design, with tailored differences in the iteration of model instances.
+
+Moving away from the Django auto-generated forms used initially, these pages feature customized forms, resulting in a more aesthetically pleasing interface. This customization has allowed for a more engaging and visually coherent presentation compared to the standard Django form layout.
+
+- Database Iteration:<br>
+    The ingredients page categorizes items, listing them alphabetically within each category, while menu items are currently listed alphabetically and will be categorized in future updates.
+
+- Edit & Delete Functions:<br>
+    Both pages feature edit and delete buttons next to each item. The delete button triggers a confirmation modal to prevent accidental deletions. The edit button opens a modal containing a form pre-filled with the item's current details, allowing staff to see and modify information directly.
+
+- Custom Form Design:<br>
+    Unlike the auto-generated Django forms, these edit forms have been personally customized for better aesthetics and usability.
+
+- Image Handling: <br>
+    The edit form includes an image preview  wich uses the URL from Cloudinary. Users have the option to remove the image, which also deletes it from cloud storage.
+
+- Error Handling:<br>
+    If form submission fails, the page reloads with the modal open and an error message displayed next to the problematic field, guiding the user to resolve the specific issue.
+
+![Manage Ingredients Page](/static/media/readme/manage-ingredients-page.png)
+![Manage Menu Item Page](/static/media/readme/manage-menu-item-page.png)
 </details>
