@@ -40,14 +40,14 @@
 | Staff Portal | Login with approved Staff User | Correctly logs in, redirect to Staff Portal, receive feedback message with the correct username, Staff Portal welcomes the user with the correct username |✅|
 | Staff Portal | Login with invalid data | Login fails, redirect to Staff Portal, receive feedback message informing the failed login, reopen login modal showcasing the error message that caused the login to fail |✅|
 | Staff Portal | Login with not approved account | Login fails, redirect to Staff Portal, receive feedback message informing that the user requires approval |✅|
-| Staff Portal | Login with not staff account | Correctly logs in, shows prompt of restriced access to staff accounts only, prompts to head to the Home Page |✅|
+| Staff Portal | Login with not staff account | Correctly logs in, shows prompt of restricted access to staff accounts only, prompts to head to the Home Page |✅|
 | Staff Portal | When logged in, use the logout option | Logout modal correctly opens asking for logout confirmation. Correctly logs out and redirects to Staff Portal if confirmed |✅|
 | Staff Portal | Register Account | Correctly registers account, redirect to Staff Portal, receive feedback message informing the user to await the approval, the user is correctly not approved |✅|
-| Staff Portal | Register Account with non unique name | Registration process fails, redirects to Staff Portal, receive feedback message informing the user that the registration process failed, reopen login/register modal in the correct tab, showcase error message of username alredy in use |✅|
-| Staff Portal | Register Account with a username with less than 3 charachters | Registration process fails, redirects to Staff Portal, receive feedback message informing the user that the registration process failed, reopen login/register modal in the correct tab, show correct error message |✅|
+| Staff Portal | Register Account with non unique name | Registration process fails, redirects to Staff Portal, receive feedback message informing the user that the registration process failed, reopen login/register modal in the correct tab, showcase error message of username already in use |✅|
+| Staff Portal | Register Account with a username with less than 3 characters | Registration process fails, redirects to Staff Portal, receive feedback message informing the user that the registration process failed, reopen login/register modal in the correct tab, show correct error message |✅|
 | Staff Portal | Modify password of logged in user with correct data | Password modification executes correctly, redirects to Staff Portal, user receives positive feedback |✅|
 | Staff Portal | Modify password of logged in user with incorrect data | Password modification fails, redirects to Staff Portal, receive feedback messaging informing the user that the process failed, reopen Password Modification modal, show error message of the fields affected |✅|
-| Staff Portal | Reopen Password Modification modal after an error occured | Error messages correctly reset |✅|
+| Staff Portal | Reopen Password Modification modal after an error occurred | Error messages correctly reset |✅|
 | Add Ingredient Page | When logged in, use the logout option | Logout modal correctly opens asking for logout confirmation. Correctly logs out and redirects to Staff Portal if confirmed |✅|
 | Add Ingredient Page | Logged in as a not staff user | Correctly restricts access asking to go back to the Home Page |✅|
 | Add Ingredient Page | Access page when not logged in | Correctly restricts access asking to login through the Staff Portal |✅|

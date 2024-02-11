@@ -66,7 +66,7 @@ The "Da Salvino" website aims to provide users with a comprehensive view of the 
 Build a website that offers clients an intuitive and informative browsing experience while providing a seamless backend experience for the staff managing the menu and updating ingredient information.
 
 #### Audience
-Those who cherish an authentic Italian dining experience, particularly enthusiasts of traditional Italian-style pizza making. This audience includes not just aficionados of genuine Italian cuisine seeking the nuanced flavors of Italy but also health-conscious individuals who value the quality and sourcing of ingredients that go into traditional pizza.
+Those who cherish an authentic Italian dining experience, particularly enthusiasts of traditional Italian-style pizza making. This audience includes not just aficionados of genuine Italian cuisine seeking the nuanced flavours of Italy but also health-conscious individuals who value the quality and sourcing of ingredients that go into traditional pizza.
 
 #### Communication
 The website is structured in a way to ensure, upon arrival, that users are greeted with a clear and accessible overview of what the site has to offer, without feeling overwhelmed by too much information. The homepage effectively summarizes the key sections and potential reasons for your visit, allowing for a seamless navigation experience from the start.
@@ -84,7 +84,7 @@ The website is structured in a way to ensure, upon arrival, that users are greet
 #### Future User Goals
 - To be able to provide and read reviews.
 - To be able to provide and read meal specific reviews.
-- To be able to be informed about the favorite menu items.
+- To be able to be informed about the favourite menu items.
 - To be able to place orders online.
 - To be able to book a table.
 - To be able to subscribe to a newsletters.
@@ -127,7 +127,7 @@ The website is structured in a way to ensure, upon arrival, that users are greet
 |            | As a staff user, I want the details to be prefilled when editing an ingredient or menu item as it makes my job easier by allowing me to quickly identify and modify only the necessary information.                                                                                                                                      |
 |            | As a staff user, I want to be automatically logged out of the staff portal if I leave my account inactive for a certain period, to safeguard my account against unauthorized access and maintain security. |
 
-Explore the User Stories and todo issues by navigating to the GitHub Projects page through this [link](https://github.com/users/SalMod91/projects/7).
+Explore the User Stories and to-do issues by navigating to the GitHub Projects page through this [link](https://github.com/users/SalMod91/projects/7).
 </details>
 
 ### Structure
@@ -147,7 +147,7 @@ Explore the User Stories and todo issues by navigating to the GitHub Projects pa
 - Register,Login, Password modification and Logout are all handled through different modals, avoiding the need to have specific pages for these actions.
 
 #### Staff Portal Pages
-Withing the Staff Portal there are 4 additional pages only accessible post-login by approved staff users.
+Within the Staff Portal there are 4 additional pages only accessible post-login by approved staff users.
 - Add Ingredient: Allows staff to input new ingredients into the database.
 - Manage Ingredients: Provides functionality to edit and delete ingredient entries.
 - Add Menu Items: Enables staff to introduce new dishes or offerings to the menu. For now restricted only to Pizzas.
@@ -166,11 +166,11 @@ If the visitor users may happen in the future to land inside the Staff Portal th
 
 #### Wireframes and Design Evolution
 The development of the website underwent significant modifications from the initial wireframes to the completed product, most notably:
-- The Home Page initially included a "Most Liked Dishes" feature, which would showcase a scrolling list of user favorites. This idea was set aside because the functionality to "like" a dish has not yet been introduced.
+- The Home Page initially included a "Most Liked Dishes" feature, which would showcase a scrolling list of user favourites. This idea was set aside because the functionality to "like" a dish has not yet been introduced.
 
 - The initial design intended for a reversed row layout on the ingredient page. This concept was reconsidered to achieve a more visually comfortable and straightforward presentation for users.
 
-- Staff Portal was developed after the initial ideas, onsequently, there were no original wireframes for this feature.
+- Staff Portal was developed after the initial ideas, consequently, there were no original wireframes for this feature.
 
     - Mobile Home Page
 
@@ -198,9 +198,9 @@ The development of the website underwent significant modifications from the init
 <summary>Click to expand</summary>
 
 #### Colour Scheme
-Upon falling in love with a dark chalkboard background found on Canva, i decided to center the font color scheme around it, opting for white text to ensure strong contrast and readability against the dark background. This choice was made to guarantee that the text stands out clearly and is easily readable.
+Upon falling in love with a dark chalkboard background found on Canva, i decided to centre the font colour scheme around it, opting for white text to ensure strong contrast and readability against the dark background. This choice was made to guarantee that the text stands out clearly and is easily readable.
 
-#FFB018 has been chosen purely for nostalgic reasons, as it was also used in my first project and first time writing code completely indepedent ever. Although the choice is nostalgic, it still offers good visibility against a dark background, ensuring interactive elements and interactive feedback are easily recognizable.
+#FFB018 has been chosen purely for nostalgic reasons, as it was also used in my first project and first time writing code completely independent ever. Although the choice is nostalgic, it still offers good visibility against a dark background, ensuring interactive elements and interactive feedback are easily recognizable.
 
 ![Colour Palette](/static/media/readme/colour-palette.png)
 
@@ -243,11 +243,11 @@ This ERD represents the database schema for the  application.
 ## Agile Development
 Throughout the development of the project, a physical Kanban board served as the primary tool for tracking progress due to initial insecurities about using GitHub issues.
 
-As the README was compiled my familiarity with GitHub's project management grew, revealing the platform's ease of use, wich in hindsight could have proven useful.
+As the README was compiled my familiarity with GitHub's project management grew, revealing the platform's ease of use, which in hindsight could have proven useful.
 
-User Stories were retrospectively documented withing GitHub project.
+User Stories were retrospectively documented within GitHub project.
 
-Despite the traditional approach with a phisical Kanban board and post-its, Agile principles were upheld, including the assignment of MoSCoW priorities to focus on delivering a minimum viable product (MVP) in the time given.
+Despite the traditional approach with a physical Kanban board and post-its, Agile principles were upheld, including the assignment of MoSCoW priorities to focus on delivering a minimum viable product (MVP) in the time given.
 
 <details>
 <summary>Sprint Details</summary>
@@ -301,7 +301,7 @@ The initial phase of development focused on laying the foundational elements of 
 
 - Sprint 4 -  Ingredient Model and Addition Functionality<br>
 This sprint focused on establishing the ingredient component of the database.<br>
-This phase was instrumental in enhancing the site's capability to catalog and manage ingredients efficiently, setting the groundwork for menu item development.
+This phase was instrumental in enhancing the site's capability to catalogue and manage ingredients efficiently, setting the groundwork for menu item development.
 
     - Ingredient Model <br>
         Introduced the initial ingredient model along with necessary views and forms.
@@ -376,7 +376,7 @@ Furthermore improved the ingredients management system by mirroring the menu man
     - Ingredient Links <br>
         Added hyperlinks to the ingredients listed in menu items, connecting users to the detailed ingredients page.
 
-- Sprint 10 - Enhancing Responsiveness
+- Sprint 10 - Enhancing Responsiveness<br>
 In Sprint 10, the project's focus shifted towards optimizing the website's responsiveness of all elements, ensuring a seamless and accessible experience across all devices.
 
     - Responsiveness Optimization <br>
@@ -410,7 +410,7 @@ The navigation bar includes the site's logo, which doubles as a link to the home
 Direct Links to the Home, Menu and Ingredients page are prominently displayed, ensuring users can easily navigate these key sections.<br>
 
 The navigation dynamically assigns an "active" class to the link corresponding to the current page, based on the URL request path.<br>
-This visual cue helps users identify wich page they are viewing.<br>
+This visual cue helps users identify which page they are viewing.<br>
 
 For Staff Users that are logged in, an additional link to the Staff Portal appears.<br>
 This link features a split button that, upon hover, reveals four links dedicated to operational services: Add Ingredient, Manage Ingredients, Add Menu Item and Manage Menu Items.
@@ -539,7 +539,7 @@ Moving away from the Django auto-generated forms used initially, these pages fea
     Unlike the auto-generated Django forms, these edit forms have been personally customized for better aesthetics and usability.
 
 - Image Handling: <br>
-    The edit form includes an image preview  wich uses the URL from Cloudinary. Users have the option to remove the image, which also deletes it from cloud storage.
+    The edit form includes an image preview  which uses the URL from Cloudinary. Users have the option to remove the image, which also deletes it from cloud storage.
 
 - Error Handling:<br>
     If form submission fails, the page reloads with the modal open and an error message displayed next to the problematic field, guiding the user to resolve the specific issue.
@@ -626,7 +626,7 @@ Testing has been documented in [TESTING.md](/TESTING.md)
 ### Main Languages Used
 - HTML5
 - CSS3
-- Javascript
+- JavaScript
 - Python
 - Django
 - SQL - Postgres
@@ -642,7 +642,7 @@ Testing has been documented in [TESTING.md](/TESTING.md)
 - Am I Responsive? - Used to ensure the project is responsive.
 - Favicon.io - Used to convert png to ico.
 - Lucidchart - Used to create Site Flow and ERD.
-- Dall-E - Used for generation of images.
+- DALL-E - Used for generation of images.
 - Lighthouse - Used to test performances.
 - Wave - Used to evaluate the site's accessibility.
 - TinyPNG - Used for compressing PNG.
@@ -682,8 +682,8 @@ The site was deployed to Heroku. The steps to deploy were as follows:
     - DATABASE_URL - Your Database URL
     - CLOUDINARY_URL - Your Cloudinary URL
 7. Added Python to Buildpacks.
-8. Added the secret key, cloudinary and database url to env.py
-9. Added the secret key, cloudinary and database url to settings.py
+8. Added the secret key, cloudinary and database URL to env.py
+9. Added the secret key, cloudinary and database URL to settings.py
 10. Added Heroku as allowed host in settings.py
 11. Connected my GitHub account to heroku to facilitate the automatic Deployment whenever pushed
 12. Chose the main branch for deploying and enabled the automatic deployment
@@ -700,7 +700,7 @@ Button animation in the Home Page: [Lambdatest](https://www.lambdatest.com/blog/
 
 How to logout inactive user: [Medium](https://medium.com/@m.ambenge01/implementing-user-inactivity-logout-in-django-a020f6ebeb27)
 
-Testing Table - Testing table layout of my mentor [Lauren](https://github.com/CluelessBiker)
+Testing Table - Testing table layout inspired by my mentor [Lauren](https://github.com/CluelessBiker)
 
 ### Media
 Logo and favicon - [Link](https://www.flaticon.com/free-icon/pizza_1404945)
