@@ -533,4 +533,7 @@ Moving away from the Django auto-generated forms used initially, these pages fea
 
 ![Manage Ingredients Page](/static/media/readme/manage-ingredients-page.png)
 ![Manage Menu Item Page](/static/media/readme/manage-menu-item-page.png)
+![Edit Ingredient Modal](/static/media/readme/edit-ingredient-modal.png)
+![Edit Menu Item Modal](/static/media/readme/edit-menu-modal.png)
+![Delete Modal](/static/media/readme/deletion-modal.png)
 </details>
